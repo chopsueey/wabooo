@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userRegister, userLogin } from "../fetchRequests/UserRequests.jsx";
 import bg from "../assets/akin-cakiner-unsplash.jpg";
+// import bg2 from "../assets/OIG.LoWKTxfaR4d77t.jpeg"
 import GeneralStore from "../store/GeneralContext";
 
 export default function Home() {
@@ -51,7 +52,7 @@ export default function Home() {
   });
 
   return (
-    <div className="wrapper" style={{ height: "50vh" }}>
+    <div className="wrapper" style={{ height: "100vh" }}>
       <div
         className="flex flex-col justify-center"
         style={{

@@ -1,13 +1,30 @@
 import { useState } from "react";
 
 export function InfoSidebar() {
-    const [activeTab, setActiveTab] = useState("Feed");
+  const [activeTab, setActiveTab] = useState("Feed");
+  const [infoSidebarClassName, setInfoSidebarClassName] = useState(
+    "hidden xl:flex xl:absolute top-0 right-[max(0px,calc(50%-48rem))] flex-col mt-5"
+  );
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY >= 175) {
+      setInfoSidebarClassName(
+        "hidden xl:flex xl:fixed top-[1.4rem] right-[max(0px,calc(50%-48rem))] flex-col pr-[7rem] mt-5"
+      );
+    } else {
+      setInfoSidebarClassName(
+        "hidden xl:flex xl:absolute top-0 right-[max(0px,calc(50%-48rem))] flex-col mt-5"
+      );
+    }
+  });
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
   return (
-    <div className="user-panel hidden xl:flex xl:fixed right-[max(0px,calc(50%-48rem))] flex-col px-10 pr-36">
+    <div className={infoSidebarClassName}>
+      <div className="pr-10">
+      <div className="border-r-2">
       <div
         style={{ cursor: "pointer" }}
         // onClick={() => navigate("/dashboard/myquestions")}
@@ -48,6 +65,8 @@ export function InfoSidebar() {
         // onClick={() => navigate("/dashboard/profile")}
       >
         rein?
+      </div>
+      </div>
       </div>
     </div>
   );
