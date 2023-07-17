@@ -9,8 +9,9 @@ export const likePostSchema = {
   required: ["user", "question"],
   errorMessage: {
     properties: {
-      user: "Der Name muss zwischen 2 und 30 Zeichen lang sein!",
-      question: "Die Frage muss aus mindestens 5 Zeichen und nicht mehr als 1000 Zeichen bestehen!",
+      user: "The name's length shall be between 2 and 30 letters",
+      question:
+        "Die Frage muss aus mindestens 5 Zeichen und nicht mehr als 1000 Zeichen bestehen!",
     },
   },
   additionalProperties: false,

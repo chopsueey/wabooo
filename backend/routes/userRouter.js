@@ -7,7 +7,7 @@ import { userPostSchema } from "../schema/userSchema.js";
 import validate from "../middleware/validateAjv.js";
 
 // const validateUserInput = [
-//     check("name").notEmpty().bail().isLength({min:2, max:30}).withMessage("Der Name ist nicht korrekt!"),
+//     check("name").notEmpty().bail().isLength({min:2, max:30}).withMessage("The name is not correct!"),
 //     check("email").isEmail().withMessage("Bitte eine korrekte E-Mail adresse eingeben!"),
 //     check("password").notEmpty().isLength({min:8, max:30}).matches(/[-_$#]/).withMessage("Bitte ein gültiges Passwort eingeben!"),
 //     (req, res, next) => {
