@@ -49,7 +49,7 @@ export default function Navigation() {
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-                <img className="w-16 h-16 mr-2" src={logo} alt="wabooo logo" />
+                <img className="w-30 h-16 mr-2" src={logo} alt="wabooo logo" />
               </Link>
               <ul className="hidden sm:flex items-center space-x-4">
                 <Link to="/about">
@@ -65,7 +65,7 @@ export default function Navigation() {
                 {hasCookie || document.cookie.includes("isLoggedIn") ? (
                   <li>
                     <button
-                      className={`"mt-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-1 ${
+                      className={`"mt-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 ${
                         logoutLoading ? "cursor-not-allowed opacity-75" : ""
                       }`}
                       onClick={handleLogout}
@@ -97,7 +97,7 @@ export default function Navigation() {
                   </li>
                 ) : (
                   <span
-                    className="mt-4 mr-2 text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 shadow-lg shadow-gray-500/50 dark:shadow-lg dark:shadow-gray-800/80 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2"
+                    className="mt-4 mr-2 text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2"
                     onClick={() => setModal(true)}
                   >
                     Sign in
@@ -158,7 +158,7 @@ export default function Navigation() {
               {hasCookie || document.cookie.includes("isLoggedIn") ? (
                 <li>
                   <button
-                    className={`mb-2 ml-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-4 py-2 ${
+                    className={`mb-2 ml-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-4 py-2 ${
                       logoutLoading ? "cursor-not-allowed opacity-75" : ""
                     }`}
                     onClick={handleLogout}
@@ -190,7 +190,7 @@ export default function Navigation() {
                 </li>
               ) : (
                 <span
-                  className="py-1 px-3 text-center text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800  font-medium rounded-lg text-sm ml-2 block max-w-[5rem] mb-1"
+                  className="py-1 px-3 text-center text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm ml-2 block max-w-[5rem] mb-1"
                   onClick={() => setModal(true)}
                 >
                   Sign in

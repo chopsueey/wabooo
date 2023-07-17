@@ -18,7 +18,21 @@
    background-repeat: no-repeat;
 }
 
-
+.blubb{
+   --tw-gradient-from: #111827;
+   --tw-gradient-via: #1f2937;
+   --tw-gradient-to: #06323e;
+   --tw-gradient-from-position: bottom left;
+   --tw-gradient-via-position: center;
+   --tw-gradient-to-position: top right;
+   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
+   --bg-gradient-color-start: var(--tw-gradient-from);
+   --bg-gradient-color-middle: var(--tw-gradient-via);
+   --bg-gradient-color-end: var(--tw-gradient-to);
+   background-color: var(--bg-gradient-color-start);
+   background-image: linear-gradient(to right top, var(--tw-gradient-stops));
+   background-repeat: no-repeat;
+}
 
 .textc {
    color: #149eca;
