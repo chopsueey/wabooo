@@ -177,13 +177,18 @@ export const Question = ({
                     }
                   )
                 }
+
               ></div>
               <figcaption className="blubb opacity-70 rounded-lg p-2 px-2 flex items-center justify-between">
                 <div className="flex items-center">
                   <div
                     className="ml-2 flex-shrink-0"
                     style={{
-                      backgroundImage: `url(${profilePic})`,
+                      backgroundImage: `url(${
+                    questionData.profileId.image
+                      ? questionData.profileId.image
+                      : profilePic
+                  })`,
                       backgroundSize: "contain",
                       backgroundRepeat: "no-repeat",
                       width: "40px",
@@ -206,6 +211,7 @@ export const Question = ({
                             },
                           }
                         )
+
                       }
                       className="text-white hover:underline"
                     >

@@ -1,5 +1,5 @@
-import profileModel from "../models/profileModel.js";
-import { cloudinary } from "../cloudinary/cloudinary.js";
+import profileModel from "../Upload/cloudyModel.js";
+import { cloudinary } from "../Upload/cloudinary.js";
 
 // get all products
 // @desc   Fetch all products

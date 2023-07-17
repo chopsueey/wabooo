@@ -8,7 +8,7 @@ import {
 
 const profileRouter = express.Router();
 
-profiletRouter.get("/", getAllProfiles);
+profileRouter.get("/", getAllProfiles);
 
 profileRouter.post("/", createProfile);
 
