@@ -172,14 +172,19 @@ export const Question = ({
                   )
                 }
                 style={{
-                  backgroundImage: `url(${profilePic})`,
-                  backgroundSize: "contain",
+                  // backgroundImage: `url(${profilePic})`,
+                  backgroundImage: `url(${
+                    questionData.profileId.image
+                      ? questionData.profileId.image
+                      : profilePic
+                  })`,
+                  backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   cursor: "pointer",
+                  width: "40px",
+                  height: "40px",
                 }}
-              >
-                .....
-              </div>
+              ></div>
               <div className="italic ml-2">
                 <h5
                   style={{ cursor: "pointer" }}

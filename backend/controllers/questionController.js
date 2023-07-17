@@ -140,7 +140,10 @@ export async function getLatestQuestion(req, res, next) {
     })
       .sort("-createdAt")
       .limit(numOfQuestionsToShow)
-      .populate("profileId", "userName")
+      .populate({
+        path: "profileId",
+        select: "userName image",
+      })
       .exec();
     const userAnswers = await Answer.find({
       user: req.user.userId,
@@ -184,10 +187,10 @@ export async function updateQuestion(req, res, next) {
     // get user profile
     const userProfile = await Profile.findOne({ userId: req.user.userId });
 
-    const sortedQuestions = await Question.findById(questionId).populate(
-      "profileId",
-      "userName"
-    );
+    const sortedQuestions = await Question.findById(questionId).populate({
+      path: "profileId",
+      select: "userName image",
+    });
     const userAnswers = await Answer.find({
       user: req.user.userId,
     });
@@ -226,7 +229,10 @@ export async function getQuestion(req, res, next) {
     const questionId = req.params.id;
 
     const questions = await Question.findById(questionId)
-      .populate("profileId", "userName")
+      .populate({
+        path: "profileId",
+        select: "userName image",
+      })
       .exec();
 
     const userAnswers = await Answer.find({

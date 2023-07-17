@@ -5,6 +5,7 @@ import {
   patchProfile,
 } from "../fetchRequests/ProfileRequests";
 import { Questions } from "../components/Questions";
+import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("Info");
@@ -144,7 +145,7 @@ export default function Profile() {
                   <div className="flex justify-center">
                     <img
                       style={{ maxWidth: "100px" }}
-                      src={userData.userProfile.image}
+                      src={userData.userProfile.image ? userData.userProfile.image : profilePic }
                     />
                     <button onClick={handleImageDeleteClick}>delete img</button>
                   </div>

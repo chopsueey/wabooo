@@ -22,7 +22,10 @@ async function showProfile(req, res, next) {
     })
       .sort("-createdAt")
       .limit(numOfQuestionsToShow)
-      .populate("profileId", "userName")
+      .populate({
+        path: "profileId",
+        select: "userName image",
+      })
       .exec();
 
     const userAnswers = await Answer.find({
@@ -103,7 +106,7 @@ async function getProfile(req, res, next) {
 // patch
 async function updateProfileData(req, res, next) {
   const updateId = req.user.userId;
-  const { userName, country, birthYear, image, imageUrl } = req.body;
+  const { image, imageUrl } = req.body;
   try {
     if (image && imageUrl) {
       // upload image to cloudinary
@@ -142,7 +145,15 @@ async function updateProfileData(req, res, next) {
       {
         $set: req.body,
       },
-      { new: true, runValidators: true }
+      { new: true }
+      // { new: true, runValidators: true }
+      // Object.entries(req.body).forEach(([key, value]) => {
+      //   if (value !== null && value !== undefined) {
+      //     // Include the field in the updateObject only if the value is not null or undefined
+      //     updateObject[key] = value;
+      //   }
+      // });
+      
     );
     res.status(200).json({
       updatedProfile: updatedItem,
