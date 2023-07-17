@@ -22,7 +22,6 @@ const connectionString = process.env.MONGO_URL;
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookieParser());
 app.use(express.json());
-app.use(cookieParser())
 app.use("/", userRouter);
 app.use("/dashboard", authMiddleware, dashboardRouter);
 
