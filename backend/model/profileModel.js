@@ -58,16 +58,8 @@ const ProfileSchema = new mongoose.Schema({
     // required: true,
     max: [2005, "You shall be minimum 18 years old"],
   },
-  // birthYear: {
-  //   type: Number,
-  //   // required: true,
-  //   max: 2005,
-  //   validate: {
-  //     validator: (v) => {
-  //       return v.length >= 2005;
-  //     },
-  //     message: "You shall be minimum 18 years old.",
-  //   },
+  image: { type: String },
+  imgPub: { type: String },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

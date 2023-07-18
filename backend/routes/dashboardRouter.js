@@ -9,12 +9,20 @@ import * as likeController from "../controllers/likeController.js";
 import * as followController from "../controllers/followController.js";
 import * as searchController from "../controllers/searchController.js";
 
-// import { profilePostSchema } from "../schema/profileSchema.js";
+// import {
+//   getAllProfiles,
+//   createProfile,
+//   deleteProfile,
+// } from "../controllers/profileControllers.js";
+
+import * as cloudyController from "../Upload/cloudyController.js"
+
+import { profilePostSchema } from "../schema/profileSchema.js";
 // import { feedbackPostSchema } from "../schema/feedbackSchema.js";
 // //import { likePostSchema } from "../schema/likeSchema.js";
 // import { questionPostSchema } from "../schema/questionSchema.js";
 // //import { answerPostSchema } from "../schema/answerSchema.js";
-// import validate from "../middleware/validateAjv.js";
+import validate from "../middleware/validateAjv.js";
 
 const dashboardRouter = express.Router();
 
@@ -32,6 +40,11 @@ dashboardRouter.get(
 dashboardRouter.patch("/profile", profileController.updateProfileData);
 dashboardRouter.put("/profile", profileController.editProfile);
 dashboardRouter.delete("/profile", profileController.deleteAccount);
+
+// DASHBOARD/CLOUDINARY
+// dashboardRouter.get("/profile/cloudinary", cloudyController.getAllProfiles);
+// dashboardRouter.post("/profile/cloudinary", cloudyController.createProfile);
+dashboardRouter.delete("/profile/cloudinary", profileController.deleteImage);
 
 // DASHBOARD/MYQUESTIONS
 dashboardRouter.get("/myquestions", questionController.getAllQuestions);

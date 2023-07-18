@@ -7,7 +7,7 @@ export const profilePostSchema = {
     country: stringLength,
     birthYear: { type: "number" },
   },
-  required: ["userName", "country", "birthyear"],
+  required: ["userName", "country", "birthYear"],
   errorMessage: {
     properties: {
       userName: "Your name shall have minimum 2 and maximum 30 letters",

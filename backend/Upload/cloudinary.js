@@ -5,9 +5,9 @@ dotenv.config();
 
 //2 configure cloudinaryd
 cloudinary.config({ 
-    cloud_name: 'dp2foa50s', 
-    api_key: '355389614935124', 
-    api_secret: 'f5DdPVE7DFZtopFjw2sH425aqqY' 
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
   });
 
 //3 export cloudinary

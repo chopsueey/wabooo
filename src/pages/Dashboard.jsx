@@ -9,15 +9,11 @@ import Recommended from "../components/Recommended.jsx";
 import { Searchbar } from "../components/Searchbar.jsx";
 import SearchResults from "../components/SearchResults.jsx";
 
-
-
 export default function Dashboard() {
   const { activeTab, results } = GeneralStore();
 
   return (
-
     <div className="max-w-2xl mx-auto lg:max-w-5xl xl:max-w-none sm:px-6 lg:px-8">
-
       <section
         className="row bg-gray-500 bg-opacity-25 rounded-xl h-[5rem] mt-3 shadow-lg shadow-gray-900"
         // style={{
@@ -26,9 +22,7 @@ export default function Dashboard() {
         //   borderBottom: "solid 3px #149eca",
         // }}
       >
-
         <Searchbar />
-
       </section>
       {/* content of dashboard page */}
       <div className="m-5"></div>
@@ -42,7 +36,7 @@ export default function Dashboard() {
         <UserPanel />
         <div
           style={{ minHeight: "100vh" }}
-          className="grow px-4 sm:px-6 lg:px-10 lg:pl-[15rem] xl:px-[17rem] mb-5 mt-5"
+          className="grow px-4 sm:px-6 lg:px-10 lg:pl-[15rem] xl:px-[17rem] mb-5 mt-5 relative"
         >
           {activeTab === "Feed" ? <Feed /> : ""}
 
@@ -52,8 +46,8 @@ export default function Dashboard() {
 
           {activeTab === "AskQuestion" ? <MyQuestions /> : ""}
           {results ? <SearchResults /> : ""}
+          <InfoSidebar />
         </div>
-        <InfoSidebar />
       </section>
     </div>
   );

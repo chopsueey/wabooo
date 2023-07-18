@@ -42,7 +42,7 @@ export default function Feed() {
     >
       <div className="flex justify-end">
         <select
-          className="bg-black"
+          className="blubb focus:outline-none rounded-lg text-cyan-500 font-bold h-15 w-15 text-center"
           value={sortBy}
           onChange={(event) => setSortBy(event.target.value)}
         >
