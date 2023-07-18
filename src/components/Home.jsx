@@ -93,6 +93,7 @@ export default function Home() {
         setHasCookie(true);
         setModal(false);
         navigate("/dashboard");
+        toast.success("Login successful!");
         setLoading(false);
         return;
       } else if (response.status === 400) {
