@@ -9,9 +9,9 @@ export const answerPostSchema = {
   required: ["user", "answer"],
   errorMessage: {
     properties: {
-      user: "Der Name muss zwischen 2 und 30 Zeichen lang sein!",
+      user: "The name's length shall be between 2 and 30 letters!",
       answer:
-        "Geben Sie Ihre Antwort auf die Ja/Nein-Frage, indem Sie auf „Ja“ oder „Nein“ klicken.",
+        "Please, provide your answer as 'yes' or 'no'",
     },
   },
   additionalProperties: false,

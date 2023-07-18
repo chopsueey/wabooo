@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
       validator: (v) => {
         return v.length >= 2;
       },
-      message: "Der Name muss aus mindestens zwei Zeichen bestehen!",
+       message: "The name requires minimum 2 letters!",
     },
   },
 
@@ -65,7 +65,7 @@ const userSchema = new mongoose.Schema({
       validator: (v) => {
         return v.length >= 2;
       },
-      message: "Der Name muss aus mindestens zwei Zeichen bestehen!",
+      message: "The name requires minimum 2 letters!",
     },
   },
 

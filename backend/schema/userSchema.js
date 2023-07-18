@@ -17,10 +17,11 @@ export const userPostSchema = {
   required: ["name", "userName", "email", "password"],
   errorMessage: {
     properties: {
-      name: "Der Name muss zwischen 2 und 30 Zeichen lang sein!",
-      userName: "Der Name muss zwischen 2 und 30 Zeichen lang sein!",
-      email: "Das Email  muss zwischen 2 und 30 Zeichen lang sein!",
-      password: "Das Password  muss mindestens 8 Zeichen lang sein!",
+      name: "The name's length shall be between 2 and 30 letters",
+      userName: "The name's length shall be between 2 and 30 letters",
+      email: "The email shall have the correct format (e.g. contain @)",
+      password:
+        "The password shall have minimum 8 letters, including numbers and symbols",
     },
   },
   additionalProperties: false,
