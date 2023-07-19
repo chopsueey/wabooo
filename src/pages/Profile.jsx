@@ -7,7 +7,7 @@ import {
 import { Questions } from "../components/Questions";
 import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import { useNavigate } from "react-router-dom";
-import { countries } from "../../backend/model/profileModel";
+import { countries } from "../../backend/model/data.js";
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("Info");
