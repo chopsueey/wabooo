@@ -43,7 +43,7 @@ export default function Home() {
       toast.error("Your passwords do not match.");
       return;
     }
-    if (!name && !userName) {
+    if (register && !name && !userName) {
       toast.error("Please, provide your name and username");
       return;
     }
