@@ -51,9 +51,9 @@ export default function MyQuestions() {
 
   return (
     <div className="flex items-center justify-center mt-5 mb-5">
-      <div className="w-full max-w-sm p-8 bg-gray-800 rounded-md shadow-md">
+      <div className="w-full max-w-sm p-8 blubb rounded-md shadow-md">
         <h3
-          className={`cursor-pointer text-white mb-2 ${
+          className={`cursor-pointer text-cyan-300 mb-2 ${
             isContentVisible.question1 ? "font-bold" : ""
           }`}
           onClick={() => handleQuestionClick("question1")}
@@ -70,7 +70,7 @@ export default function MyQuestions() {
           </>
         )}
         <h3
-          className={`cursor-pointer text-white mb-2 ${
+          className={`cursor-pointer text-cyan-300 mb-2 ${
             isContentVisible.question2 ? "font-bold" : ""
           }`}
           onClick={() => handleQuestionClick("question2")}
@@ -126,7 +126,6 @@ export default function MyQuestions() {
         <div className="flex">
           {topicsArray.map((item) => (
             <div
-
               onClick={(e) => handleDeleteTopic(e)}
               className="text-white mr-2 hover:text-red-500 cursor-pointer"
             >

@@ -42,23 +42,32 @@ export default function UserPanel() {
 
   return (
     <div className={userPanelClassName + " z-10"}>
-      <div className="user-panel flex lg:flex-col border-l-2 mt-10">
+      <div className="user-panel flex lg:flex-col  mt-10">
         <div
           style={{ cursor: "pointer" }}
-          className={(activeTab === "Feed" ? "active" : "") + " p-2"}
+          className={
+            (activeTab === "Feed" ? "active" : "") +
+            " p-2  hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+          }
           onClick={() => handleTabClick("Feed")}
         >
           feed
         </div>
         <div
-          className={(activeTab === "Trend" ? "active" : "") + " p-2"}
+          className={
+            (activeTab === "Trend" ? "active" : "") +
+            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+          }
           onClick={() => handleTabClick("Trend")}
           style={{ cursor: "pointer" }}
         >
           trend
         </div>
         <div
-          className={(activeTab === "Recommended" ? "active" : "") + " p-2"}
+          className={
+            (activeTab === "Recommended" ? "active" : "") +
+            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+          }
           onClick={() => handleTabClick("Recommended")}
           style={{ cursor: "pointer" }}
         >
@@ -66,14 +75,20 @@ export default function UserPanel() {
         </div>
 
         <div
-          className={(activeTab === "AskQuestion" ? "active" : "") + " p-2"}
+          className={
+            (activeTab === "AskQuestion" ? "active" : "") +
+            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+          }
           onClick={() => handleTabClick("AskQuestion")}
           style={{ cursor: "pointer" }}
         >
           ask a question
         </div>
         <div
-          className={(activeTab === "Profile" ? "active" : "") + " p-2"}
+          className={
+            (activeTab === "Profile" ? "active" : "") +
+            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+          }
           // onClick={() => handleTabClick("Profile")}
           style={{ cursor: "pointer" }}
           onClick={() => navigate(`/dashboard/user/profile/${profileId}`)}
@@ -82,7 +97,10 @@ export default function UserPanel() {
         </div>
         {results ? (
           <div
-            className={(activeTab === "Results" ? "active" : "") + " p-2"}
+            className={
+              (activeTab === "Results" ? "active" : "") +
+              " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+            }
             style={{ cursor: "pointer" }}
             onClick={() => handleTabClick("Results")}
           >

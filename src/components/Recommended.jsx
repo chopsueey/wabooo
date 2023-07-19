@@ -40,7 +40,9 @@ export default function Recommended() {
       data-aos-delay="100"
       className={activeTab === "Recommended" ? "row recommended" : "hidden"}
     >
+
       <SortByMenu />
+
 
       {isLoading ? (
         <div className="flex justify-center mt-4">
