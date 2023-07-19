@@ -53,7 +53,10 @@ async function showProfile(req, res, next) {
     })
       .sort("-createdAt")
       .limit(numOfQuestionsToShow)
-      .populate("profileId", "userName")
+      .populate({
+        path: "profileId",
+        select: "userName image",
+      })
       .exec();
 
     res.status(200).json({
@@ -71,13 +74,65 @@ async function showProfile(req, res, next) {
 }
 
 async function getProfile(req, res, next) {
+  const numOfQuestionsToShow = 10;
+
+  const profileId = req.params.profileId;
+
   try {
-    const userId = req.user.userId;
-    const profileId = req.params.profileId;
-
     const userProfile = await Profile.findById(profileId);
+    
+    // find only questions of user profile
+    const askedQuestions = await Question.find({
+      profileId: { $eq: `${userProfile._id}` },
+    })
+      .sort("-createdAt")
+      .limit(numOfQuestionsToShow)
+      .populate({
+        path: "profileId",
+        select: "userName image",
+      })
+      .exec();
 
-    res.status(200).json(userProfile);
+    const userAnswers = await Answer.find({
+      user: userProfile.userId,
+    });
+    const userLikes = await Like.find({
+      user: userProfile.userId,
+    });
+
+    // find all Follows, where the profileId of the current user
+    // is stored in the key: followerProfileId
+    const userIsFollowing = await Follow.find({
+      followerProfileId: userProfile._id,
+    });
+    // find all Follows, where the profileId of the current user
+    // is stored in the key: followingProfileId
+    const userFollowers = await Follow.find({
+      followingProfileId: userProfile._id,
+    });
+
+    // find only liked questions by the user profile
+    const likedQuestionsIds = userLikes.map((question) => question.question);
+    const likedQuestions = await Question.find({
+      _id: { $in: likedQuestionsIds },
+    })
+      .sort("-createdAt")
+      .limit(numOfQuestionsToShow)
+      .populate({
+        path: "profileId",
+        select: "userName image",
+      })
+      .exec();
+
+    res.status(200).json({
+      askedQuestions: askedQuestions,
+      likedQuestions: likedQuestions,
+      userProfile: userProfile,
+      userAnswers: userAnswers,
+      userLikes: userLikes,
+      userIsFollowing: userIsFollowing,
+      userFollowers: userFollowers,
+    });
   } catch (error) {
     next(error);
   }
@@ -153,7 +208,6 @@ async function updateProfileData(req, res, next) {
       //     updateObject[key] = value;
       //   }
       // });
-      
     );
     res.status(200).json({
       updatedProfile: updatedItem,

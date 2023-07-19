@@ -67,7 +67,7 @@ li {
 .popup-profile-info {
    visibility: hidden;
    opacity: 0;
-   transition: visibility 0s, opacity 200ms linear;
+   transition: visibility 200ms, opacity 200ms linear;
 }
 
 .profile-name:hover .popup-profile-info {
