@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userRegister, userLogin } from "../fetchRequests/UserRequests.jsx";
 import bg from "../assets/background.jpg";
-import bg2 from "../assets/karte.jpg";
-import bg3 from "../assets/karte2.jpg";
-import bg4 from "../assets/karte3.jpg";
+import bg2 from "../assets/card.jpg";
+import bg3 from "../assets/card.jpg";
+import bg4 from "../assets/card.jpg";
 import GeneralStore from "../store/GeneralContext";
 import Typewriter from "typewriter-effect";
 
@@ -206,7 +206,7 @@ export default function Home() {
           style={{ marginBottom: "5rem" }}
         >
           {/* Card eins */}
-          <div className="max-w-xs mx-4 blubb shadow-md rounded-lg overflow-hidden">
+          <div className="mx-4 blubb shadow-md rounded-lg overflow-hidden">
             <div
               className="w-full h-32 object-cover"
               style={{
@@ -225,7 +225,7 @@ export default function Home() {
           </div>
 
           {/* Card zwei */}
-          <div className="max-w-xs mx-4 blubb shadow-md rounded-lg overflow-hidden">
+          <div className=" mx-4 blubb shadow-md rounded-lg overflow-hidden">
             <div
               className="w-full h-32 object-cover"
               style={{
@@ -244,7 +244,7 @@ export default function Home() {
           </div>
 
           {/* Card drei */}
-          <div className="max-w-xs mx-4 blubb shadow-md rounded-lg overflow-hidden">
+          <div className=" mx-4 blubb shadow-md rounded-lg overflow-hidden">
             <div
               className="w-full h-32 object-cover"
               style={{
