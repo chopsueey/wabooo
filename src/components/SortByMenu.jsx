@@ -5,7 +5,7 @@ export default function SortByMenu() {
   return (
     <div style={{ maxWidth: "600px" }} className="flex justify-end mx-auto">
       <select
-        className="blubb focus:outline-none rounded-lg text-cyan-500 font-bold h-15 w-15 text-center"
+        className="blubb p-1 py-2 focus:outline-none rounded-lg text-cyan-500 font-bold h-15 w-15 text-center"
         value={sortBy}
         onChange={(event) => setSortBy(event.target.value)}
       >

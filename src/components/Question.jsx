@@ -181,20 +181,34 @@ export const Question = ({
               <figcaption className="blubb rounded-lg p-2 px-2 flex items-center justify-between">
                 <div className="flex items-center">
                   <div
-                    className="ml-2 flex-shrink-0"
+                    className="flex-shrink-0 rounded-full cursor-pointer"
                     style={{
                       backgroundImage: `url(${
                         questionData.profileId.image
                           ? questionData.profileId.image
                           : profilePic
                       })`,
-                      backgroundSize: "contain",
+                      backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       width: "40px",
                       height: "40px",
                     }}
+                    onClick={() =>
+                      navigate(
+                        `/dashboard/${questionData.profileId.userName}/profile/${questionData.profileId._id}`,
+                        {
+                          state: {
+                            question,
+                            answer,
+                            like,
+                            isFollowing,
+                            followsUser,
+                          },
+                        }
+                      )
+                    }
                   ></div>
-                  <div className="italic ml-5">
+                  <div className="italic ml-2">
                     <h5
                       style={{ cursor: "pointer" }}
                       onClick={() =>
@@ -221,7 +235,7 @@ export const Question = ({
 
               <div
                 style={{ width: "115px", maxHeight: "100px" }}
-                className="popup-profile-info absolute -bottom-[5rem] bg-gray-950 border-2 rounded-lg p-2 text-sm text-center flex flex-col"
+                className="popup-profile-info blubb absolute -bottom-[5rem] rounded-lg p-2 text-sm text-center flex flex-col"
               >
                 <div className="text-white">{numOfFollower} Follower</div>
                 {followsYou ? (
@@ -296,13 +310,13 @@ export const Question = ({
               >
                 {showDetails ? (
                   <>
-                    <MinusIcon className="w-4 h-4 mr-1" />
                     <span>Topics</span>
+                    <MinusIcon className="w-4 h-4 mr-1" />
                   </>
                 ) : (
                   <>
-                    <PlusIcon className="w-4 h-4 mr-1" />
                     <span>Topics</span>
+                    <PlusIcon className="w-4 h-4 mr-1" />
                   </>
                 )}
               </div>

@@ -21,12 +21,10 @@ import "react-toastify/dist/ReactToastify.css";
 //"You are logged in!");
 //"Your password is incorrect."
 
-
 export default function Home() {
   const navigate = useNavigate();
   const { modal, setModal, hasCookie, setHasCookie } = GeneralStore();
   const [loading, setLoading] = useState(false);
-
 
   const [login, setLogin] = useState(false);
 
@@ -83,9 +81,7 @@ export default function Home() {
       toast.error("Please, provide your password");
       return;
     } else if (response.status === 400) {
-      toast.error(
-        "Password shall include at least 1 upper case, 1 lower case, one number and 1 special character"
-      );
+      toast.error("Please, check your entries.");
     }
     setLoading(false);
     setModal(false);
@@ -127,13 +123,11 @@ export default function Home() {
         </div>
 
         {modal && (
-
           <div className="modal">
             <form
               className="signin flex flex-col p-4 text-center bg-gray-800 rounded-lg max-w-md mx-auto"
               onSubmit={handleSubmit}
             >
-
               <span
                 className="textc font-bold"
                 style={{ cursor: "pointer" }}
