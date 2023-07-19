@@ -8,15 +8,15 @@ import Question from "../model/questionModel.js";
 export async function getAllQuestions(req, res, next) {
   const numOfQuestionsToShow = 10;
   const sortBy = req.query.sortBy;
-  let sortTime = 168;
+  let sortTime = 168; // one week
 
   try {
     // get user profile
     const userProfile = await Profile.findOne({ userId: req.user.userId });
 
     if (sortBy === "latest") {
-      // latest questions not older than a week
-      sortTime = 168;
+      // latest questions not older than a month
+      sortTime = 720;
     }
     if (sortBy === "lastHour") {
       // not older than one hour

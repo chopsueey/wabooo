@@ -11,12 +11,18 @@ export async function searchFor(req, res, next) {
       question: { $regex: userSearch, $options: "i" },
     })
       .sort("-createdAt")
-      .populate("profileId", "userName");
+      .populate({
+        path: "profileId",
+        select: "userName image",
+      });
     const topicRelatedQuestions = await Question.find({
       topics: { $regex: userSearch, $options: "i" },
     })
       .sort("-createdAt")
-      .populate("profileId", "userName");
+      .populate({
+        path: "profileId",
+        select: "userName image",
+      });
     // get user profile
     const userProfile = await Profile.findOne({ userId: req.user.userId });
 

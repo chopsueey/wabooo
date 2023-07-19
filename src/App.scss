@@ -1,24 +1,26 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .submenu li {
-    margin-inline: 2px;
+  margin-inline: 2px;
 }
 .active {
-    text-decoration: underline;
+  background-color: #67e8f9;
+  border-radius: 0.75rem;
+  font-weight: bold;
 }
 .signin label {
-    margin: 10px 10px;
+  margin: 10px 10px;
 }
 .signin input {
-    color: black;
+  color: black;
 }
 
 .links a {
-    margin-inline: 4px;
+  margin-inline: 4px;
 }
 
 // body {

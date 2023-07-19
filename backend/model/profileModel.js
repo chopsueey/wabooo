@@ -1,37 +1,8 @@
 import mongoose from "mongoose";
-
-// added a reference to the user, the profile belongs to
+import { countries } from "./data.js";
 
 let enums = {
-  values: [
-    "France",
-    "Spain",
-    "England",
-    "Germany",
-    "Austria",
-    "Ireland",
-    "Norway",
-    "Egypt",
-    "Russia",
-    "Turkey",
-    "China",
-    "Finland",
-    "Italy",
-    "Croatia",
-    "Serbia",
-    "Slovakia",
-    "Greece",
-    "Japan",
-    "Bulgaria",
-    "Bosnia-Herzegovina",
-    "Liechtenstein",
-    "Canada",
-    "USA",
-    "Congo",
-    "Nigeria",
-    "Morocco",
-    "Other",
-  ],
+  values: countries,
   message: "Please, choose your country",
 };
 

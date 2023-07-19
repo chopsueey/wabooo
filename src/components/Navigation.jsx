@@ -56,12 +56,12 @@ export default function Navigation() {
               </Link>
               <ul className="hidden sm:flex items-center space-x-4">
                 <Link to="/about">
-                  <li className="text-cyan-700 hover:text-gray-800 text-xl">
+                  <li className="text-cyan-700 hover:text-cyan-300 text-xl">
                     About
                   </li>
                 </Link>
                 <Link to="/contact">
-                  <li className="text-cyan-700 hover:text-gray-800 text-xl">
+                  <li className="text-cyan-700 hover:text-cyan-300 text-xl">
                     Contact
                   </li>
                 </Link>
@@ -75,7 +75,7 @@ export default function Navigation() {
                       disabled={logoutLoading}
                     >
                       {logoutLoading ? (
-                        <div className="flex items-center">
+                        <div className="flex  justify-end items-center">
                           <div className="mr-2 animate-spin">
                             <svg
                               className="w-5 h-5 text-cyan-700"

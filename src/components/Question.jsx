@@ -177,18 +177,17 @@ export const Question = ({
                     }
                   )
                 }
-
               ></div>
-              <figcaption className="blubb opacity-70 rounded-lg p-2 px-2 flex items-center justify-between">
+              <figcaption className="blubb rounded-lg p-2 px-2 flex items-center justify-between">
                 <div className="flex items-center">
                   <div
                     className="ml-2 flex-shrink-0"
                     style={{
                       backgroundImage: `url(${
-                    questionData.profileId.image
-                      ? questionData.profileId.image
-                      : profilePic
-                  })`,
+                        questionData.profileId.image
+                          ? questionData.profileId.image
+                          : profilePic
+                      })`,
                       backgroundSize: "contain",
                       backgroundRepeat: "no-repeat",
                       width: "40px",
@@ -211,7 +210,6 @@ export const Question = ({
                             },
                           }
                         )
-
                       }
                       className="text-white hover:underline"
                     >
@@ -222,10 +220,10 @@ export const Question = ({
               </figcaption>
 
               <div
-                style={{ width: "115px" }}
-                className="popup-profile-info absolute bottom-6 top-auto bg-gray-950 border-2 rounded-lg p-2 text-sm text-center flex flex-col"
+                style={{ width: "115px", maxHeight: "100px" }}
+                className="popup-profile-info absolute -bottom-[5rem] bg-gray-950 border-2 rounded-lg p-2 text-sm text-center flex flex-col"
               >
-                <div>Followers: {numOfFollower}</div>
+                <div className="text-white">{numOfFollower} Follower</div>
                 {followsYou ? (
                   <div className="text-xs">
                     <h1 className="text-cyan-200">(Follows you)</h1>
@@ -234,7 +232,7 @@ export const Question = ({
                   ""
                 )}
                 {isOwnQuestion ? (
-                  ""
+                  <div className="text-cyan-200">This is your profile.</div>
                 ) : (
                   <div className="mt-4">
                     {!isFollowed ? (
@@ -339,7 +337,7 @@ export const Question = ({
               </span>
               {isAnswered ? (
                 <>
-                  <div className="italic">Answers: {allAnswers}</div>
+                  <div className="italic text-white">Answers: {allAnswers}</div>
                   <span
                     style={{ cursor: "pointer" }}
                     onClick={handleDeleteClick}

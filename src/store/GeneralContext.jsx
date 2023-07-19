@@ -13,6 +13,10 @@ export function GeneralContext({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   // dashboard active tab
   const [activeTab, setActiveTab] = useState("Feed");
+
+  // sortBy for backend questionController
+  const [sortBy, setSortBy] = useState("latest");
+
   // search results
   const [results, setResults] = useState(null);
   const sharedData = {
@@ -24,6 +28,8 @@ export function GeneralContext({ children }) {
     setIsLoading,
     activeTab,
     setActiveTab,
+    sortBy,
+    setSortBy,
     results,
     setResults
   };
