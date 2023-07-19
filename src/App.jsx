@@ -11,6 +11,9 @@ import NotFound from "./pages/NotFound";
 import GeneralStore from "./store/GeneralContext";
 import OthersProfile from "./pages/OthersProfile";
 import { QuestionPage } from "./pages/QuestionPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
   const navigate = useNavigate();
@@ -40,15 +43,25 @@ function App() {
             <Route index element={<Home />} />
             <Route path="dashboard" element={<Dashboard />} />
             {/* <Route path="dashboard/search" element={<Dashboard />} /> */}
-            <Route path="dashboard/user/profile/:profileId" element={<Profile />} />
-            <Route path="dashboard/:userName/profile/:profileId" element={<OthersProfile />} />
-            <Route path="dashboard/question/:userName/:questionId" element={<QuestionPage />} />
+            <Route
+              path="dashboard/user/profile/:profileId"
+              element={<Profile />}
+            />
+            <Route
+              path="dashboard/:userName/profile/:profileId"
+              element={<OthersProfile />}
+            />
+            <Route
+              path="dashboard/question/:userName/:questionId"
+              element={<QuestionPage />}
+            />
             <Route path="dashboard/myquestions" element={<MyQuestions />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       )}
+      <ToastContainer />
     </div>
   );
 }

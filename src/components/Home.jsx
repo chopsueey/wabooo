@@ -6,12 +6,30 @@ import bg2 from "../assets/card.jpg";
 import bg3 from "../assets/card.jpg";
 import bg4 from "../assets/card.jpg";
 import GeneralStore from "../store/GeneralContext";
+
 import Typewriter from "typewriter-effect";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+//"Your account is created. You are logged in!";
+// Account not yet created")
+// your name shall be minimum 2 letters
+// email shall have a proper format
+// your password shall be minimum 8 letters, including numbers and symbols
+//"Your passwords do not match.");
+//"You are logged in!");
+//"Your password is incorrect."
+
 
 export default function Home() {
   const navigate = useNavigate();
   const { modal, setModal, hasCookie, setHasCookie } = GeneralStore();
   const [loading, setLoading] = useState(false);
+
+
+  const [login, setLogin] = useState(false);
+
   const [register, setRegister] = useState(false);
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
@@ -19,10 +37,57 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [doubleCheckPassword, setDoubleCheckPassword] = useState("");
 
+  // const handleSubmit = async (evt) => {
+  //   evt.preventDefault();
+
+  //   const data = { name, userName, email, password };
+  //   console.log(data);
+  //   setRegister(true);
+  //   setName("");
+  //   setEmail("");
+  //   setPassword("");
+
+  //   if (register && doubleCheckPassword == password) {
+  //     setLoading(true);
+  //     const result = await userRegister(data);
+  //     console.log(result);
+  //     if (result.status === 201) {
+  //         setHasCookie(true);
+  //         setModal(false);
+  //         navigate("/dashboard");
+  //         setLoading(false);
+  //         toast.success("Your account is created. You are logged in!");
+  //         return;
+  //       } else if (result.status === 400) {
+  //       toast.error("Your passwords do not match.");
+  //     }
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //   if (!login) {
+  //     setLoading(true);
+  //     const response = await userLogin(data);
+  //     console.log(response);
+  //     if (response.status === 200) {
+  //       setHasCookie(true);
+  //       setModal(false);
+  //       navigate("/dashboard");
+  //       setLoading(false);
+  //       toast.success("You are logged in!");
+  //       return;
+  //     } else if (response.status === 400) {
+  //       toast.error("Your password is incorrect.");
+  //     }
+  //     setLoading(false);
+  //     return;
+  //   }
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    if (register && doubleCheckPassword !== password)
-      return console.log("Your passwords are not equal.");
+    if (register && doubleCheckPassword !== password) {
+      toast.error("Your passwords do not match.");
+      return;
+    }
     const data = { name, userName, email, password };
     console.log(data);
     setRegister(false);
@@ -31,22 +96,35 @@ export default function Home() {
     setPassword("");
     if (!register) {
       setLoading(true);
-      const loginAttempt = await userLogin(data);
-      if (loginAttempt) {
+      const response = await userLogin(data);
+      if (response.status === 200) {
         setHasCookie(true);
         setModal(false);
         navigate("/dashboard");
+        toast.success("Login successful!");
         setLoading(false);
         return;
+      } else if (response.status === 400) {
+        toast.error("Your password or email is incorrect.");
       }
       setLoading(false);
       return;
     }
 
     setLoading(true);
-    await userRegister(data);
+    const { response } = await userRegister(data);
+    console.log(response)
+    if (response.status === 201) {
+      setRegister(false)
+      setLoading(false);
+      toast.success("Your account is created. You can login now.");
+      return;
+    } else if (response.status === 400) {
+      toast.error("Account not yet created");
+    }
     setLoading(false);
     setModal(false);
+    return
   };
 
   useEffect(() => {
@@ -263,6 +341,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

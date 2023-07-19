@@ -10,10 +10,12 @@ export const userRegister = async (data) => {
     const result = await response.json();
     if (response.status === 201) {
       console.log("Registrierung erfolgreich!", result);
-      return result;
+      return { response, result };
     }
     console.log(result);
-    // throw new Error("Registrierung fehlgeschlagen!");
+    if (response.status === 400) {
+      return { response, result };
+    }
   } catch (error) {
     console.log(error);
   }
@@ -32,9 +34,11 @@ export const userLogin = async (data) => {
     const userData = await response.json();
     if (response.status === 200) {
       console.log("Anmeldung erfolgreich!");
-      return userData;
+      return response;
     }
-    throw new Error("Anmeldung fehlgeschlagen!");
+    if (response.status === 400) {
+      return response;
+    }
   } catch (error) {
     console.log(error);
   }

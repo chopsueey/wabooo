@@ -36,7 +36,7 @@ export default function Dashboard() {
         <UserPanel />
         <div
           style={{ minHeight: "100vh" }}
-          className="grow px-4 sm:px-6 lg:px-10 lg:pl-[15rem] xl:px-[17rem] mb-5 mt-5 relative"
+          className="grow px-4 sm:px-6 lg:px-10 lg:pl-[15rem] xl:pr-[20rem] mb-5 mt-5 relative" // xl:px-[17rem]
         >
           {activeTab === "Feed" ? <Feed /> : ""}
 

@@ -4,16 +4,16 @@ import { getFeed } from "../fetchRequests/QuestionRequests";
 import GeneralStore from "../store/GeneralContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import SortByMenu from "./SortByMenu";
 
 export default function Recommended() {
-  const { activeTab } = GeneralStore();
+  const { activeTab, sortBy } = GeneralStore();
   const [sortedQuestions, setSortedQuestions] = useState(null);
   const [answersOfUser, setAnswersOfUser] = useState(null);
   const [likesOfUser, setLikesOfUser] = useState(null);
   const [userIsFollowing, setUserIsFollowing] = useState(null);
   const [userFollowers, setUserFollowers] = useState(null);
 
-  const [sortBy, setSortBy] = useState("latest");
   const { isLoading, setIsLoading } = GeneralStore();
 
   useEffect(() => {
@@ -40,18 +40,9 @@ export default function Recommended() {
       data-aos-delay="100"
       className={activeTab === "Recommended" ? "row recommended" : "hidden"}
     >
-      <div className="flex justify-end">
-        <select
-          className="blubb focus:outline-none rounded-lg text-cyan-500 font-bold h-15 w-15 text-center"
-          value={sortBy}
-          onChange={(event) => setSortBy(event.target.value)}
-        >
-          <option value="latest">latest</option>
-          <option value="lastHour">one hour</option>
-          <option value="last12Hours">12 hours</option>
-          <option value="last24Hours">24 hours</option>
-        </select>
-      </div>
+
+      <SortByMenu />
+
 
       {isLoading ? (
         <div className="flex justify-center mt-4">
