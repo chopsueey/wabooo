@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import SortByMenu from "./SortByMenu";
 
-export default function QuestionsOfWeek() {
+export default function Trend() {
   const { activeTab, sortBy } = GeneralStore();
   const [sortedQuestions, setSortedQuestions] = useState(null);
   const [answersOfUser, setAnswersOfUser] = useState(null);
