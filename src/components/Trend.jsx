@@ -16,8 +16,6 @@ export default function Trend() {
   const [userIsFollowing, setUserIsFollowing] = useState(null);
   const [userFollowers, setUserFollowers] = useState(null);
 
-
-
   const { isLoading, setIsLoading } = GeneralStore();
 
   useEffect(() => {
@@ -44,22 +42,7 @@ export default function Trend() {
       data-aos-delay="100"
       className={activeTab === "Trend" ? "row trend" : "hidden"}
     >
-
-      <div className="flex justify-end">
-        <select
-          className="blubb focus:outline-none rounded-lg text-cyan-500 font-bold h-15 w-15 text-center"
-          value={sortBy}
-          onChange={(event) => setSortBy(event.target.value)}
-        >
-          <option value="latest">latest</option>
-          <option value="lastHour">one hour</option>
-          <option value="last12Hours">12 hours</option>
-          <option value="last24Hours">24 hours</option>
-        </select>
-      </div>
-
-      <SortByMenu/>
-
+      <SortByMenu />
 
       {isLoading ? (
         <div className="flex justify-center mt-4">
