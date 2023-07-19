@@ -29,55 +29,14 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [doubleCheckPassword, setDoubleCheckPassword] = useState("");
 
-  // const handleSubmit = async (evt) => {
-  //   evt.preventDefault();
-
-  //   const data = { name, userName, email, password };
-  //   console.log(data);
-  //   setRegister(true);
-  //   setName("");
-  //   setEmail("");
-  //   setPassword("");
-
-  //   if (register && doubleCheckPassword == password) {
-  //     setLoading(true);
-  //     const result = await userRegister(data);
-  //     console.log(result);
-  //     if (result.status === 201) {
-  //         setHasCookie(true);
-  //         setModal(false);
-  //         navigate("/dashboard");
-  //         setLoading(false);
-  //         toast.success("Your account is created. You are logged in!");
-  //         return;
-  //       } else if (result.status === 400) {
-  //       toast.error("Your passwords do not match.");
-  //     }
-  //     setLoading(false);
-  //     return;
-  //   }
-
-  //   if (!login) {
-  //     setLoading(true);
-  //     const response = await userLogin(data);
-  //     console.log(response);
-  //     if (response.status === 200) {
-  //       setHasCookie(true);
-  //       setModal(false);
-  //       navigate("/dashboard");
-  //       setLoading(false);
-  //       toast.success("You are logged in!");
-  //       return;
-  //     } else if (response.status === 400) {
-  //       toast.error("Your password is incorrect.");
-  //     }
-  //     setLoading(false);
-  //     return;
-  //   }
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (register && doubleCheckPassword !== password) {
       toast.error("Your passwords do not match.");
+      return;
+    }
+    if (!name && !userName) {
+      toast.error("Please, provide your name and username");
       return;
     }
     const data = { name, userName, email, password };
@@ -97,7 +56,7 @@ export default function Home() {
         setLoading(false);
         return;
       } else if (response.status === 400) {
-        toast.error("Your password or email is incorrect.");
+        toast.error("Your password is incorrect.");
       }
       setLoading(false);
       return;
@@ -105,18 +64,24 @@ export default function Home() {
 
     setLoading(true);
     const { response } = await userRegister(data);
-    console.log(response)
+    console.log(response);
     if (response.status === 201) {
-      setRegister(false)
+      setRegister(false);
       setLoading(false);
       toast.success("Your account is created. You can login now.");
       return;
+    }
+    if (!password) {
+      toast.error("Please, provide your password");
+      return;
     } else if (response.status === 400) {
-      toast.error("Account not yet created");
+      toast.error(
+        "Password shall include at least 1 upper case, 1 lower case, one number and 1 special character"
+      );
     }
     setLoading(false);
     setModal(false);
-    return
+    return;
   };
 
   useEffect(() => {
@@ -139,7 +104,10 @@ export default function Home() {
 
         {modal && (
           <div className="modal">
-            <form className="signin flex flex-col p-4 text-center bg-gray-800 rounded-lg max-w-md mx-auto">
+            <form
+              className="signin flex flex-col p-4 text-center bg-gray-800 rounded-lg max-w-md mx-auto"
+              onSubmit={handleSubmit}
+            >
               <span
                 className="textc font-bold"
                 style={{ cursor: "pointer" }}
@@ -188,8 +156,10 @@ export default function Home() {
                 <input
                   className="mt-2 px-4 py-2 bg-white text-gray-800 rounded-md w-full"
                   type="password"
+                  minlength="8"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   value={password}
-                  placeholder="password"
+                  placeholder="password (minimum 8 characters)"
                   onChange={(evt) => setPassword(evt.target.value)}
                 />
               </label>
@@ -208,7 +178,7 @@ export default function Home() {
                 className={` mt-4 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2 ${
                   loading ? "cursor-not-allowed opacity-75" : ""
                 }`}
-                onClick={handleSubmit}
+                type="submit"
                 disabled={loading}
               >
                 {loading ? (

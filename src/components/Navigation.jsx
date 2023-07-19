@@ -5,6 +5,8 @@ import logo from "../assets/Logo123.png";
 import { userLogout } from "../fetchRequests/UserRequests";
 import Footer from "./Footer";
 import MobileUserPanel from "./MobileUserPanel";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Navigation() {
   const navigate = useNavigate();
@@ -19,6 +21,7 @@ export default function Navigation() {
     setLogoutLoading(false);
     setHasCookie(false);
     navigate("/logout");
+    toast.success("Logout successful!");
   };
 
   const toggleMobileMenu = () => {
@@ -203,6 +206,7 @@ export default function Navigation() {
       <Outlet />
       <MobileUserPanel />
       <Footer />
+      <ToastContainer />
     </>
   );
 }
