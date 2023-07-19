@@ -1,4 +1,4 @@
-import QuestionsOfWeek from "../components/QuestionsOfWeek.jsx";
+import Trend from "../components/Trend.jsx";
 import UserPanel from "../components/UserPanel.jsx";
 import Feed from "../components/Feed.jsx";
 import MyQuestions from "./MyQuestions.jsx";
@@ -40,7 +40,7 @@ export default function Dashboard() {
         >
           {activeTab === "Feed" ? <Feed /> : ""}
 
-          {activeTab === "Trend" ? <QuestionsOfWeek /> : ""}
+          {activeTab === "Trend" ? <Trend /> : ""}
 
           {activeTab === "Recommended" ? <Recommended /> : ""}
 
