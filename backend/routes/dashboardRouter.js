@@ -67,9 +67,10 @@ dashboardRouter.delete("/question/likes", likeController.deleteLike);
 dashboardRouter.post("/follow", followController.followUser);
 dashboardRouter.delete("/unfollow", followController.deleteFollow);
 
-/ DASHBOARD/PROFILE/FOLLOWERS
+//DASHBOARD/PROFILE/FOLLOWERS
 dashboardRouter.get("/profile/:profileId/followers", followController.getFollower);
 //dashboardRouter.delete("/profile/:profileId/followers", followController.removeFollower);
+
 // DASHBOARD/PROFILE/FOLLOWING
 dashboardRouter.get("/profile/:profileId/following", followController.getFollower);
 //dashboardRouter.delete("/profile/:profileId/following", followController.unfollow);
