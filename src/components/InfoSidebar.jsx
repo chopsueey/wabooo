@@ -33,7 +33,9 @@ export function InfoSidebar() {
       <div className="pr-10 mt-2">
         <div className="bg-slate-200 rounded-md flex flex-wrap max-w-[200px]">
           <div className="p-2">popular questions</div>
-          <span className="bg-slate-600 rounded-md m-2 text-white">question1</span>
+          <span className="bg-slate-600 rounded-md m-2 text-white">
+            question1
+          </span>
           <span className="bg-slate-600 rounded-md m-2 text-white">
             question2
           </span>
@@ -51,7 +53,9 @@ export function InfoSidebar() {
       <div className="pr-10 mt-2">
         <div className="bg-slate-200 rounded-md flex flex-wrap max-w-[200px]">
           <div className="p-2">popular profiles</div>
-          <span className="bg-slate-600 rounded-md m-2 text-white">profile 1</span>
+          <span className="bg-slate-600 rounded-md m-2 text-white">
+            profile 1
+          </span>
           <span className="bg-slate-600 rounded-md m-2 text-white">
             profile 2
           </span>

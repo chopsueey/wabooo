@@ -43,10 +43,13 @@ export default function Navigation() {
 
   return (
     <>
-      <div className="flex-grow" style={{ color: "grey" }}>
+      <div
+        className="flex-grow blubb1 shadow-lg shadow-black"
+        style={{ color: "grey" }}
+      >
         <nav
-          className={`bg-opacity-0 row flex flex-col ${
-            isMobileMode ? "bg-opacity-0" : ""
+          className={`bg-opacity-25 row flex flex-col ${
+            isMobileMode ? "bg-opacity-25" : ""
           }`}
         >
           <div className="flex justify-between items-center">
@@ -103,7 +106,7 @@ export default function Navigation() {
                     className="cursor-pointer mt-4 mr-2 text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2"
                     onClick={() => setModal(true)}
                   >
-                    Sign in
+                    Sign up
                   </span>
                 )}
               </ul>
