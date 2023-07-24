@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userRegister, userLogin } from "../fetchRequests/UserRequests.jsx";
 import bg from "../assets/background.jpg";
-import bg2 from "../assets/card.jpg";
-import bg3 from "../assets/card.jpg";
-import bg4 from "../assets/card.jpg";
+import bg2 from "../assets/karte.jpg";
+import bg3 from "../assets/karte2.jpg";
+import bg4 from "../assets/karte3.jpg";
 import GeneralStore from "../store/GeneralContext";
 
 import Typewriter from "typewriter-effect";
@@ -123,9 +123,10 @@ export default function Home() {
         </div>
 
         {modal && (
-          <div className="modal">
+          <div style={{transform: `translate(-50%, -50%)`}} className="modal absolute left-2/4 top-2/4 overlay">
             <form
-              className="signin flex flex-col p-4 text-center bg-gray-800 rounded-lg max-w-md mx-auto"
+            style={{transform: `translate(-50%, -50%)`}}
+              className="signin absolute flex flex-col p-4 text-center bg-gray-800 rounded-lg max-w-md mx-auto top-2/4 left-2/4 w-[270px] sm:w-[400px]"
               onSubmit={handleSubmit}
             >
               <span
@@ -256,7 +257,7 @@ export default function Home() {
               style={{
                 backgroundImage: `url(${bg2})`,
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
+                backgroundSize: "contain",
               }}
               // src="https://dummyimage.com/150%20x%20150/1f2937/06b5d4.jpg&text=+Wabooo"
             />
@@ -275,7 +276,7 @@ export default function Home() {
               style={{
                 backgroundImage: `url(${bg3})`,
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
+                backgroundSize: "contain",
               }}
               // src="https://dummyimage.com/150%20x%20150/1f2937/06b5d4.jpg&text=+Wabooo"
             />
@@ -294,7 +295,7 @@ export default function Home() {
               style={{
                 backgroundImage: `url(${bg4})`,
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
+                backgroundSize: "contain",
               }}
               // src="https://dummyimage.com/150%20x%20150/1f2937/06b5d4.jpg&text=+Wabooo"
             />
@@ -307,7 +308,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 }

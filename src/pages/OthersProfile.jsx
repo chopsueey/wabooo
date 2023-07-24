@@ -14,18 +14,18 @@ export default function OthersProfile() {
   const { profileId } = useParams();
 
   const [userPanelClassName, setUserPanelClassName] = useState(
-    "hidden sm:block lg:fixed lg:w-1/4 xl:w-auto sm:px-6 lg:px-10"
+    "hidden sm:block lg:fixed xl:w-auto sm:px-6 lg:px-10"
   );
 
   // set user panel fixed when scrollY above 60px
   window.addEventListener("scroll", () => {
     if (window.scrollY >= 60) {
       setUserPanelClassName(
-        "hidden sm:block lg:fixed top-0 lg:w-1/4 xl:w-auto sm:px-6 lg:px-10"
+        "hidden sm:block lg:fixed top-0 xl:w-auto sm:px-6 lg:px-10"
       );
     } else {
       setUserPanelClassName(
-        "hidden sm:block lg:absolute lg:w-1/4 xl:w-auto sm:px-6 lg:px-10"
+        "hidden sm:block lg:absolute xl:w-auto sm:px-6 lg:px-10"
       );
     }
   });
@@ -195,12 +195,29 @@ export default function OthersProfile() {
                   <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-sky-500"></div>
                 </div>
               ) : (
-                <div className="row flex flex-col sm:flex-row text-center p-10 bg-gray-400 rounded-xl">
-                  <div className="profile-portrait">
+                <div className="row flex flex-col justify-around flex-wrap sm:flex-row text-center p-10 bg-gray-400 rounded-xl mt-2 lg:mt-8">
+                  <div className="profile-portrait flex justify-center">
                     {userData ? (
-                      <div className="flex justify-center">
+                      // <div className="flex justify-center">
+                      //   <img
+                      //     style={{ maxWidth: "100px", aspectRatio: "1/1", objectFit: "cover" }}
+                      //     src={
+                      //       userData.userProfile.image
+                      //         ? userData.userProfile.image
+                      //         : profilePic
+                      //     }
+                      //   />
+                      // </div>
+                      <div
+                        style={{ maxWidth: "150px" }}
+                        className="flex justify-center overflow-hidden rounded-full"
+                      >
                         <img
-                          style={{ maxWidth: "100px" }}
+                          style={{
+                            maxWidth: "150px",
+                            aspectRatio: "1/1",
+                            objectFit: "cover",
+                          }}
                           src={
                             userData.userProfile.image
                               ? userData.userProfile.image
@@ -209,6 +226,23 @@ export default function OthersProfile() {
                         />
                       </div>
                     ) : (
+                      // <div style={{ maxWidth: "150px" }}>
+                      //   <div
+                      //     className="flex-shrink-0 rounded-full"
+                      //     style={{
+                      //       backgroundImage: `url(${
+                      //         userData.userProfile.image
+                      //           ? userData.userProfile.image
+                      //           : profilePic
+                      //       })`,
+                      //       backgroundSize: "100% 100%",
+                      //       backgroundRepeat: "no-repeat",
+                      //       width: "100%",
+                      //       height: "100%",
+                      //       aspectRatio: "1/1",
+                      //     }}
+                      //   ></div>
+                      // </div>
                       ""
                     )}
                   </div>

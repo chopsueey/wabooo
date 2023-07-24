@@ -180,34 +180,37 @@ export const Question = ({
               ></div>
               <figcaption className="blubb rounded-lg p-2 px-2 flex items-center justify-between">
                 <div className="flex items-center">
-                  <div
-                    className="flex-shrink-0 rounded-full cursor-pointer"
-                    style={{
-                      backgroundImage: `url(${
-                        questionData.profileId.image
-                          ? questionData.profileId.image
-                          : profilePic
-                      })`,
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      width: "40px",
-                      height: "40px",
-                    }}
-                    onClick={() =>
-                      navigate(
-                        `/dashboard/${questionData.profileId.userName}/profile/${questionData.profileId._id}`,
-                        {
-                          state: {
-                            question,
-                            answer,
-                            like,
-                            isFollowing,
-                            followsUser,
-                          },
-                        }
-                      )
-                    }
-                  ></div>
+                  <div style={{ width: "40px", height: "40px" }}>
+                    <div
+                      className="flex-shrink-0 rounded-full cursor-pointer"
+                      style={{
+                        backgroundImage: `url(${
+                          questionData.profileId.image
+                            ? questionData.profileId.image
+                            : profilePic
+                        })`,
+                        backgroundSize: "100% 100%",
+                        backgroundRepeat: "no-repeat",
+                        width: "100%",
+                        height: "100%",
+                        aspectRatio: "1/1"
+                      }}
+                      onClick={() =>
+                        navigate(
+                          `/dashboard/${questionData.profileId.userName}/profile/${questionData.profileId._id}`,
+                          {
+                            state: {
+                              question,
+                              answer,
+                              like,
+                              isFollowing,
+                              followsUser,
+                            },
+                          }
+                        )
+                      }
+                    ></div>
+                  </div>
                   <div className="italic ml-2">
                     <h5
                       style={{ cursor: "pointer" }}

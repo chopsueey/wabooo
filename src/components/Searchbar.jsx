@@ -17,7 +17,7 @@ export function Searchbar() {
     <div className="flex items-center justify-center my-3">
       <input
         onChange={(e) => setUserInput(e.target.value)}
-        className="mt-6 px-4 py-1 bg-white text-gray-800 shadow-lg shadow-gray-800 rounded-md w-48 mr-2"
+        className="mt-6 px-4 py-1 bg-white text-gray-800 shadow-lg shadow-gray-800 rounded-md w-48 sm:w-auto mr-2"
         type="text"
         placeholder="What about..?"
       />

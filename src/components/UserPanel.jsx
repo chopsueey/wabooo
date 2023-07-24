@@ -41,11 +41,10 @@ export default function UserPanel() {
   };
 
   return (
-    <div className={userPanelClassName + " z-10"}>
-      <div
-        style={{ maxWidth: "200px" }}
-        className="user-panel  flex lg:flex-col  mt-10"
-      >
+
+    <div  className={userPanelClassName + " z-10"}>
+      <div style={{maxWidth: "200px"}} className="user-panel flex lg:flex-col mt-10">
+
         <div
           style={{ cursor: "pointer" }}
           className={
