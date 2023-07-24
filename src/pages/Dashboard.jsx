@@ -13,9 +13,9 @@ export default function Dashboard() {
   const { activeTab, results } = GeneralStore();
 
   return (
-    <div className="max-w-2xl mx-auto lg:max-w-5xl xl:max-w-none sm:px-6 lg:px-8">
+    <div className="mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
       <section
-        className="row bg-gray-500 bg-opacity-25 rounded-xl h-[5rem] mt-3 shadow-lg shadow-gray-900"
+        className="row bg-gray-500  bg-opacity-25 rounded-xl h-[5rem] shadow-lg shadow-gray-900"
         // style={{
         //   backgroundColor: "#23272f",
         //   color: "white",
