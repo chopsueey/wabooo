@@ -37,22 +37,26 @@ export function QuestionPage() {
   }, [activeTab]);
 
   return (
-    <div data-aos="zoom-in-down" data-aos-delay="100">
-      {isLoading ? (
-        <div className="flex justify-center mt-4">
-          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-sky-500"></div>
+    <div className="max-w-2xl mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
+      <div className="h-screen bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col justify-center lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
+        <div className="grow" data-aos="zoom-in-down" data-aos-delay="100">
+          {isLoading ? (
+            <div className="flex justify-center mt-4">
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-sky-500"></div>
+            </div>
+          ) : sortedQuestions && sortedQuestions.length > 0 ? (
+            <Questions
+              questions={sortedQuestions}
+              answers={answersOfUser}
+              likes={likesOfUser}
+              isFollowing={userIsFollowing}
+              followers={userFollowers}
+            />
+          ) : (
+            <h2 className="text-center">Nothing found :/</h2>
+          )}
         </div>
-      ) : sortedQuestions && sortedQuestions.length > 0 ? (
-        <Questions
-          questions={sortedQuestions}
-          answers={answersOfUser}
-          likes={likesOfUser}
-          isFollowing={userIsFollowing}
-          followers={userFollowers}
-        />
-      ) : (
-        <h2 className="text-center">Nothing found :/</h2>
-      )}
+      </div>
     </div>
   );
 }

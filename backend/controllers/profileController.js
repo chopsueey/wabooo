@@ -35,15 +35,30 @@ async function showProfile(req, res, next) {
       user: req.user.userId,
     });
 
-    // find all Follows, where the profileId of the current user
-    // is stored in the key: followerProfileId
+    // FOLLOWING
+    // find all, the current profile is following
     const userIsFollowing = await Follow.find({
       followerProfileId: userProfile._id,
     });
-    // find all Follows, where the profileId of the current user
-    // is stored in the key: followingProfileId
+    //Extract the followerProfileId from each follow document
+    const followingIds = userIsFollowing.map(
+      (follower) => follower.followingProfileId
+    );
+    // Find the corresponding profiles based on the followingIds
+    const profilesTheUserIsFollowing = await Profile.find({ _id: { $in: followingIds } });
+
+    //  FOLLOWER
+    // find all, who follow the current profile
     const userFollowers = await Follow.find({
       followingProfileId: userProfile._id,
+    });
+    //Extract the followerProfileId from each follow document
+    const profileIdsOfFollower = userFollowers.map(
+      (follower) => follower.followerProfileId
+    );
+    // Find the corresponding profiles based on the followerIds
+    const profilesOfFollower = await Profile.find({
+      _id: { $in: profileIdsOfFollower },
     });
 
     // find only liked questions by the user profile
@@ -65,8 +80,8 @@ async function showProfile(req, res, next) {
       userProfile: userProfile,
       userAnswers: userAnswers,
       userLikes: userLikes,
-      userIsFollowing: userIsFollowing,
-      userFollowers: userFollowers,
+      userIsFollowing: profilesTheUserIsFollowing,
+      userFollowers: profilesOfFollower,
     });
   } catch (error) {
     next(error);
@@ -80,7 +95,7 @@ async function getProfile(req, res, next) {
 
   try {
     const userProfile = await Profile.findById(profileId);
-    
+
     // find only questions of user profile
     const askedQuestions = await Question.find({
       profileId: { $eq: `${userProfile._id}` },
@@ -100,15 +115,30 @@ async function getProfile(req, res, next) {
       user: userProfile.userId,
     });
 
-    // find all Follows, where the profileId of the current user
-    // is stored in the key: followerProfileId
+    // FOLLOWING
+    // find all, the current profile is following
     const userIsFollowing = await Follow.find({
       followerProfileId: userProfile._id,
     });
-    // find all Follows, where the profileId of the current user
-    // is stored in the key: followingProfileId
+    //Extract the followerProfileId from each follow document
+    const followingIds = userIsFollowing.map(
+      (follower) => follower.followingProfileId
+    );
+    // Find the corresponding profiles based on the followingIds
+    const profilesTheUserIsFollowing = await Profile.find({ _id: { $in: followingIds } });
+
+    //  FOLLOWER
+    // find all, who follow the current profile
     const userFollowers = await Follow.find({
       followingProfileId: userProfile._id,
+    });
+    //Extract the followerProfileId from each follow document
+    const profileIdsOfFollower = userFollowers.map(
+      (follower) => follower.followerProfileId
+    );
+    // Find the corresponding profiles based on the followerIds
+    const profilesOfFollower = await Profile.find({
+      _id: { $in: profileIdsOfFollower },
     });
 
     // find only liked questions by the user profile
@@ -130,8 +160,8 @@ async function getProfile(req, res, next) {
       userProfile: userProfile,
       userAnswers: userAnswers,
       userLikes: userLikes,
-      userIsFollowing: userIsFollowing,
-      userFollowers: userFollowers,
+      userIsFollowing: profilesTheUserIsFollowing,
+      userFollowers: profilesOfFollower,
     });
   } catch (error) {
     next(error);

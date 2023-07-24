@@ -214,7 +214,7 @@ export const Question = ({
                   <div className="italic ml-2">
                     <h5
                       style={{ cursor: "pointer" }}
-                      onClick={() =>
+                      onClick={() => {
                         navigate(
                           `/dashboard/${questionData.profileId.userName}/profile/${questionData.profileId._id}`,
                           {
@@ -226,8 +226,8 @@ export const Question = ({
                               followsUser,
                             },
                           }
-                        )
-                      }
+                        );
+                      }}
                       className="text-white hover:underline"
                     >
                       {questionData.profileId.userName}
