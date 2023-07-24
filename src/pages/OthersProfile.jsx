@@ -3,6 +3,7 @@ import { getOthersProfile } from "../fetchRequests/ProfileRequests";
 import { Questions } from "../components/Questions";
 import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import { useNavigate, useParams } from "react-router-dom";
+import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 
 export default function OthersProfile() {
   const [activeTab, setActiveTab] = useState("Info");
@@ -109,30 +110,46 @@ export default function OthersProfile() {
         </ul> */}
 
         <div className={userPanelClassName + " z-10"}>
-          <div className="user-panel flex lg:flex-col border-l-2 mt-10">
+          <div className="user-panel flex lg:flex-col  mt-10">
             <div
               style={{ cursor: "pointer" }}
-              className="p-2 text-white"
+              className="blubb mb-3 flex items-center space-x-2 hover:animate-pulse  text-cyan-300 font-bold py-2 px-4 rounded-lg"
               onClick={() => navigate(`/dashboard/`)}
             >
-              back to dashboard
+              <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" />
+              <span>to dashboard</span>
             </div>
             <div
               style={{ cursor: "pointer" }}
-              className={(activeTab === "Info" ? "active" : "") + " p-2"}
+              className={
+                (activeTab === "Info"
+                  ? "active text-cyan-700"
+                  : "text-cyan-300") +
+                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+              }
               onClick={() => handleTabClick("Info")}
             >
               Info
             </div>
             <div
-              className={(activeTab === "Questions" ? "active" : "") + " p-2"}
+              className={
+                (activeTab === "Questions"
+                  ? "active text-cyan-700"
+                  : "text-cyan-300") +
+                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+              }
               onClick={() => handleTabClick("Questions")}
               style={{ cursor: "pointer" }}
             >
               Questions
             </div>
             <div
-              className={(activeTab === "Favorites" ? "active" : "") + " p-2"}
+              className={
+                (activeTab === "Favorites"
+                  ? "active text-cyan-700"
+                  : "text-cyan-300") +
+                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+              }
               onClick={() => handleTabClick("Favorites")}
               style={{ cursor: "pointer" }}
             >
@@ -140,14 +157,24 @@ export default function OthersProfile() {
             </div>
 
             <div
-              className={(activeTab === "Follower" ? "active" : "") + " p-2"}
+              className={
+                (activeTab === "Follower"
+                  ? "active text-cyan-700"
+                  : "text-cyan-300") +
+                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+              }
               onClick={() => handleTabClick("Follower")}
               style={{ cursor: "pointer" }}
             >
               Follower
             </div>
             <div
-              className={(activeTab === "Following" ? "active" : "") + " p-2"}
+              className={
+                (activeTab === "Following"
+                  ? "active text-cyan-700"
+                  : "text-cyan-300") +
+                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+              }
               // onClick={() => handleTabClick("Profile")}
               style={{ cursor: "pointer" }}
               onClick={() => handleTabClick("Following")}

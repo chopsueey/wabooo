@@ -14,7 +14,6 @@ import { QuestionPage } from "./pages/QuestionPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 function App() {
   const navigate = useNavigate();
   // cookie check for sensitive websitedata?

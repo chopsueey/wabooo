@@ -95,14 +95,14 @@ export default function Home() {
   return (
     <div className="wrapper" style={{ height: "115vh" }}>
       <div
-        className="flex flex-col justify-center"
-        style={{
-          backgroundImage: `url(${bg})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          width: "100%",
-          height: "100%",
-        }}
+      // className="flex flex-col justify-center"
+      // style={{
+      //   backgroundImage: `url(${bg})`,
+      //   backgroundRepeat: "no-repeat",
+      //   backgroundSize: "cover",
+      //   width: "100%",
+      //   height: "100%",
+      // }}
       >
         {/* <h1 className="text-4xl textc">Welcome to Wabooo!</h1> */}
 

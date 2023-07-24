@@ -41,13 +41,16 @@ export default function UserPanel() {
   };
 
   return (
-    <div  className={userPanelClassName + " z-10"}>
-      <div style={{maxWidth: "200px"}} className="user-panel flex lg:flex-col  mt-10">
+    <div className={userPanelClassName + " z-10"}>
+      <div
+        style={{ maxWidth: "200px" }}
+        className="user-panel  flex lg:flex-col  mt-10"
+      >
         <div
           style={{ cursor: "pointer" }}
           className={
-            (activeTab === "Feed" ? "active" : "") +
-            " p-2  hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+            (activeTab === "Feed" ? "active text-cyan-700" : "text-cyan-300") +
+            " p-2  hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg  text-xl"
           }
           onClick={() => handleTabClick("Feed")}
         >
@@ -55,8 +58,8 @@ export default function UserPanel() {
         </div>
         <div
           className={
-            (activeTab === "Trend" ? "active" : "") +
-            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+            (activeTab === "Trend" ? "active text-cyan-700" : "text-cyan-300") +
+            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg   text-xl"
           }
           onClick={() => handleTabClick("Trend")}
           style={{ cursor: "pointer" }}
@@ -65,8 +68,10 @@ export default function UserPanel() {
         </div>
         <div
           className={
-            (activeTab === "Recommended" ? "active" : "") +
-            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+            (activeTab === "Recommended"
+              ? "active  text-cyan-700"
+              : " text-cyan-300") +
+            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg   text-xl"
           }
           onClick={() => handleTabClick("Recommended")}
           style={{ cursor: "pointer" }}
@@ -76,8 +81,10 @@ export default function UserPanel() {
 
         <div
           className={
-            (activeTab === "AskQuestion" ? "active" : "") +
-            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+            (activeTab === "AskQuestion"
+              ? "active text-cyan-700"
+              : "text-cyan-300") +
+            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
           }
           onClick={() => handleTabClick("AskQuestion")}
           style={{ cursor: "pointer" }}
@@ -86,8 +93,10 @@ export default function UserPanel() {
         </div>
         <div
           className={
-            (activeTab === "Profile" ? "active" : "") +
-            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+            (activeTab === "Profile"
+              ? "active text-cyan-700"
+              : "text-cyan-300") +
+            " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
           }
           // onClick={() => handleTabClick("Profile")}
           style={{ cursor: "pointer" }}
@@ -98,8 +107,10 @@ export default function UserPanel() {
         {results ? (
           <div
             className={
-              (activeTab === "Results" ? "active" : "") +
-              " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-cyan-700 hover:text-cyan-300 text-xl"
+              (activeTab === "Results"
+                ? "active text-cyan-700"
+                : "text-cyan-300") +
+              " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg  text-xl"
             }
             style={{ cursor: "pointer" }}
             onClick={() => handleTabClick("Results")}
