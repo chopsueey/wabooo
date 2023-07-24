@@ -8,8 +8,10 @@ import { Questions } from "../components/Questions";
 import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import { useNavigate } from "react-router-dom";
 import { countries } from "../../backend/model/data.js";
+
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
+
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("Info");
@@ -134,9 +136,9 @@ export default function Profile() {
               style={{ cursor: "pointer" }}
               className={
                 (activeTab === "Info"
-                  ? "active text-cyan-700"
-                  : "text-cyan-300") +
-                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+                  ? "active text-cyan-700 rounded-lg"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl"
               }
               onClick={() => handleTabClick("Info")}
             >
@@ -145,9 +147,9 @@ export default function Profile() {
             <div
               className={
                 (activeTab === "Questions"
-                  ? "active text-cyan-700"
-                  : "text-cyan-300") +
-                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+                  ? "active text-cyan-700 rounded-lg"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl"
               }
               onClick={() => handleTabClick("Questions")}
               style={{ cursor: "pointer" }}
@@ -157,9 +159,9 @@ export default function Profile() {
             <div
               className={
                 (activeTab === "Favorites"
-                  ? "active text-cyan-700"
-                  : "text-cyan-300") +
-                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+                  ? "active text-cyan-700 rounded-lg"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl"
               }
               onClick={() => handleTabClick("Favorites")}
               style={{ cursor: "pointer" }}
@@ -170,9 +172,9 @@ export default function Profile() {
             <div
               className={
                 (activeTab === "Follower"
-                  ? "active text-cyan-700"
-                  : "text-cyan-300") +
-                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+                  ? "active text-cyan-700 rounded-lg"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl"
               }
               onClick={() => handleTabClick("Follower")}
               style={{ cursor: "pointer" }}
@@ -182,9 +184,9 @@ export default function Profile() {
             <div
               className={
                 (activeTab === "Following"
-                  ? "active text-cyan-700"
-                  : "text-cyan-300") +
-                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+                  ? "active text-cyan-700 rounded-lg"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 rounded-lg") +
+                " p-2 text-xl"
               }
               // onClick={() => handleTabClick("Profile")}
               style={{ cursor: "pointer" }}
@@ -207,7 +209,7 @@ export default function Profile() {
                 </div>
               ) : (
                 <>
-                  <div className="container p-10 bg-gray-400 rounded-xl mt-2 lg:mt-8">
+                  <div className="container p-10 blubb1 rounded-xl mt-2 lg:mt-8 shadow-lg shadow-black">
                     <div className="row flex flex-col justify-around flex-wrap sm:flex-row ">
                       <div className="profile-portrait flex flex-col justify-center items-center">
                         {userData ? (
@@ -250,7 +252,7 @@ export default function Profile() {
                             <div>
                               <button
                                 style={{ maxWidth: "150px" }}
-                                className="bg-slate-600 text-white rounded-md p-2 mt-2"
+                                className="blubb text-cyan-400 bg-transparent border border-cyan-300 rounded-md p-2 mt-5 shadow-lg hover:bg-cyan-300 hover:text-white transition duration-300 ease-in-out"
                                 onClick={handleImageDeleteClick}
                               >
                                 delete img
@@ -261,7 +263,7 @@ export default function Profile() {
                           ""
                         )}
                       </div>
-                      <div className="profile-data flex flex-col justify-center text-white">
+                      <div className="profile-data flex flex-col justify-center text-cyan-300 font-bold">
                         {userData ? (
                           <>
                             <h3>Username: {userData.userProfile.userName}</h3>
@@ -364,7 +366,7 @@ export default function Profile() {
                       )}
                       <div>
                         <button
-                          className="bg-slate-600 text-white rounded-md p-2"
+                          className="blubb text-cyan-400 bg-transparent border border-cyan-300 rounded-md p-2 mt-2 shadow-lg hover:bg-cyan-300 hover:text-white transition duration-300 ease-in-out"
                           onClick={showEditMenu}
                         >
                           edit
