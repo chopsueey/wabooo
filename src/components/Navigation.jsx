@@ -44,7 +44,7 @@ export default function Navigation() {
   return (
     <>
       <div
-        className="flex-grow blubb1 shadow-lg shadow-black"
+        className="flex-grow blubb1 shadow-lg shadow-black mb-10"
         style={{ color: "grey" }}
       >
         <nav

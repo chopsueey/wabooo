@@ -33,7 +33,7 @@ function App() {
   }, [hasCookie]);
 
   return (
-    <div className="max-w-screen-2xl mx-auto">
+    <div>
       {isLoading ? (
         <h2 style={{ color: "white" }}>Loading...</h2>
       ) : (
