@@ -2,6 +2,13 @@ import { useNavigate } from "react-router-dom";
 import GeneralStore from "../store/GeneralContext";
 import { useEffect, useState } from "react";
 import { getProfile } from "../fetchRequests/ProfileRequests";
+import {
+  ChatBubbleOvalLeftEllipsisIcon,
+  UserCircleIcon,
+  HomeIcon,
+  HandThumbUpIcon,
+  FireIcon,
+} from "@heroicons/react/24/solid";
 
 export default function MobileUserPanel() {
   const navigate = useNavigate();
@@ -25,54 +32,60 @@ export default function MobileUserPanel() {
     setActiveTab(tab);
   };
   return (
-    <div className="fixed flex justify-around bottom-0 left-0 w-full px-4 bg-white sm:hidden">
+    <div className="fixed flex justify-around bottom-0 left-0 w-full px-4 blubb textc sm:hidden">
       <div
         style={{ cursor: "pointer" }}
-        className={(activeTab === "Feed" ? "active" : "") + " p-2"}
+        className={(activeTab === "Feed" ? "active" : "") + " p-2 font-bold"}
         onClick={() => handleTabClick("Feed")}
       >
-        feed
+        <HomeIcon className="h-6 w-6 mr-2" />
       </div>
       <div
-        className={(activeTab === "Trend" ? "active" : "") + " p-2"}
+        className={(activeTab === "Trend" ? "active" : "") + " p-2 font-bold"}
         onClick={() => handleTabClick("Trend")}
         style={{ cursor: "pointer" }}
       >
-        trend
+        <FireIcon className="h-6 w-6 mr-2" />
       </div>
       <div
-        className={(activeTab === "Recommended" ? "active" : "") + " p-2"}
+        className={
+          (activeTab === "Recommended" ? "active" : "") + " p-2 font-bold"
+        }
         onClick={() => handleTabClick("Recommended")}
         style={{ cursor: "pointer" }}
       >
-        rec
+        <HandThumbUpIcon className="h-6 w-6 mr-2" />
       </div>
 
       <div
-        className={(activeTab === "AskQuestion" ? "active" : "") + " p-2"}
+        className={`${
+          activeTab === "AskQuestion" ? "active" : ""
+        } p-2 font-bold flex items-center`}
         onClick={() => handleTabClick("AskQuestion")}
         style={{ cursor: "pointer" }}
       >
-        ask
+        <ChatBubbleOvalLeftEllipsisIcon className="h-6 w-6 mr-2" />
       </div>
       <div
-        className={(activeTab === "Profile" ? "active" : "") + " p-2"}
+        className={(activeTab === "Profile" ? "active" : "") + " p-2 font-bold"}
         onClick={() => navigate(`/dashboard/user/profile/${profileId}`)}
         style={{ cursor: "pointer" }}
       >
-        prof
+        <UserCircleIcon className="h-6 w-6 mr-2" />
       </div>
       {results ? (
-          <div
-            className={(activeTab === "Results" ? "active" : "") + " p-2"}
-            style={{ cursor: "pointer" }}
-            onClick={() => handleTabClick("Results")}
-          >
-            search results
-          </div>
-        ) : (
-          ""
-        )}
+        <div
+          className={
+            (activeTab === "Results" ? "active" : "") + " p-2 font-bold"
+          }
+          style={{ cursor: "pointer" }}
+          onClick={() => handleTabClick("Results")}
+        >
+          search results
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

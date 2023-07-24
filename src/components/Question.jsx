@@ -193,7 +193,7 @@ export const Question = ({
                         backgroundRepeat: "no-repeat",
                         width: "100%",
                         height: "100%",
-                        aspectRatio: "1/1"
+                        aspectRatio: "1/1",
                       }}
                       onClick={() =>
                         navigate(
@@ -273,17 +273,17 @@ export const Question = ({
             </div>
             {!isLiked ? (
               <button
-                className="absolute top-5 right-5"
+                className="absolute top-5 right-5 hover:animate-pulse"
                 onClick={() => handleLikeClick("like")}
               >
                 {questionData.likes + " 🤍"}
               </button>
             ) : (
               <button
-                className="absolute top-5 right-5"
+                className="absolute top-5 right-5 hover:animate-pulse"
                 onClick={() => handleLikeClick("unlike")}
               >
-                {questionData.likes + " 💙"}
+                {questionData.likes + " ❤️"}
               </button>
             )}
           </div>
@@ -389,10 +389,17 @@ export const Question = ({
             </div>
           ) : (
             <div className="flex text-black text-lg text-center">
-              <div style={{ width: `${yesWidth}%` }} className="bg-cyan-600 ">
+              <div
+                style={{ width: `${yesWidth}%` }}
+                className="bg-gradient-to-r from-gray-900 to-gray-700  text-green-400 font-bold "
+              >
                 {yesWidth / 2 + "%"}
               </div>
-              <div style={{ width: `${noWidth}%` }} className="bg-gray-500 ">
+
+              <div
+                style={{ width: `${noWidth}%` }}
+                className="bg-gradient-to-r from-gray-700  to-gray-900   text-red-500 font-bold"
+              >
                 {noWidth === 0 ? "" : noWidth / 2 + "%"}
               </div>
             </div>
