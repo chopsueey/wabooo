@@ -206,7 +206,6 @@ export default function Navigation() {
       <Outlet />
       <MobileUserPanel />
       <Footer />
-      <ToastContainer />
     </>
   );
 }

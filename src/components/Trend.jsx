@@ -57,7 +57,7 @@ export default function Trend() {
           followers={userFollowers}
         />
       ) : (
-        <h2 className="text-center">Nothing found :/</h2>
+        <h2 className="text-center text-white">Nothing found :/</h2>
       )}
     </div>
   );
