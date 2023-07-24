@@ -63,6 +63,8 @@ export default function Home() {
         return;
       } else if (response.status === 400) {
         toast.error("Your password is incorrect.");
+        setLoading(false);
+        return;
       }
       setLoading(false);
       return;
@@ -123,9 +125,12 @@ export default function Home() {
         </div>
 
         {modal && (
-          <div style={{transform: `translate(-50%, -50%)`}} className="modal absolute left-2/4 top-2/4 overlay">
+          <div
+            style={{ transform: `translate(-50%, -50%)` }}
+            className="modal absolute left-2/4 top-2/4 overlay"
+          >
             <form
-            style={{transform: `translate(-50%, -50%)`}}
+              style={{ transform: `translate(-50%, -50%)` }}
               className="signin absolute flex flex-col p-4 text-center bg-gray-800 rounded-lg max-w-md mx-auto top-2/4 left-2/4 w-[270px] sm:w-[400px]"
               onSubmit={handleSubmit}
             >

@@ -33,7 +33,7 @@ export default function SearchResults() {
           followers={results.userFollowers}
         />
       ) : (
-        <h2 className="text-center">Nothing found :/</h2>
+        <h2 className="text-center text-white">Nothing found :/</h2>
       )}
       <h1 className="border-b-2 mt-4 mb-10">Topic related</h1>
       {isLoading ? (
@@ -49,7 +49,7 @@ export default function SearchResults() {
           followers={results.userFollowers}
         />
       ) : (
-        <h2 className="text-center">Nothing found :/</h2>
+        <h2 className="text-center text-white">Nothing found :/</h2>
       )}
     </div>
   );
