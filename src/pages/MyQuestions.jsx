@@ -51,10 +51,10 @@ export default function MyQuestions() {
 
   return (
     <div className="flex items-center justify-center mt-5 mb-5">
-      <div className="w-full max-w-sm p-8 blubb rounded-md shadow-md">
+      <div className="w-full max-w-sm p-8 blubb1 rounded-md shadow-md">
         <h3
           className={`cursor-pointer text-cyan-300 mb-2 ${
-            isContentVisible.question1 ? "font-bold" : ""
+            isContentVisible.question1 ? "" : ""
           }`}
           onClick={() => handleQuestionClick("question1")}
         >
@@ -62,28 +62,33 @@ export default function MyQuestions() {
         </h3>
         {isContentVisible.question1 && (
           <>
-            <p>Nervt euch der Sommer?</p>
-            <p>
-              Sollte meine Katze als Präsidentschaftskandidat nominiert werden?{" "}
-            </p>
-            <p>Sollte man vegetarisch leben?</p>
+            <div className="w-full max-w-sm p-8 blubb rounded-md">
+              <p>Nervt euch der Sommer?</p>
+              <p>
+                Sollte meine Katze als Präsidentschaftskandidat nominiert
+                werden?{" "}
+              </p>
+              <p>Sollte man vegetarisch leben?</p>
+            </div>
           </>
         )}
         <h3
           className={`cursor-pointer text-cyan-300 mb-2 ${
-            isContentVisible.question2 ? "font-bold" : ""
+            isContentVisible.question2 ? "" : ""
           }`}
           onClick={() => handleQuestionClick("question2")}
         >
           Wie erstelle ich eine Frage?
         </h3>
         {isContentVisible.question2 && (
-          <p>
-            Nachdem du dich für eine Frage entschieden hast, klickst du unten
-            einfach in das Eingabefeld und erstellst deine Frage. Bitte beachte,
-            das ein Wort maximal 15 Buchstaben enthalten darf und die
-            Gesamtfrage nicht mehr als 1000 Zeichen haben sollte.
-          </p>
+          <div className="w-full max-w-sm p-8 blubb rounded-md">
+            <p>
+              Nachdem du dich für eine Frage entschieden hast, klickst du unten
+              einfach in das Eingabefeld und erstellst deine Frage. Bitte
+              beachte, das ein Wort maximal 15 Buchstaben enthalten darf und die
+              Gesamtfrage nicht mehr als 1000 Zeichen haben sollte.
+            </p>
+          </div>
         )}
         <h2 className="mb-4 text-xl font-semibold text-center text-white">
           Question
