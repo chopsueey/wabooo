@@ -6,7 +6,7 @@ import Question from "../model/questionModel.js";
 
 // trend controller
 export async function getAllQuestions(req, res, next) {
-  const numOfQuestionsToShow = 10;
+  // const numOfQuestionsToShow = 10;
   const sortBy = req.query.sortBy;
   let sortTime = 168; // one week
 
@@ -48,9 +48,9 @@ export async function getAllQuestions(req, res, next) {
           likes: -1,
         },
       },
-      {
-        $limit: numOfQuestionsToShow,
-      },
+      // {
+      //   $limit: numOfQuestionsToShow,
+      // },
       {
         $lookup: {
           from: "profiles",

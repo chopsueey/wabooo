@@ -21,7 +21,7 @@ async function showProfile(req, res, next) {
       profileId: { $eq: `${userProfile._id}` },
     })
       .sort("-createdAt")
-      .limit(numOfQuestionsToShow)
+      // .limit(numOfQuestionsToShow)
       .populate({
         path: "profileId",
         select: "userName image",
@@ -67,7 +67,7 @@ async function showProfile(req, res, next) {
       _id: { $in: likedQuestionsIds },
     })
       .sort("-createdAt")
-      .limit(numOfQuestionsToShow)
+      // .limit(numOfQuestionsToShow)
       .populate({
         path: "profileId",
         select: "userName image",
@@ -101,7 +101,7 @@ async function getProfile(req, res, next) {
       profileId: { $eq: `${userProfile._id}` },
     })
       .sort("-createdAt")
-      .limit(numOfQuestionsToShow)
+      // .limit(numOfQuestionsToShow)
       .populate({
         path: "profileId",
         select: "userName image",
@@ -147,7 +147,7 @@ async function getProfile(req, res, next) {
       _id: { $in: likedQuestionsIds },
     })
       .sort("-createdAt")
-      .limit(numOfQuestionsToShow)
+      // .limit(numOfQuestionsToShow)
       .populate({
         path: "profileId",
         select: "userName image",
