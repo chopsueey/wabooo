@@ -259,7 +259,7 @@ export default function Profile() {
                                 delete img
                               </button>
                             </div>
-                            <ProfileImage/>
+                            {/* <ProfileImage/> */}
                           </>
                         ) : (
                           ""
