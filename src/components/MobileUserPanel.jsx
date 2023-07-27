@@ -3,7 +3,7 @@ import GeneralStore from "../store/GeneralContext";
 import { useEffect, useState } from "react";
 import { getProfile } from "../fetchRequests/ProfileRequests";
 import {
-  ChatBubbleOvalLeftEllipsisIcon,
+  PlusCircleIcon,
   UserCircleIcon,
   HomeIcon,
   HandThumbUpIcon,
@@ -64,7 +64,7 @@ export default function MobileUserPanel() {
         onClick={() => handleTabClick("AskQuestion")}
         style={{ cursor: "pointer" }}
       >
-        <ChatBubbleOvalLeftEllipsisIcon className="h-6 w-6 mr-2" />
+        <PlusCircleIcon className="h-6 w-6 mr-2" />
       </div>
       <div
         className={(activeTab === "Profile" ? "active" : "") + " p-2 font-bold"}
