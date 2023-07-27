@@ -11,6 +11,7 @@ import { countries } from "../../backend/model/data.js";
 
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
+import ProfileImage from "../components/ProfileImage";
 
 
 export default function Profile() {
@@ -258,6 +259,7 @@ export default function Profile() {
                                 delete img
                               </button>
                             </div>
+                            <ProfileImage/>
                           </>
                         ) : (
                           ""

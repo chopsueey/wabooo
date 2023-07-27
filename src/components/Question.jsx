@@ -97,7 +97,6 @@ export const Question = ({
   async function handleDeleteClick() {
     const questionId = question._id;
     const response = await deleteAnswer({ questionId });
-    const responseData = await response.json();
     setIsAnswered(false);
   }
 
@@ -140,7 +139,7 @@ export const Question = ({
   async function handleTopicClick(e) {
     const response = await searchRequest(e.target.innerText);
     const responseData = await response.json();
-    console.log(responseData);
+    // console.log(responseData);
     setResults(responseData);
     navigate("/dashboard");
     setActiveTab("Results");
