@@ -109,7 +109,7 @@ export async function getAllQuestions(req, res, next) {
 
 // feed controller
 export async function getLatestQuestion(req, res, next) {
-  const numOfQuestionsToShow = 10;
+  // const numOfQuestionsToShow = 10;
   const sortBy = req.query.sortBy;
   let sortTime = 0;
 
@@ -139,7 +139,7 @@ export async function getLatestQuestion(req, res, next) {
       profileId: { $ne: `${userProfile._id}` },
     })
       .sort("-createdAt")
-      .limit(numOfQuestionsToShow)
+      // .limit(numOfQuestionsToShow)
       .populate({
         path: "profileId",
         select: "userName image",
