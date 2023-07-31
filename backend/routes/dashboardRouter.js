@@ -8,6 +8,8 @@ import * as answerController from "../controllers/answerController.js";
 import * as likeController from "../controllers/likeController.js";
 import * as followController from "../controllers/followController.js";
 import * as searchController from "../controllers/searchController.js";
+import * as statisticController from "../controllers/statisticController.js";
+//import { getStatistics } from "../controllers/statisticsController.js";
 
 // import {
 //   getAllProfiles,
@@ -33,10 +35,7 @@ dashboardRouter.get("/trend/sort", questionController.getAllQuestions);
 // DASHBOARD/PROFILE
 dashboardRouter.get("/profile", profileController.showProfile);
 dashboardRouter.get("/profile/:profileId", profileController.getProfile);
-dashboardRouter.get(
-  "/profile/:profileId/follower",
-  followController.getFollower
-);
+dashboardRouter.get("/profile/:profileId/follower", followController.getFollower);
 dashboardRouter.patch("/profile", profileController.updateProfileData);
 dashboardRouter.put("/profile", profileController.editProfile);
 dashboardRouter.delete("/profile", profileController.deleteAccount);
@@ -78,9 +77,15 @@ dashboardRouter.get("/profile/:profileId/following", followController.getFollowe
 //DASHBOARD/SEARCH
 dashboardRouter.get("/search", searchController.searchFor);
 
+
+// DASHBOARD/STATISTICS
+dashboardRouter.get("/statistics/:questionId", statisticController.findProfilesByQuestionId);
+
+
 //DASHBOARD/COMMENT
 dashboardRouter.get("/question/:questionId/allcomments", questionController.getComment);
 dashboardRouter.post("/question/:questionId/comment", questionController.postComment);
 // dashboardRouter.delete("/question/:questionId/comment", answerController.deleteAnswer);
+
 
 export default dashboardRouter;
