@@ -189,6 +189,7 @@ export default function Home() {
                   onChange={(evt) => setDoubleCheckPassword(evt.target.value)}
                 />
               </label>
+
             )}
             <button
               className={` mt-4 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2 ${
@@ -213,13 +214,16 @@ export default function Home() {
                       <circle cx="12" cy="12" r="10" />
                       <path d="M16 12a4 4 0 1 1-8 0m8 0H8" />
                     </svg>
+
                   </div>
                   Signing in...
                 </div>
               ) : register ? (
                 "Create account"
               ) : (
+
                 "Sign in"
+
               )}
             </button>
             {register ? (

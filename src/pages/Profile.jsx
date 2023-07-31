@@ -13,7 +13,6 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
 import ProfileImage from "../components/ProfileImage";
 
-
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("Info");
   const [showEdit, setShowEdit] = useState(false);
@@ -265,12 +264,31 @@ export default function Profile() {
                           ""
                         )}
                       </div>
-                      <div className="profile-data flex flex-col justify-center text-cyan-300 font-bold">
+                      <div className="profile-data flex flex-col justify-center mt-5 font-bold">
                         {userData ? (
                           <>
-                            <h3>Username: {userData.userProfile.userName}</h3>
-                            <h3>Country: {userData.userProfile.country}</h3>
-                            <h3>Birthyear: {userData.userProfile.birthYear}</h3>
+                            <div className="flex mb-2">
+                              <h3 className="text-cyan-600 mr-2">Username:</h3>
+                              <h4 className="text-white">
+                                {userData.userProfile.userName}
+                              </h4>
+                            </div>
+                            <div className="flex justify-start border border-cyan-700 mb-2 mt-2"></div>
+                            <div className="flex mb-2">
+                              <h3 className="text-cyan-600 mr-2">Country: </h3>
+                              <h4 className="text-white">
+                                {userData.userProfile.country}
+                              </h4>
+                            </div>
+                            <div className="flex justify-start border border-cyan-700 mb-2 mt-2"></div>
+                            <div className="flex mb-2">
+                              <h3 className="text-cyan-600 mr-2">
+                                Birthyear:{" "}
+                              </h3>
+                              <h4 className="text-white">
+                                {userData.userProfile.birthYear}
+                              </h4>
+                            </div>
                           </>
                         ) : (
                           ""
@@ -280,57 +298,98 @@ export default function Profile() {
                     <div className="row flex justify-end">
                       {showEdit ? (
                         <div>
-                          <form className="bg-gray-800 p-8 rounded-lg w-[200px] sm:w-[300px] mx-auto">
-                            <label className="block text-white text-xs font-bold mb-2">
-                              Username
-                              <input
-                                className="mt-2 px-4 py-2 bg-white text-gray-800 rounded-md w-full"
-                                onChange={(e) => {
-                                  setUserName(e.target.value);
-                                  console.log(userName);
-                                }}
-                                type="text"
-                              />
-                            </label>
+                          <form className="blubb1 p-8 rounded-lg w-[300px] sm:w-[400px] mx-auto">
+                            <div className="mb-4">
+                              <div className="flex items-center">
+                                <label
+                                  className="textc text-base font-bold mr-2 pr-2"
+                                  htmlFor="username"
+                                >
+                                  Username
+                                </label>
+                                <input
+                                  id="username"
+                                  className="mt-2 px-4 py-2 bg-slate-700 rounded-lg textc font-bold w-full focus:outline-none"
+                                  onChange={(e) => {
+                                    setUserName(e.target.value);
+                                    console.log(userName);
+                                  }}
+                                  type="text"
+                                />
+                              </div>
+                            </div>
 
-                            <label className="block text-white text-xs font-bold mb-2">
-                              Country
-                              <select
-                                onChange={(e) => {
-                                  setCountry(e.target.value);
-                                }}
-                                className="mt-2 px-4 py-2 bg-white text-gray-800 rounded-md w-full"
-                              >
-                                <option value="none">empty</option>
-                                {countries.map((item) => (
-                                  <option value={item}>{item}</option>
-                                ))}
-                              </select>
-                            </label>
-                            <label className="block text-white text-xs font-bold mb-2">
-                              Birthyear
-                              <input
-                                className="mt-2 px-4 py-2 bg-white text-gray-800 rounded-md w-full"
-                                onChange={(e) => {
-                                  setBirthyear(e.target.value);
-                                  console.log(birthYear);
-                                }}
-                                type="text"
-                              />
-                            </label>
+                            <div className="mb-4">
+                              <div className="flex items-center ">
+                                <label
+                                  className="textc text-base font-bold mr-2 pr-2"
+                                  htmlFor="birthyear"
+                                >
+                                  Birthyear
+                                </label>
+                                <input
+                                  id="birthyear"
+                                  className="ml-2 rounded-lg mt-2 px-4 py-2 bg-slate-700  textc font-bold w-full focus:outline-none"
+                                  onChange={(e) => {
+                                    setBirthyear(e.target.value);
+                                    console.log(birthYear);
+                                  }}
+                                  type="text"
+                                />
+                              </div>
+                            </div>
+                            <div className="mb-4">
+                              <div className="flex items-center ">
+                                <label
+                                  className="textc text-base font-bold mr-2 pr-2"
+                                  htmlFor="country"
+                                >
+                                  Country
+                                </label>
+                                <div className="bg-slate-700 rounded-lg ml-4 pb-2 pr-3">
+                                  <select
+                                    id="country"
+                                    onChange={(e) => {
+                                      setCountry(e.target.value);
+                                    }}
+                                    className="mt-2 px-4 py-2 bg-slate-700 bg-transparent textc w-full focus:outline-none"
+                                  >
+                                    <option
+                                      className="bg-slate-700"
+                                      value="none"
+                                    >
+                                      choose country
+                                    </option>
+                                    {countries.map((item) => (
+                                      <option
+                                        className="bg-slate-700"
+                                        key={item}
+                                        value={item}
+                                      >
+                                        {item}
+                                      </option>
+                                    ))}
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
                             <input
                               className="mt-2 text-white"
                               onChange={handleImgUpload}
                               type="file"
                             />
+
                             {imageUrl ? (
                               <div className="pt-10 flex justify-center">
-                                <img className="w-48" src={imageUrl} />
+                                <img
+                                  className="w-48"
+                                  src={imageUrl}
+                                  alt="Uploaded"
+                                />
                               </div>
-                            ) : (
-                              ""
-                            )}
+                            ) : null}
                           </form>
+
                           <div className="flex justify-center my-4">
                             <button
                               type="button"
@@ -368,7 +427,7 @@ export default function Profile() {
                       )}
                       <div>
                         <button
-                          className="blubb text-cyan-400 bg-transparent border border-cyan-300 rounded-md p-2 mt-2 shadow-lg hover:bg-cyan-300 hover:text-white transition duration-300 ease-in-out"
+                          className="blubb text-cyan-400 bg-transparent border border-cyan-300 rounded-md p-2 mt-2 ml-3 shadow-lg hover:bg-cyan-300 hover:text-white transition duration-300 ease-in-out"
                           onClick={showEditMenu}
                         >
                           edit
@@ -426,7 +485,10 @@ export default function Profile() {
               <div className="flex flex-col my-4">
                 {userFollowers.map((follower) => (
                   <div className="flex mb-2 items-center">
-                    <div style={{ width: "40px", height: "40px" }} className="mr-2">
+                    <div
+                      style={{ width: "40px", height: "40px" }}
+                      className="mr-2"
+                    >
                       <div
                         className="flex-shrink-0 rounded-full cursor-pointer"
                         style={{
@@ -464,47 +526,50 @@ export default function Profile() {
           )}
           {activeTab === "Following" && (
             <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col justify-center lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
-            {/* <h1 className="my-4 text-lg border-b-4 border-sky-500 text-center">
+              {/* <h1 className="my-4 text-lg border-b-4 border-sky-500 text-center">
               Friends{" "}
             </h1> */}
-            <div className="flex flex-col my-4">
-              {userIsFollowing.map((follower) => (
-                <div className="flex mb-2 items-center">
-                  <div style={{ width: "40px", height: "40px" }} className="mr-2">
+              <div className="flex flex-col my-4">
+                {userIsFollowing.map((follower) => (
+                  <div className="flex mb-2 items-center">
                     <div
-                      className="flex-shrink-0 rounded-full cursor-pointer"
-                      style={{
-                        backgroundImage: `url(${
-                          follower.image ? follower.image : profilePic
-                        })`,
-                        backgroundSize: "100% 100%",
-                        backgroundRepeat: "no-repeat",
-                        width: "100%",
-                        height: "100%",
-                        aspectRatio: "1/1",
-                      }}
+                      style={{ width: "40px", height: "40px" }}
+                      className="mr-2"
+                    >
+                      <div
+                        className="flex-shrink-0 rounded-full cursor-pointer"
+                        style={{
+                          backgroundImage: `url(${
+                            follower.image ? follower.image : profilePic
+                          })`,
+                          backgroundSize: "100% 100%",
+                          backgroundRepeat: "no-repeat",
+                          width: "100%",
+                          height: "100%",
+                          aspectRatio: "1/1",
+                        }}
+                        onClick={() =>
+                          navigate(
+                            `/dashboard/${follower.userName}/profile/${follower._id}`
+                          )
+                        }
+                      ></div>
+                    </div>
+                    <p
+                      style={{ cursor: "pointer" }}
                       onClick={() =>
                         navigate(
                           `/dashboard/${follower.userName}/profile/${follower._id}`
                         )
                       }
-                    ></div>
+                      className="text-white hover:underline"
+                    >
+                      {follower.userName}
+                    </p>
                   </div>
-                  <p
-                    style={{ cursor: "pointer" }}
-                    onClick={() =>
-                      navigate(
-                        `/dashboard/${follower.userName}/profile/${follower._id}`
-                      )
-                    }
-                    className="text-white hover:underline"
-                  >
-                    {follower.userName}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
           )}
         </div>
       </section>
