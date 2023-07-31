@@ -97,7 +97,6 @@ export const Question = ({
   async function handleDeleteClick() {
     const questionId = question._id;
     const response = await deleteAnswer({ questionId });
-    const responseData = await response.json();
     setIsAnswered(false);
   }
 
@@ -140,7 +139,7 @@ export const Question = ({
   async function handleTopicClick(e) {
     const response = await searchRequest(e.target.innerText);
     const responseData = await response.json();
-    console.log(responseData);
+    // console.log(responseData);
     setResults(responseData);
     navigate("/dashboard");
     setActiveTab("Results");
@@ -162,22 +161,6 @@ export const Question = ({
               onMouseEnter={handleMouseEnter}
               className="profile-name flex flex-wrap question-userName relative"
             >
-              <div
-                onClick={() =>
-                  navigate(
-                    `/dashboard/${questionData.profileId.userName}/profile/${questionData.profileId._id}`,
-                    {
-                      state: {
-                        question,
-                        answer,
-                        like,
-                        isFollowing,
-                        followsUser,
-                      },
-                    }
-                  )
-                }
-              ></div>
               <figcaption className="blubb rounded-lg p-2 px-2 flex items-center justify-between">
                 <div className="flex items-center">
                   <div style={{ width: "40px", height: "40px" }}>

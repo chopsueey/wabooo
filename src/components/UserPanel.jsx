@@ -11,18 +11,18 @@ export default function UserPanel() {
   const [profileId, setProfileId] = useState(undefined);
   const [userName, setUserName] = useState(undefined);
   const [userPanelClassName, setUserPanelClassName] = useState(
-    "hidden sm:block lg:fixed lg:w-1/4 xl:w-auto sm:px-6 lg:px-10"
+    "hidden sm:block lg:fixed xl:w-auto sm:px-6 lg:px-10"
   );
 
   // set user panel fixed when scrollY above 170px
   window.addEventListener("scroll", () => {
     if (window.scrollY >= 175) {
       setUserPanelClassName(
-        "hidden sm:block lg:fixed top-0 lg:w-1/4 xl:w-auto sm:px-6 lg:px-10"
+        "hidden sm:block lg:fixed top-0 xl:w-auto sm:px-6 lg:px-10"
       );
     } else {
       setUserPanelClassName(
-        "hidden sm:block lg:absolute lg:w-1/4 xl:w-auto sm:px-6 lg:px-10"
+        "hidden sm:block lg:absolute xl:w-auto sm:px-6 lg:px-10"
       );
     }
   });
@@ -43,7 +43,6 @@ export default function UserPanel() {
   return (
     <div className={userPanelClassName + " z-10"}>
       <div
-        style={{ maxWidth: "200px" }}
         className="user-panel flex lg:flex-col mt-10"
       >
         <div

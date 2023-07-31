@@ -59,19 +59,15 @@ export default function Navigation() {
               </Link>
               <ul className="hidden sm:flex items-center space-x-4">
                 <Link to="/about">
-                  <li className="text-cyan-700 hover:text-cyan-300 text-xl">
-                    About
-                  </li>
+                  <li className="textc hover:text-cyan-300 text-xl">About</li>
                 </Link>
                 <Link to="/contact">
-                  <li className="text-cyan-700 hover:text-cyan-300 text-xl">
-                    Contact
-                  </li>
+                  <li className="textc hover:text-cyan-300 text-xl">Contact</li>
                 </Link>
                 {hasCookie || document.cookie.includes("isLoggedIn") ? (
                   <li>
                     <button
-                      className={`"mt-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 ${
+                      className={`"mt-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 ${
                         logoutLoading ? "cursor-not-allowed opacity-75" : ""
                       }`}
                       onClick={handleLogout}
@@ -103,7 +99,7 @@ export default function Navigation() {
                   </li>
                 ) : (
                   <span
-                    className="cursor-pointer mt-4 mr-2 text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2"
+                    className="cursor-pointer mt-4 mr-2 animate-pulse text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-4"
                     onClick={() => setModal(true)}
                   >
                     Sign up
@@ -163,44 +159,49 @@ export default function Navigation() {
               <div className="mx-auto w-11/12 border-b-2 border-gray-500 mb-2"></div>
               {hasCookie || document.cookie.includes("isLoggedIn") ? (
                 <li>
-                  <button
-                    className={`mb-2 ml-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-4 py-2 ${
-                      logoutLoading ? "cursor-not-allowed opacity-75" : ""
-                    }`}
-                    onClick={handleLogout}
-                    disabled={logoutLoading}
-                  >
-                    {logoutLoading ? (
-                      <div className="flex items-center">
-                        <div className="mr-2 animate-spin">
-                          <svg
-                            className="w-5 h-5 text-cyan-700"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M16 12a4 4 0 1 1-8 0m8 0H8" />
-                          </svg>
+                  {" "}
+                  <div className="flex justify-end mr-5 items-center">
+                    <button
+                      className={`mb-2 ml-6 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-4 py-2 ${
+                        logoutLoading ? "cursor-not-allowed opacity-75" : ""
+                      }`}
+                      onClick={handleLogout}
+                      disabled={logoutLoading}
+                    >
+                      {logoutLoading ? (
+                        <div className="flex items-center">
+                          <div className="mr-2 animate-spin">
+                            <svg
+                              className="w-5 h-5 text-cyan-700"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <circle cx="12" cy="12" r="10" />
+                              <path d="M16 12a4 4 0 1 1-8 0m8 0H8" />
+                            </svg>
+                          </div>
+                          Logging out...
                         </div>
-                        Logging out...
-                      </div>
-                    ) : (
-                      "Logout"
-                    )}
-                  </button>
+                      ) : (
+                        "Logout"
+                      )}
+                    </button>
+                  </div>
                 </li>
               ) : (
-                <span
-                  className="py-1 px-3 text-center text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm ml-2 block max-w-[5rem] mb-1"
-                  onClick={() => setModal(true)}
-                >
-                  Sign in
-                </span>
+                <div className="flex justify-end mr-5 items-center">
+                  <span
+                    className="py-1 px-3 text-center text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm ml-2 block max-w-[5rem] mb-1"
+                    onClick={() => setModal(true)}
+                  >
+                    Sign in
+                  </span>
+                </div>
               )}
             </ul>
           )}

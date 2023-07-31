@@ -92,7 +92,7 @@ export async function postLike(data) {
         credentials: "include",
       }
     );
-    console.log()
+    console.log();
     if (response.status === 200) {
       return response;
     }
@@ -151,7 +151,7 @@ export async function getFeed(sortBy) {
     }
   );
   const data = await response.json();
-  console.log(data)
+  console.log(data);
   if (response.status === 200) {
     // console.log(data);
     return data;
@@ -166,9 +166,46 @@ export async function getTrend(sortBy) {
     }
   );
   const data = await response.json();
-  console.log(data)
+  console.log(data);
   if (response.status === 200) {
     // console.log(data);
     return data;
+  }
+}
+
+export async function getComment(questionId) {
+  try {
+    const response = await fetch(
+      `http://localhost:5000/dashboard/question/${questionId}/allcomments`,
+      {
+        credentials: "include",
+      }
+    );
+    if (response.status === 200) {
+      return response;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function postComment(data) {
+  try {
+    const response = await fetch(
+      `http://localhost:5000/dashboard/question/:questionId/comment`,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }
+    );
+    if (response.status === 201) {
+      return response;
+    }
+  } catch (err) {
+    console.log(err);
   }
 }

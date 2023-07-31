@@ -84,15 +84,15 @@ export default function OthersProfile() {
               onClick={() => navigate(`/dashboard/`)}
             >
               <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" />
-              <span>to dashboard</span>
+              <span>dashboard</span>
             </div>
             <div
               style={{ cursor: "pointer" }}
               className={
                 (activeTab === "Info"
-                  ? "active text-cyan-700"
-                  : "text-cyan-300") +
-                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+                  ? "active text-cyan-700 rounded-lg"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl"
               }
               onClick={() => handleTabClick("Info")}
             >
@@ -101,9 +101,9 @@ export default function OthersProfile() {
             <div
               className={
                 (activeTab === "Questions"
-                  ? "active text-cyan-700"
-                  : "text-cyan-300") +
-                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+                  ? "active text-cyan-700 rounded-lg"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl"
               }
               onClick={() => handleTabClick("Questions")}
               style={{ cursor: "pointer" }}
@@ -113,9 +113,9 @@ export default function OthersProfile() {
             <div
               className={
                 (activeTab === "Favorites"
-                  ? "active text-cyan-700"
-                  : "text-cyan-300") +
-                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+                  ? "active text-cyan-700 rounded-lg"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl"
               }
               onClick={() => handleTabClick("Favorites")}
               style={{ cursor: "pointer" }}
@@ -126,9 +126,9 @@ export default function OthersProfile() {
             <div
               className={
                 (activeTab === "Follower"
-                  ? "active text-cyan-700"
-                  : "text-cyan-300") +
-                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+                  ? "active text-cyan-700 rounded-lg"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl"
               }
               onClick={() => handleTabClick("Follower")}
               style={{ cursor: "pointer" }}
@@ -138,9 +138,9 @@ export default function OthersProfile() {
             <div
               className={
                 (activeTab === "Following"
-                  ? "active text-cyan-700"
-                  : "text-cyan-300") +
-                " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl"
+                  ? "active text-cyan-700 rounded-lg"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 rounded-lg") +
+                " p-2 text-xl"
               }
               // onClick={() => handleTabClick("Profile")}
               style={{ cursor: "pointer" }}
@@ -162,7 +162,7 @@ export default function OthersProfile() {
                   <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-sky-500"></div>
                 </div>
               ) : (
-                <div className="row flex flex-col justify-around flex-wrap sm:flex-row text-center p-10 bg-gray-400 rounded-xl mt-2 lg:mt-8">
+                <div className="row flex flex-col justify-around flex-wrap sm:flex-row text-center p-10 blubb1 rounded-xl mt-2 lg:mt-8">
                   <div className="profile-portrait flex justify-center">
                     {userData ? (
                       // <div className="flex justify-center">
@@ -213,7 +213,7 @@ export default function OthersProfile() {
                       ""
                     )}
                   </div>
-                  <div className="profile-data text-white">
+                  <div className="profile-data flex flex-col justify-center text-cyan-300 font-bold">
                     {userData ? (
                       <>
                         <h3>Username: {userData.userProfile.userName}</h3>
@@ -262,7 +262,11 @@ export default function OthersProfile() {
                   followers={userFollowers}
                 />
               ) : (
-                <h2 className="text-center">Nothing found :/</h2>
+                <div className="flex justify-center items-center">
+                  <h2 className="text-center items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
+                    Nothing found 👀
+                  </h2>
+                </div>
               )}
             </div>
           )}
@@ -317,52 +321,52 @@ export default function OthersProfile() {
           )}
           {activeTab === "Following" && (
             <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col justify-center lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
-            {/* <h1 className="my-4 text-lg border-b-4 border-sky-500 text-center">
+              {/* <h1 className="my-4 text-lg border-b-4 border-sky-500 text-center">
               Friends{" "}
             </h1> */}
-            <div className="flex flex-col my-4">
-              {userIsFollowing.map((follower) => (
-                <div className="flex mb-2 items-center">
-                  <div
-                    style={{ width: "40px", height: "40px" }}
-                    className="mr-2"
-                  >
+              <div className="flex flex-col my-4">
+                {userIsFollowing.map((follower) => (
+                  <div className="flex mb-2 items-center">
                     <div
-                      className="flex-shrink-0 rounded-full cursor-pointer"
-                      style={{
-                        backgroundImage: `url(${
-                          follower.image ? follower.image : profilePic
-                        })`,
-                        backgroundSize: "100% 100%",
-                        backgroundRepeat: "no-repeat",
-                        width: "100%",
-                        height: "100%",
-                        aspectRatio: "1/1",
-                      }}
+                      style={{ width: "40px", height: "40px" }}
+                      className="mr-2"
+                    >
+                      <div
+                        className="flex-shrink-0 rounded-full cursor-pointer"
+                        style={{
+                          backgroundImage: `url(${
+                            follower.image ? follower.image : profilePic
+                          })`,
+                          backgroundSize: "100% 100%",
+                          backgroundRepeat: "no-repeat",
+                          width: "100%",
+                          height: "100%",
+                          aspectRatio: "1/1",
+                        }}
+                        onClick={() =>
+                          navigate(
+                            `/dashboard/${follower.userName}/profile/${follower._id}`,
+                            { state: { state } }
+                          )
+                        }
+                      ></div>
+                    </div>
+                    <p
+                      style={{ cursor: "pointer" }}
                       onClick={() =>
                         navigate(
                           `/dashboard/${follower.userName}/profile/${follower._id}`,
                           { state: { state } }
                         )
                       }
-                    ></div>
+                      className="text-white hover:underline"
+                    >
+                      {follower.userName}
+                    </p>
                   </div>
-                  <p
-                    style={{ cursor: "pointer" }}
-                    onClick={() =>
-                      navigate(
-                        `/dashboard/${follower.userName}/profile/${follower._id}`,
-                        { state: { state } }
-                      )
-                    }
-                    className="text-white hover:underline"
-                  >
-                    {follower.userName}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
           )}
         </div>
       </section>
