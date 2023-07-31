@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 import { Questions } from "../components/Questions";
-import { updateQuestion } from "../fetchRequests/QuestionRequests";
+import {
+  getComment,
+  postComment,
+  updateQuestion,
+} from "../fetchRequests/QuestionRequests";
 import GeneralStore from "../store/GeneralContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { QuestionChart } from "../chartjs/QuestionChart.jsx";
+import { UserComment } from "../components/UserComment";
 
 export function QuestionPage() {
   const { state } = useLocation();
   const [activeTab, setActiveTab] = useState("Statistics");
+  const navigate = useNavigate();
 
   const [sortedQuestions, setSortedQuestions] = useState(null);
   const [answersOfUser, setAnswersOfUser] = useState(null);
@@ -19,9 +25,24 @@ export function QuestionPage() {
 
   const { isLoading, setIsLoading } = GeneralStore();
 
+  // usercomment
+  const [userComment, setUserComment] = useState(null);
+
+  // all commments of the question
+  const [allComments, setAllComments] = useState(null);
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
+  async function handlePostComment() {
+    const questionId = state.question._id;
+    const data = { questionId, userComment };
+    await postComment(data);
+    const response = await getComment(state.question._id);
+    const responseData = await response.json();
+    setAllComments(responseData);
+  }
 
   useEffect(() => {
     (async function request() {
@@ -33,6 +54,9 @@ export function QuestionPage() {
       setLikesOfUser(feed.userLikes);
       setUserIsFollowing(feed.userIsFollowing);
       setUserFollowers(feed.userFollowers);
+      const response = await getComment(state.question._id);
+      const responseData = await response.json();
+      setAllComments(responseData);
       setIsLoading(false);
     })();
     AOS.init({
@@ -105,8 +129,30 @@ export function QuestionPage() {
             ""
           )}
           {activeTab === "Comments" ? (
-            <div className="flex justify-around">
-              <textarea className="rounded-xl" name="" id="" cols="50" rows="4"></textarea>
+            <div className="flex flex-col items-center">
+              {allComments
+                ? allComments.map((comment) => (
+                    <UserComment comment={comment} />
+                  ))
+                : ""}
+
+              <div className="flex flex-col h-1/2 w-full max-w-2xl mt-2">
+                <textarea
+                  onChange={(e) => setUserComment(e.target.value)}
+                  className="rounded-xl p-2 shadow-lg shadow-gray-950"
+                  name=""
+                  id=""
+                  placeholder="Write a comment..."
+                ></textarea>
+                <div className="text-end">
+                  <button
+                    onClick={handlePostComment}
+                    className="rounded-xl bg-white p-1 mt-3"
+                  >
+                    post
+                  </button>
+                </div>
+              </div>
             </div>
           ) : (
             ""

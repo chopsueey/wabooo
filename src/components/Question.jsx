@@ -161,22 +161,6 @@ export const Question = ({
               onMouseEnter={handleMouseEnter}
               className="profile-name flex flex-wrap question-userName relative"
             >
-              <div
-                onClick={() =>
-                  navigate(
-                    `/dashboard/${questionData.profileId.userName}/profile/${questionData.profileId._id}`,
-                    {
-                      state: {
-                        question,
-                        answer,
-                        like,
-                        isFollowing,
-                        followsUser,
-                      },
-                    }
-                  )
-                }
-              ></div>
               <figcaption className="blubb rounded-lg p-2 px-2 flex items-center justify-between">
                 <div className="flex items-center">
                   <div style={{ width: "40px", height: "40px" }}>

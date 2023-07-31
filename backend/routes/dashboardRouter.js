@@ -77,4 +77,10 @@ dashboardRouter.get("/profile/:profileId/following", followController.getFollowe
 
 //DASHBOARD/SEARCH
 dashboardRouter.get("/search", searchController.searchFor);
+
+//DASHBOARD/COMMENT
+dashboardRouter.get("/question/:questionId/allcomments", questionController.getComment);
+dashboardRouter.post("/question/:questionId/comment", questionController.postComment);
+// dashboardRouter.delete("/question/:questionId/comment", answerController.deleteAnswer);
+
 export default dashboardRouter;

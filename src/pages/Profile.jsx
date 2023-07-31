@@ -127,11 +127,11 @@ export default function Profile() {
           <div className="user-panel flex lg:flex-col mt-10">
             <div
               style={{ cursor: "pointer" }}
-              className="blubb mb-3 flex items-center space-x-2 hover:animate-pulse  text-cyan-300 font-bold py-2 px-4 rounded-lg"
+              className="blubb mb-3 flex items-center space-x-2 hover:animate-pulse text-cyan-300 font-bold py-2 px-4 rounded-lg"
               onClick={() => navigate(`/dashboard/`)}
             >
               <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" />
-              <span>to dashboard</span>
+              <span>dashboard</span>
             </div>
             <div
               style={{ cursor: "pointer" }}
