@@ -3,7 +3,7 @@ import Follow from "../model/followModel.js";
 import Like from "../model/likeModel.js";
 import Profile from "../model/profileModel.js";
 import Question from "../model/questionModel.js";
-
+import Comment from "../model/commentModel.js";
 // trend controller
 export async function getAllQuestions(req, res, next) {
   // const numOfQuestionsToShow = 10;
@@ -284,6 +284,45 @@ export async function postQuestion(req, res, next) {
 
     const savedQuestion = await newQuestion.save();
     res.status(201).json(savedQuestion);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// get comments
+export async function getComment(req, res, next) {
+  const questionId = req.params.questionId;
+  const userId = req.user.userId;
+
+  try {
+    const userProfile = await Profile.findOne({ userId: userId });
+    const questionComments = await Comment.find({ questionId: questionId })
+      .populate({
+        path: "profileId",
+        select: "userName image",
+      })
+      .exec();
+    res.status(200).json(questionComments);
+  } catch (err) {
+    next(err);
+  }
+}
+// post comment
+
+export async function postComment(req, res, next) {
+  // const questionId = req.params.questionId;
+  const userId = req.user.userId;
+  const { questionId, userComment } = req.body;
+  try {
+    const userProfile = await Profile.findOne({ userId: userId });
+    const newComment = Comment({
+      questionId: questionId,
+      profileId: userProfile._id,
+      comment: userComment,
+    });
+
+    const savedComment = await newComment.save();
+    res.status(201).json(savedComment);
   } catch (err) {
     next(err);
   }
