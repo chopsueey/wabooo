@@ -124,13 +124,20 @@ export default function Profile() {
       <section className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
         <div className={userPanelClassName + " z-10"}>
           <div className="user-panel flex lg:flex-col mt-10">
-            <div
+          <div
               style={{ cursor: "pointer" }}
-              className="blubb mb-3 flex items-center space-x-2 hover:animate-pulse text-cyan-300 font-bold py-2 px-4 rounded-lg"
+              className="hidden lg:flex blubb mb-3 items-center space-x-2 hover:animate-pulse  text-cyan-300 font-bold py-2 px-4 rounded-lg"
               onClick={() => navigate(`/dashboard/`)}
             >
               <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" />
               <span>dashboard</span>
+            </div>
+            <div
+              style={{ cursor: "pointer" }}
+              className="lg:hidden blubb mb-3 flex items-center space-x-2 hover:animate-pulse  text-cyan-300 font-bold py-2 px-4 rounded-lg"
+              onClick={() => navigate(`/dashboard/`)}
+            >
+              <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" />
             </div>
             <div
               style={{ cursor: "pointer" }}
@@ -154,7 +161,7 @@ export default function Profile() {
               onClick={() => handleTabClick("Questions")}
               style={{ cursor: "pointer" }}
             >
-              Questions
+              Questions ({askedQuestions ? askedQuestions.length : ""})
             </div>
             <div
               className={
@@ -179,7 +186,7 @@ export default function Profile() {
               onClick={() => handleTabClick("Follower")}
               style={{ cursor: "pointer" }}
             >
-              Follower
+              Follower ({userFollowers ? userFollowers.length : ""})
             </div>
             <div
               className={
@@ -192,14 +199,14 @@ export default function Profile() {
               style={{ cursor: "pointer" }}
               onClick={() => handleTabClick("Following")}
             >
-              Following
+              Following ({userIsFollowing ? userIsFollowing.length : ""})
             </div>
           </div>
         </div>
 
         <div
           style={{ minHeight: "100vh" }}
-          className="grow px-4 sm:px-6 lg:px-10 mb-5 lg:pl-[15rem] mt-5 relative"
+          className="grow px-2 sm:px-6 lg:px-10 mb-5 lg:pl-[15rem] mt-5 relative"
         >
           {activeTab === "Info" && (
             <>
@@ -209,7 +216,7 @@ export default function Profile() {
                 </div>
               ) : (
                 <>
-                  <div className="container p-10 blubb1 rounded-xl mt-2 lg:mt-8 shadow-lg shadow-black">
+                  <div className="container p-3 sm:p-10 blubb1 rounded-xl mt-2 lg:mt-8 shadow-lg shadow-black">
                     <div className="row flex flex-col justify-around flex-wrap sm:flex-row ">
                       <div className="profile-portrait flex flex-col justify-center items-center">
                         {userData ? (
@@ -296,9 +303,19 @@ export default function Profile() {
                       </div>
                     </div>
                     <div className="row flex justify-end">
-                      {showEdit ? (
-                        <div>
-                          <form className="blubb1 p-8 rounded-lg w-[300px] sm:w-[400px] mx-auto">
+                      
+                      <div>
+                        <button
+                          className="blubb text-cyan-400 bg-transparent border border-cyan-300 rounded-md p-2 mt-2 ml-3 shadow-lg hover:bg-cyan-300 hover:text-white transition duration-300 ease-in-out"
+                          onClick={showEditMenu}
+                        >
+                          edit
+                        </button>
+                      </div>
+                    </div>
+                    {showEdit ? (
+                        <div className="mt-4">
+                          <form className="blubb1 p-3 sm:p-8 rounded-lg sm:w-[400px] mx-auto">
                             <div className="mb-4">
                               <div className="flex items-center">
                                 <label
@@ -346,7 +363,7 @@ export default function Profile() {
                                 >
                                   Country
                                 </label>
-                                <div className="bg-slate-700 rounded-lg ml-4 pb-2 pr-3">
+                                <div className="bg-slate-700 w-full rounded-lg ml-4 pb-2 pr-3">
                                   <select
                                     id="country"
                                     onChange={(e) => {
@@ -358,7 +375,7 @@ export default function Profile() {
                                       className="bg-slate-700"
                                       value="none"
                                     >
-                                      choose country
+                                      country
                                     </option>
                                     {countries.map((item) => (
                                       <option
@@ -425,15 +442,6 @@ export default function Profile() {
                       ) : (
                         ""
                       )}
-                      <div>
-                        <button
-                          className="blubb text-cyan-400 bg-transparent border border-cyan-300 rounded-md p-2 mt-2 ml-3 shadow-lg hover:bg-cyan-300 hover:text-white transition duration-300 ease-in-out"
-                          onClick={showEditMenu}
-                        >
-                          edit
-                        </button>
-                      </div>
-                    </div>
                   </div>
                 </>
               )}
@@ -452,6 +460,7 @@ export default function Profile() {
                   likes={likesOfUser}
                   isFollowing={userIsFollowing}
                   followers={userFollowers}
+                  ownQuestion={true}
                 />
               ) : (
                 <h2 className="text-center">Nothing found :/</h2>
@@ -478,7 +487,7 @@ export default function Profile() {
             </div>
           )}
           {activeTab === "Follower" && (
-            <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col justify-center lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
+            <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row px-4 sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
               {/* <h1 className="my-4 text-lg border-b-4 border-sky-500 text-center">
                 Friends{" "}
               </h1> */}
@@ -486,7 +495,7 @@ export default function Profile() {
                 {userFollowers.map((follower) => (
                   <div className="flex mb-2 items-center">
                     <div
-                      style={{ width: "40px", height: "40px" }}
+                      style={{ width: "50px", height: "50px" }}
                       className="mr-2"
                     >
                       <div
@@ -525,7 +534,7 @@ export default function Profile() {
             </div>
           )}
           {activeTab === "Following" && (
-            <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col justify-center lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
+            <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row px-4 sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
               {/* <h1 className="my-4 text-lg border-b-4 border-sky-500 text-center">
               Friends{" "}
             </h1> */}
@@ -533,7 +542,7 @@ export default function Profile() {
                 {userIsFollowing.map((follower) => (
                   <div className="flex mb-2 items-center">
                     <div
-                      style={{ width: "40px", height: "40px" }}
+                      style={{ width: "50px", height: "50px" }}
                       className="mr-2"
                     >
                       <div

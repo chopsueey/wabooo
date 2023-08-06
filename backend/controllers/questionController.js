@@ -119,7 +119,7 @@ export async function getLatestQuestion(req, res, next) {
 
     if (sortBy === "latest") {
       // latest questions not older than a week
-      sortTime = 168;
+      sortTime = 720;
     }
     if (sortBy === "lastHour") {
       // not older than one hour
@@ -284,6 +284,25 @@ export async function postQuestion(req, res, next) {
 
     const savedQuestion = await newQuestion.save();
     res.status(201).json(savedQuestion);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// delete
+export async function deleteQuestion(req, res, next) {
+  const { questionId } = req.body;
+  console.log(questionId)
+  const userId = req.user.userId;
+
+  try {
+    const userProfile = await Profile.findOne({ userId: userId });
+    const questionToDelete = Question.findById(questionId);
+    if (questionToDelete) {
+      const deletedQuestion = await questionToDelete.deleteOne();
+      return res.status(201).json(deletedQuestion);
+    }
+    return res.status(400).json("Question not found.")
   } catch (err) {
     next(err);
   }

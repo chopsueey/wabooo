@@ -53,6 +53,7 @@ export default function OthersProfile() {
     (async function request() {
       setIsLoading(true);
       const profileData = await getOthersProfile(profileId);
+      console.log(profileData)
       setUserData(profileData);
       setAskedQuestions(profileData.askedQuestions);
       setLikedQuestions(profileData.likedQuestions);
@@ -80,11 +81,18 @@ export default function OthersProfile() {
           <div className="user-panel flex lg:flex-col  mt-10">
             <div
               style={{ cursor: "pointer" }}
-              className="blubb mb-3 flex items-center space-x-2 hover:animate-pulse  text-cyan-300 font-bold py-2 px-4 rounded-lg"
+              className="hidden lg:flex blubb mb-3 items-center space-x-2 hover:animate-pulse  text-cyan-300 font-bold py-2 px-4 rounded-lg"
               onClick={() => navigate(`/dashboard/`)}
             >
               <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" />
               <span>dashboard</span>
+            </div>
+            <div
+              style={{ cursor: "pointer" }}
+              className="lg:hidden blubb mb-3 flex items-center space-x-2 hover:animate-pulse  text-cyan-300 font-bold py-2 px-4 rounded-lg"
+              onClick={() => navigate(`/dashboard/`)}
+            >
+              <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" />
             </div>
             <div
               style={{ cursor: "pointer" }}
@@ -108,7 +116,7 @@ export default function OthersProfile() {
               onClick={() => handleTabClick("Questions")}
               style={{ cursor: "pointer" }}
             >
-              Questions
+              Questions ({askedQuestions ? askedQuestions.length : ""})
             </div>
             <div
               className={
@@ -133,7 +141,7 @@ export default function OthersProfile() {
               onClick={() => handleTabClick("Follower")}
               style={{ cursor: "pointer" }}
             >
-              Follower
+              Follower ({userFollowers ? userFollowers.length : ""})
             </div>
             <div
               className={
@@ -146,14 +154,14 @@ export default function OthersProfile() {
               style={{ cursor: "pointer" }}
               onClick={() => handleTabClick("Following")}
             >
-              Following
+              Following ({userIsFollowing ? userIsFollowing.length : ""})
             </div>
           </div>
         </div>
 
         <div
           style={{ minHeight: "100vh" }}
-          className="grow px-4 sm:px-6 lg:px-10 lg:pl-[15rem] mb-5 mt-5 relative"
+          className="grow px-2 sm:px-6 lg:px-10 lg:pl-[15rem] mb-5 mt-5 relative"
         >
           {activeTab === "Info" && (
             <>
@@ -271,7 +279,7 @@ export default function OthersProfile() {
             </div>
           )}
           {activeTab === "Follower" && (
-            <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col justify-center lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
+            <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row px-4 sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
               {/* <h1 className="my-4 text-lg border-b-4 border-sky-500 text-center">
                 Friends{" "}
               </h1> */}
@@ -279,7 +287,7 @@ export default function OthersProfile() {
                 {userFollowers.map((follower) => (
                   <div className="flex mb-2 items-center">
                     <div
-                      style={{ width: "40px", height: "40px" }}
+                      style={{ width: "50px", height: "50px" }}
                       className="mr-2"
                     >
                       <div
@@ -320,7 +328,7 @@ export default function OthersProfile() {
             </div>
           )}
           {activeTab === "Following" && (
-            <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col justify-center lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
+            <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row px-4 sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
               {/* <h1 className="my-4 text-lg border-b-4 border-sky-500 text-center">
               Friends{" "}
             </h1> */}
@@ -328,7 +336,7 @@ export default function OthersProfile() {
                 {userIsFollowing.map((follower) => (
                   <div className="flex mb-2 items-center">
                     <div
-                      style={{ width: "40px", height: "40px" }}
+                      style={{ width: "50px", height: "50px" }}
                       className="mr-2"
                     >
                       <div

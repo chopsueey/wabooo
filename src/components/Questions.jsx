@@ -7,6 +7,7 @@ export const Questions = ({
   likes,
   isFollowing,
   followers,
+  ownQuestion,
 }) => {
   const answeredQuestions = answers.map((id) => id.question);
   const likedQuestions = likes.map((id) => id.question);
@@ -52,6 +53,7 @@ export const Questions = ({
                 like={userLike}
                 isFollowing={userIsFollowing}
                 followsUser={followsUser}
+                ownQuestion={ownQuestion}
               />
             );
           })

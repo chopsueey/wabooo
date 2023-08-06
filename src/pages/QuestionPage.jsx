@@ -70,7 +70,7 @@ export function QuestionPage() {
     <div className="max-w-2xl sm:mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
       <div className="row min-h-screen bg-gray-500 bg-opacity-25 rounded-xl flex flex-col justify-evenly sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
         <section
-          className="question m-5"
+          className="question m-2"
           data-aos="zoom-in-down"
           data-aos-delay="100"
         >
@@ -90,7 +90,7 @@ export function QuestionPage() {
             <h2 className="text-center">Nothing found :/</h2>
           )}
         </section>
-        <section className="details flex flex-col m-5 mb-10">
+        <section className="details flex flex-col m-2 mb-10">
           <div className="tab-menu mx-5 my-10">
             <div style={{ maxWidth: "200px" }} className="flex">
               <div

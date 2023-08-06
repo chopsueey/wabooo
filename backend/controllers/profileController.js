@@ -29,10 +29,10 @@ async function showProfile(req, res, next) {
       .exec();
 
     const userAnswers = await Answer.find({
-      user: req.user.userId,
+      user: userId,
     });
     const userLikes = await Like.find({
-      user: req.user.userId,
+      user: userId,
     });
 
     // FOLLOWING
@@ -45,7 +45,9 @@ async function showProfile(req, res, next) {
       (follower) => follower.followingProfileId
     );
     // Find the corresponding profiles based on the followingIds
-    const profilesTheUserIsFollowing = await Profile.find({ _id: { $in: followingIds } });
+    const profilesTheUserIsFollowing = await Profile.find({
+      _id: { $in: followingIds },
+    });
 
     //  FOLLOWER
     // find all, who follow the current profile
@@ -89,16 +91,28 @@ async function showProfile(req, res, next) {
 }
 
 async function getProfile(req, res, next) {
-  const numOfQuestionsToShow = 10;
+  // we want to find information for how the current user
+  // answered, liked etc. to certain questions
+  // while loading the data of the requested profile
+  // like: what questions asked the owner of the requested profile
+  // and how, if they did, reacted the current user to them
+  // and NOT how the user of the requested profile reacted to them
+  // -> we only want to show how the current logged in user
+  // reacted to the questions of the requested profile
 
+  const userId = req.user.userId;
   const profileId = req.params.profileId;
 
+  const numOfQuestionsToShow = 10;
+
   try {
-    const userProfile = await Profile.findById(profileId);
+    const userProfile = await Profile.findOne({ userId: userId });
+
+    const profileOfRequestedProfileId = await Profile.findById(profileId);
 
     // find only questions of user profile
     const askedQuestions = await Question.find({
-      profileId: { $eq: `${userProfile._id}` },
+      profileId: { $eq: `${profileOfRequestedProfileId._id}` },
     })
       .sort("-createdAt")
       // .limit(numOfQuestionsToShow)
@@ -108,29 +122,37 @@ async function getProfile(req, res, next) {
       })
       .exec();
 
+    // find Answers, Likes and Follower/Following for current user
+    // and not of the user which's profile was requested
     const userAnswers = await Answer.find({
-      user: userProfile.userId,
+      user: userId,
     });
     const userLikes = await Like.find({
-      user: userProfile.userId,
+      user: userId,
+    });
+// what the user of the requested profile likes
+    const likesOfRequestedProfile = await Like.find({
+      user: profileOfRequestedProfileId.userId,
     });
 
     // FOLLOWING
     // find all, the current profile is following
     const userIsFollowing = await Follow.find({
-      followerProfileId: userProfile._id,
+      followerProfileId: profileOfRequestedProfileId._id,
     });
     //Extract the followerProfileId from each follow document
     const followingIds = userIsFollowing.map(
       (follower) => follower.followingProfileId
     );
     // Find the corresponding profiles based on the followingIds
-    const profilesTheUserIsFollowing = await Profile.find({ _id: { $in: followingIds } });
+    const profilesTheUserIsFollowing = await Profile.find({
+      _id: { $in: followingIds },
+    });
 
     //  FOLLOWER
     // find all, who follow the current profile
     const userFollowers = await Follow.find({
-      followingProfileId: userProfile._id,
+      followingProfileId: profileOfRequestedProfileId._id,
     });
     //Extract the followerProfileId from each follow document
     const profileIdsOfFollower = userFollowers.map(
@@ -142,7 +164,7 @@ async function getProfile(req, res, next) {
     });
 
     // find only liked questions by the user profile
-    const likedQuestionsIds = userLikes.map((question) => question.question);
+    const likedQuestionsIds = likesOfRequestedProfile.map((question) => question.question);
     const likedQuestions = await Question.find({
       _id: { $in: likedQuestionsIds },
     })
@@ -157,7 +179,10 @@ async function getProfile(req, res, next) {
     res.status(200).json({
       askedQuestions: askedQuestions,
       likedQuestions: likedQuestions,
-      userProfile: userProfile,
+      // profile of requested profile
+      userProfile: profileOfRequestedProfileId,
+      
+      // data of current logged in user
       userAnswers: userAnswers,
       userLikes: userLikes,
       userIsFollowing: profilesTheUserIsFollowing,

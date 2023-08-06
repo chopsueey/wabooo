@@ -43,7 +43,7 @@ export default function UserPanel() {
   return (
     <div className={userPanelClassName + " z-10"}>
       <div
-        className="user-panel flex lg:flex-col mt-10"
+        className="user-panel flex justify-center lg:flex-col mt-10"
       >
         <div
           style={{ cursor: "pointer" }}
@@ -113,7 +113,7 @@ export default function UserPanel() {
               (activeTab === "Results"
                 ? "active text-cyan-700 rounded-lg"
                 : "text-cyan-300") +
-              " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg  text-xl"
+              " p-2 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg text-xl hidden lg:block"
             }
             style={{ cursor: "pointer" }}
             onClick={() => handleTabClick("Results")}
