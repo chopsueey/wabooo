@@ -39,6 +39,7 @@ dashboardRouter.get("/profile/:profileId/follower", followController.getFollower
 dashboardRouter.patch("/profile", profileController.updateProfileData);
 dashboardRouter.put("/profile", profileController.editProfile);
 dashboardRouter.delete("/profile", profileController.deleteAccount);
+dashboardRouter.delete("/profile/questions/delete", questionController.deleteQuestion);
 
 // DASHBOARD/CLOUDINARY
 // dashboardRouter.get("/profile/cloudinary", cloudyController.getAllProfiles);

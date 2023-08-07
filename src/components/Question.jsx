@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
 import {
   deleteAnswer,
   deleteLike,
+  deleteQuestion,
   getQuestion,
   postAnswer,
   postLike,
 } from "../fetchRequests/QuestionRequests";
 import { useNavigate } from "react-router-dom";
-import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import {
   deleteFollow,
   getFollower,
@@ -17,12 +16,17 @@ import {
 import { searchRequest } from "../fetchRequests/SearchRequests";
 import GeneralStore from "../store/GeneralContext";
 
+import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
+import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
+import { EllipsisHorizontalIcon } from "@heroicons/react/24/solid";
+
 export const Question = ({
   question,
   answer,
   like,
   isFollowing,
   followsUser,
+  ownQuestion,
 }) => {
   const { setActiveTab, setResults } = GeneralStore();
 
@@ -34,6 +38,7 @@ export const Question = ({
   const [isOwnQuestion, setIsOwnQuestion] = useState(undefined);
   const [numOfFollower, setNumOfFollower] = useState(undefined);
   const [showDetails, setShowDetails] = useState(false);
+  const [showMoreInfo, setShowMoreInfo] = useState(false);
 
   // calculate percentage of yes or no
   // multiplied by two, because yes and no take half of the place of the div element
@@ -149,6 +154,17 @@ export const Question = ({
     setShowDetails(!showDetails);
   };
 
+  async function handleDeleteQuestionClick() {
+    const questionId = question._id;
+    const data = { questionId };
+    const response = await deleteQuestion(data);
+    // const responseData = await response.json();
+    // console.log(responseData);
+  }
+
+  function handleShowMoreInfo() {
+    setShowMoreInfo(!showMoreInfo);
+  }
   return (
     <>
       {questionData ? (
@@ -254,21 +270,64 @@ export const Question = ({
                 )}
               </div>
             </div>
-            {!isLiked ? (
-              <button
-                className="absolute top-5 right-5 hover:animate-pulse"
-                onClick={() => handleLikeClick("like")}
-              >
-                {questionData.likes + " 🤍"}
-              </button>
-            ) : (
-              <button
-                className="absolute top-5 right-5 hover:animate-pulse"
-                onClick={() => handleLikeClick("unlike")}
-              >
-                {questionData.likes + " ❤️"}
-              </button>
-            )}
+            <div
+              onMouseLeave={() => setShowMoreInfo(false)}
+              className="question-info flex items-start cursor-pointer"
+            >
+              <EllipsisHorizontalIcon
+                onClick={handleShowMoreInfo}
+                className="h-10 w-10 text-white relative -top-3"
+              />
+              {showMoreInfo ? (
+                <div className="blubb absolute right-16 rounded-lg p-2 text-sm text-center flex flex-col">
+                  <span
+                    style={{ cursor: "pointer" }}
+                    onClick={() =>
+                      navigate(
+                        `/dashboard/question/${questionData.profileId.userName}/${questionData._id}`,
+                        {
+                          state: {
+                            question,
+                            answer,
+                            like,
+                            isFollowing,
+                            followsUser,
+                          },
+                        }
+                      )
+                    }
+                    className="text-white font-bold hover:underline cursor-pointer"
+                  >
+                    details
+                  </span>
+                  {/* ownQuestion variable only on own profile for deleting own questions */}
+                  {ownQuestion ? (
+                    <div
+                      onClick={handleDeleteQuestionClick}
+                      className="text-red-800 font-bold hover:underline cursor-pointer"
+                    >
+                      delete question
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  {isAnswered ? (
+                    <>
+                      <span
+                        onClick={handleDeleteClick}
+                        className="text-red-800 font-bold hover:underline cursor-pointer"
+                      >
+                        delete answer
+                      </span>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
 
           <figcaption className="p-6">
@@ -326,30 +385,44 @@ export const Question = ({
                 </div>
               )}
             </div>
-
-            <div>
-              <span className="text-white">
-                {new Date(questionData.createdAt).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </span>
-              {isAnswered ? (
-                <>
-                  <div className="italic text-white">Answers: {allAnswers}</div>
-                  <span
-                    style={{ cursor: "pointer" }}
-                    onClick={handleDeleteClick}
-                    className="italic text-red-900 font-bold hover:underline text-end"
+            {isAnswered ? (
+              <div className="flex flex-col">
+                {!isLiked ? (
+                  <button
+                    className="text-end text-white  text-sm hover:animate-pulse"
+                    onClick={() => handleLikeClick("like")}
                   >
-                    delete Answer
+                    {questionData.likes + " 🤍"}
+                  </button>
+                ) : (
+                  <button
+                    className="text-end text-white text-sm hover:animate-pulse"
+                    onClick={() => handleLikeClick("unlike")}
+                  >
+                    {questionData.likes + " ❤️"}
+                  </button>
+                )}
+                <div className="mt-2">
+                  <div className="italic text-white">
+                    {allAnswers > 1
+                      ? `${allAnswers} answers`
+                      : `${allAnswers} answer`}
+                  </div>
+                  <span className="text-white">
+                    {new Date(questionData.createdAt).toLocaleDateString(
+                      "en-US",
+                      {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric",
+                      }
+                    )}
                   </span>
-                </>
-              ) : (
-                ""
-              )}
-            </div>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
 
           {!isAnswered ? (

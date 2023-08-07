@@ -73,7 +73,7 @@ export default function MobileUserPanel() {
       >
         <UserCircleIcon className="h-6 w-6 mr-2" />
       </div>
-      {results ? (
+      {/* {results ? (
         <div
           className={
             (activeTab === "Results" ? "active" : "") + " p-2 font-bold"
@@ -85,7 +85,7 @@ export default function MobileUserPanel() {
         </div>
       ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 }

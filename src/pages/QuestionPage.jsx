@@ -82,7 +82,7 @@ export function QuestionPage() {
         </div>
 
         <section
-          className="question m-5"
+          className="question m-2"
           data-aos="zoom-in-down"
           data-aos-delay="100"
         >
@@ -102,7 +102,7 @@ export function QuestionPage() {
             <h2 className="text-center">Nothing found :/</h2>
           )}
         </section>
-        <section className="details flex flex-col m-5 mb-10">
+        <section className="details flex flex-col m-2 mb-10">
           <div className="tab-menu mx-5 my-10">
             <div style={{ maxWidth: "200px" }} className="flex">
               <div
