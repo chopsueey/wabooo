@@ -6,7 +6,6 @@ import bg2 from "../assets/karte.jpg";
 import bg3 from "../assets/karte2.jpg";
 import bg4 from "../assets/karte3.jpg";
 import GeneralStore from "../store/GeneralContext";
-
 import Typewriter from "typewriter-effect";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -38,11 +37,15 @@ export default function Home() {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (register && doubleCheckPassword !== password) {
-      toast.error("Your passwords do not match.");
+      toast.error("Your passwords do not match.", {
+        className: "custom-toast",
+      });
       return;
     }
     if (register && !name && !userName) {
-      toast.error("Please, provide your name and username");
+      toast.error("Please, provide your name and username", {
+        className: "custom-toast",
+      });
       return;
     }
     const data = { name, userName, email, password };
@@ -58,11 +61,15 @@ export default function Home() {
         setHasCookie(true);
         setModal(false);
         navigate("/dashboard");
-        toast.success("Login successful!");
+        toast.success("Login successful!", {
+          className: "custom-toast",
+        });
         setLoading(false);
         return;
       } else if (response.status === 400) {
-        toast.error("Your password is incorrect.");
+        toast.error("Your password is incorrect.", {
+          className: "custom-toast",
+        });
         setLoading(false);
         return;
       }
@@ -76,14 +83,20 @@ export default function Home() {
     if (response.status === 201) {
       setRegister(false);
       setLoading(false);
-      toast.success("Your account is created. You can login now.");
+      toast.success("Your account is created. You can login now.", {
+        className: "custom-toast",
+      });
       return;
     }
     if (!password) {
-      toast.error("Please, provide your password");
+      toast.error("Please, provide your password", {
+        className: "custom-toast",
+      });
       return;
     } else if (response.status === 400) {
-      toast.error("Please, check your entries.");
+      toast.error("Please, check your entries.", {
+        className: "custom-toast",
+      });
     }
     setLoading(false);
     setModal(false);
@@ -189,10 +202,9 @@ export default function Home() {
                   onChange={(evt) => setDoubleCheckPassword(evt.target.value)}
                 />
               </label>
-
             )}
             <button
-              className={` mt-4 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2 ${
+              className={` mt-4 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2 ${
                 loading ? "cursor-not-allowed opacity-75" : ""
               }`}
               type="submit"
@@ -214,16 +226,13 @@ export default function Home() {
                       <circle cx="12" cy="12" r="10" />
                       <path d="M16 12a4 4 0 1 1-8 0m8 0H8" />
                     </svg>
-
                   </div>
                   Signing in...
                 </div>
               ) : register ? (
                 "Create account"
               ) : (
-
                 "Sign in"
-
               )}
             </button>
             {register ? (
