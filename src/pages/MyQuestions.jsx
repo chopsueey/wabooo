@@ -58,17 +58,14 @@ export default function MyQuestions() {
           }`}
           onClick={() => handleQuestionClick("question1")}
         >
-          Was könnte ich fragen?
+          What could I ask?
         </h3>
         {isContentVisible.question1 && (
           <>
             <div className="w-full max-w-sm p-8 blubb rounded-md">
-              <p>Nervt euch der Sommer?</p>
-              <p>
-                Sollte meine Katze als Präsidentschaftskandidat nominiert
-                werden?{" "}
-              </p>
-              <p>Sollte man vegetarisch leben?</p>
+              <p>Does summer annoy you?</p>
+              <p>Should my cat be nominated as a presidential candidate?</p>
+              <p>Is living a vegetarian lifestyle advisable?</p>
             </div>
           </>
         )}
@@ -78,15 +75,32 @@ export default function MyQuestions() {
           }`}
           onClick={() => handleQuestionClick("question2")}
         >
-          Wie erstelle ich eine Frage?
+          How do I create a question?
         </h3>
         {isContentVisible.question2 && (
           <div className="w-full max-w-sm p-8 blubb rounded-md">
             <p>
-              Nachdem du dich für eine Frage entschieden hast, klickst du unten
-              einfach in das Eingabefeld und erstellst deine Frage. Bitte
-              beachte, das ein Wort maximal 15 Buchstaben enthalten darf und die
-              Gesamtfrage nicht mehr als 1000 Zeichen haben sollte.
+              After you have chosen a question, simply click on the input field
+              below and create your question. Please note that a word can
+              contain a maximum of 15 letters and the total question length
+              should not exceed 1000 characters.
+            </p>
+          </div>
+        )}
+        <h3
+          className={`cursor-pointer text-cyan-300 mb-2 ${
+            isContentVisible.question3 ? "" : ""
+          }`}
+          onClick={() => handleQuestionClick("question3")}
+        >
+          Rules for asking questions:
+        </h3>
+        {isContentVisible.question3 && (
+          <div className="w-full max-w-sm p-8 blubb rounded-md">
+            <p>
+              Please do not ask offensive questions! Bullying is not allowed, so
+              please refrain from asking about it as well! No racist or
+              far-right questions! Sexual questions are also not welcome!
             </p>
           </div>
         )}

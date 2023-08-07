@@ -8,6 +8,7 @@ import Recommended from "../components/Recommended.jsx";
 
 import { Searchbar } from "../components/Searchbar.jsx";
 import SearchResults from "../components/SearchResults.jsx";
+import MobileUserPanel from "../components/MobileUserPanel.jsx";
 
 export default function Dashboard() {
   const { activeTab, results } = GeneralStore();
@@ -49,6 +50,7 @@ export default function Dashboard() {
           <InfoSidebar />
         </div>
       </section>
+      <MobileUserPanel />
     </div>
   );
 }

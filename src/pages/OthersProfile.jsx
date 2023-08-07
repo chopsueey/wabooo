@@ -53,7 +53,7 @@ export default function OthersProfile() {
     (async function request() {
       setIsLoading(true);
       const profileData = await getOthersProfile(profileId);
-      console.log(profileData)
+      console.log(profileData);
       setUserData(profileData);
       setAskedQuestions(profileData.askedQuestions);
       setLikedQuestions(profileData.likedQuestions);
@@ -111,12 +111,17 @@ export default function OthersProfile() {
                 (activeTab === "Questions"
                   ? "active text-cyan-700 rounded-lg"
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
-                " p-2 text-xl"
+                " p-2 text-xl flex items-center justify-center"
               }
               onClick={() => handleTabClick("Questions")}
               style={{ cursor: "pointer" }}
             >
-              Questions ({askedQuestions ? askedQuestions.length : ""})
+              {askedQuestions && (
+                <span className="mr-1 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">
+                  {askedQuestions.length}
+                </span>
+              )}
+              Questions
             </div>
             <div
               className={
@@ -136,25 +141,34 @@ export default function OthersProfile() {
                 (activeTab === "Follower"
                   ? "active text-cyan-700 rounded-lg"
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
-                " p-2 text-xl"
+                " p-2 text-xl flex items-center"
               }
               onClick={() => handleTabClick("Follower")}
               style={{ cursor: "pointer" }}
             >
-              Follower ({userFollowers ? userFollowers.length : ""})
+              {userFollowers && (
+                <span className="mr-2 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">
+                  {userFollowers.length}
+                </span>
+              )}
+              Follower
             </div>
             <div
               className={
                 (activeTab === "Following"
                   ? "active text-cyan-700 rounded-lg"
-                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 rounded-lg") +
-                " p-2 text-xl"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl flex items-center"
               }
-              // onClick={() => handleTabClick("Profile")}
-              style={{ cursor: "pointer" }}
               onClick={() => handleTabClick("Following")}
+              style={{ cursor: "pointer" }}
             >
-              Following ({userIsFollowing ? userIsFollowing.length : ""})
+              {userIsFollowing && (
+                <span className="mr-2 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">
+                  {userIsFollowing.length}
+                </span>
+              )}
+              Following
             </div>
           </div>
         </div>
@@ -224,9 +238,26 @@ export default function OthersProfile() {
                   <div className="profile-data flex flex-col justify-center text-cyan-300 font-bold">
                     {userData ? (
                       <>
-                        <h3>Username: {userData.userProfile.userName}</h3>
-                        <h3>Country: {userData.userProfile.country}</h3>
-                        <h3>Birthyear: {userData.userProfile.birthYear}</h3>
+                        <div className="flex mb-2">
+                          <h3 className="text-cyan-600 mr-2">Username:</h3>
+                          <h4 className="text-white">
+                            {userData.userProfile.userName}
+                          </h4>
+                        </div>
+                        <div className="flex justify-start border border-cyan-700 mb-2 mt-2"></div>
+                        <div className="flex mb-2">
+                          <h3 className="text-cyan-600 mr-2">Country: </h3>
+                          <h4 className="text-white">
+                            {userData.userProfile.country}
+                          </h4>
+                        </div>
+                        <div className="flex justify-start border border-cyan-700 mb-2 mt-2"></div>
+                        <div className="flex mb-2">
+                          <h3 className="text-cyan-600 mr-2">Birthyear: </h3>
+                          <h4 className="text-white">
+                            {userData.userProfile.birthYear}
+                          </h4>
+                        </div>
                       </>
                     ) : (
                       ""
@@ -251,7 +282,9 @@ export default function OthersProfile() {
                   followers={userFollowers}
                 />
               ) : (
-                <h2 className="text-center">Nothing found :/</h2>
+                <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
+                  Nothing found 👀
+                </h2>
               )}
             </div>
           )}
@@ -271,7 +304,7 @@ export default function OthersProfile() {
                 />
               ) : (
                 <div className="flex justify-center items-center">
-                  <h2 className="text-center items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
+                  <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
                     Nothing found 👀
                   </h2>
                 </div>

@@ -210,7 +210,7 @@ export default function Navigation() {
         </nav>
       </div>
       <Outlet />
-      <MobileUserPanel />
+
       <Footer />
     </>
   );
