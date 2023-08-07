@@ -38,14 +38,14 @@ export default function MobileUserPanel() {
         className={(activeTab === "Feed" ? "active" : "") + " p-2 font-bold"}
         onClick={() => handleTabClick("Feed")}
       >
-        <HomeIcon className="h-6 w-6 mr-2" />
+        <HomeIcon className="h-6 w-6" />
       </div>
       <div
         className={(activeTab === "Trend" ? "active" : "") + " p-2 font-bold"}
         onClick={() => handleTabClick("Trend")}
         style={{ cursor: "pointer" }}
       >
-        <FireIcon className="h-6 w-6 mr-2" />
+        <FireIcon className="h-6 w-6" />
       </div>
       <div
         className={
@@ -54,7 +54,7 @@ export default function MobileUserPanel() {
         onClick={() => handleTabClick("Recommended")}
         style={{ cursor: "pointer" }}
       >
-        <HandThumbUpIcon className="h-6 w-6 mr-2" />
+        <HandThumbUpIcon className="h-6 w-6" />
       </div>
 
       <div
@@ -64,14 +64,14 @@ export default function MobileUserPanel() {
         onClick={() => handleTabClick("AskQuestion")}
         style={{ cursor: "pointer" }}
       >
-        <PlusCircleIcon className="h-6 w-6 mr-2" />
+        <PlusCircleIcon className="h-6 w-6" />
       </div>
       <div
         className={(activeTab === "Profile" ? "active" : "") + " p-2 font-bold"}
         onClick={() => navigate(`/dashboard/user/profile/${profileId}`)}
         style={{ cursor: "pointer" }}
       >
-        <UserCircleIcon className="h-6 w-6 mr-2" />
+        <UserCircleIcon className="h-6 w-6" />
       </div>
       {/* {results ? (
         <div
