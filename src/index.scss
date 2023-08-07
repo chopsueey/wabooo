@@ -8,6 +8,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: "no-repeat";
+  // --toastify-color-dark: #414141;
+  --toastify-color-success: #00ffff;
+  --toastify-color-error: #ff1900;
+  // --toastify-text-color-dark: #149eca;
   // font-family: "Verdana", sans-serif;
 
   // --tw-gradient-from: #111827;
@@ -24,7 +28,34 @@
   // background-image: linear-gradient(to right top, var(--tw-gradient-stops));
   // background-repeat: no-repeat;
 }
+/* Benutzerdefiniertes Styling für die Toastify-Benachrichtigungen */
+.custom-toast {
+  --tw-gradient-from: rgba(27, 38, 61, 0.3);
+  --tw-gradient-via: rgba(48, 63, 84, 0.3);
+  --tw-gradient-to: rgba(8, 74, 92, 0.3);
+  --tw-gradient-from-position: bottom left;
+  --tw-gradient-via-position: center;
+  --tw-gradient-to-position: top right;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via),
+    var(--tw-gradient-to);
+  --bg-gradient-color-start: var(--tw-gradient-from);
+  --bg-gradient-color-middle: var(--tw-gradient-via);
+  --bg-gradient-color-end: var(--tw-gradient-to);
+  background-color: var(--bg-gradient-color-start);
+  background-image: linear-gradient(to right top, var(--tw-gradient-stops));
+  background-repeat: no-repeat;
+  border-radius: 8px; /* Abgerundete Ecken */
+}
 
+/* Stil für den Schließen-Button der Benachrichtigungen */
+.custom-toast .Toastify__close-button {
+  color: #ffffff; /* Farbe des Schließen-Buttons */
+}
+
+/* Stil für den Text der Benachrichtigungen */
+.custom-toast .Toastify__toast-body {
+  font-size: 16px; /* Schriftgröße */
+}
 .blubb1 {
   --tw-gradient-from: rgba(17, 24, 39, 0.3);
   --tw-gradient-via: rgba(31, 41, 55, 0.3);

@@ -11,6 +11,7 @@ import "aos/dist/aos.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { QuestionChart } from "../chartjs/QuestionChart.jsx";
 import { UserComment } from "../components/UserComment";
+import { ArrowLongLeftIcon } from "@heroicons/react/24/solid"; // Import des Back-Icons
 
 export function QuestionPage() {
   const { state } = useLocation();
@@ -69,6 +70,17 @@ export function QuestionPage() {
   return (
     <div className="max-w-2xl sm:mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
       <div className="row min-h-screen bg-gray-500 bg-opacity-25 rounded-xl flex flex-col justify-evenly sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
+        <div className="mb-5 mt-5 ml-3">
+          <button
+            style={{ cursor: "pointer" }}
+            className="blubb mb-3 flex items-center space-x-2 hover:animate-pulse text-cyan-300 font-bold py-2 px-4 rounded-lg"
+            onClick={() => navigate(`/dashboard/`)}
+          >
+            <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" />{" "}
+            <span>dashboard</span>
+          </button>
+        </div>
+
         <section
           className="question m-5"
           data-aos="zoom-in-down"
@@ -139,7 +151,7 @@ export function QuestionPage() {
               <div className="flex flex-col h-1/2 w-full max-w-2xl mt-2">
                 <textarea
                   onChange={(e) => setUserComment(e.target.value)}
-                  className="rounded-xl p-2 shadow-lg shadow-gray-950"
+                  className="rounded-xl p-2 shadow-lg shadow-gray-950 bg-slate-700 bg-transparent text-white w-full border-2 border-cyan-400 font-bold placeholder-cyan-500 focus:border-cyan-400 focus:outline-none"
                   name=""
                   id=""
                   placeholder="Write a comment..."
@@ -147,7 +159,7 @@ export function QuestionPage() {
                 <div className="text-end">
                   <button
                     onClick={handlePostComment}
-                    className="rounded-xl bg-white p-1 mt-3"
+                    className="mt-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1"
                   >
                     post
                   </button>
