@@ -19,6 +19,8 @@ import GeneralStore from "../store/GeneralContext";
 import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/solid";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Question = ({
   question,
@@ -79,6 +81,9 @@ export const Question = ({
     );
     setAllAnswers(updatedData.found.yes + updatedData.found.no);
     setIsAnswered(true);
+    toast.success("You submitted your answer.", {
+    className: "custom-toast",
+    });
   }
 
   async function handleLikeClick(likeOrUnlike) {
@@ -103,6 +108,9 @@ export const Question = ({
     const questionId = question._id;
     const response = await deleteAnswer({ questionId });
     setIsAnswered(false);
+    toast.success("You deleted your answer.", {
+    className: "custom-toast",
+   });
   }
 
   async function handleFollowClick() {
@@ -112,6 +120,9 @@ export const Question = ({
     const response = await getFollower(questionData.profileId._id);
     setNumOfFollower(response.profileFollower.length);
     setIsFollowed(true);
+    toast.info("You are following.", {
+    className: "custom-toast",
+   });
   }
 
   async function handleUnfollowClick() {
@@ -121,6 +132,9 @@ export const Question = ({
     const response = await getFollower(questionData.profileId._id);
     setNumOfFollower(response.profileFollower.length);
     setIsFollowed(false);
+    toast.info("You stopped following.", {
+    className: "custom-toast",
+   });
   }
 
   const handleMouseEnter = async () => {
@@ -160,6 +174,9 @@ export const Question = ({
     const response = await deleteQuestion(data);
     // const responseData = await response.json();
     // console.log(responseData);
+    toast.info("You deleted question.", {
+    className: "custom-toast",
+   });
   }
 
   function handleShowMoreInfo() {
@@ -179,7 +196,7 @@ export const Question = ({
             >
               <figcaption className="blubb rounded-lg p-2 px-2 flex items-center justify-between">
                 <div className="flex items-center">
-                  <div style={{ width: "40px", height: "40px" }}>
+                  {/* <div style={{ width: "40px", height: "40px" }}>
                     <div
                       className="flex-shrink-0 rounded-full cursor-pointer"
                       style={{
@@ -209,6 +226,37 @@ export const Question = ({
                         )
                       }
                     ></div>
+                  </div> */}
+                  <div
+                    style={{ maxWidth: "50px", maxHeight: "50px" }}
+                    className="flex justify-center overflow-hidden rounded-full cursor-pointer"
+                    onClick={() =>
+                      navigate(
+                        `/dashboard/${questionData.profileId.userName}/profile/${questionData.profileId._id}`,
+                        {
+                          state: {
+                            question,
+                            answer,
+                            like,
+                            isFollowing,
+                            followsUser,
+                          },
+                        }
+                      )
+                    }
+                  >
+                    <img
+                      style={{
+                        maxWidth: "50px",
+                        aspectRatio: "1/1",
+                        objectFit: "cover",
+                      }}
+                      src={
+                        questionData.profileId.image
+                          ? questionData.profileId.image
+                          : profilePic
+                      }
+                    />
                   </div>
                   <div className="italic ml-2">
                     <h5
@@ -227,7 +275,7 @@ export const Question = ({
                           }
                         );
                       }}
-                      className="text-white hover:underline"
+                      className="text-white font-bold hover:underline"
                     >
                       {questionData.profileId.userName}
                     </h5>
@@ -402,7 +450,7 @@ export const Question = ({
                     {questionData.likes + " ❤️"}
                   </button>
                 )}
-                <div className="mt-2">
+                <div className="blubb rounded-lg p-2 px-2 mt-2">
                   <div className="italic text-white">
                     {allAnswers > 1
                       ? `${allAnswers} answers`
@@ -447,14 +495,14 @@ export const Question = ({
             <div className="flex text-black text-lg text-center">
               <div
                 style={{ width: `${yesWidth}%` }}
-                className="bg-gradient-to-r from-gray-900 to-gray-700  text-green-400 font-bold "
+                className="bg-gradient-to-r from-gray-900 to-gray-700 text-green-400 font-bold "
               >
                 {yesWidth / 2 + "%"}
               </div>
 
               <div
                 style={{ width: `${noWidth}%` }}
-                className="bg-gradient-to-r from-gray-700  to-gray-900   text-red-500 font-bold"
+                className="bg-gradient-to-r from-gray-700  to-gray-900 text-red-500 font-bold"
               >
                 {noWidth === 0 ? "" : noWidth / 2 + "%"}
               </div>

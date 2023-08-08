@@ -6,8 +6,8 @@ export function UserComment({ comment }) {
   return (
     <figcaption className="w-full max-w-2xl blubb rounded-lg p-3 flex overflow-scroll mb-3 shadow-lg shadow-black">
       <div>
-        <div className="ml-3" style={{ width: "50px", height: "50px" }}>
-          <div
+        <div className="ml-3 profile-portrait flex flex-col justify-center items-center">
+          {/* <div
             className="flex-shrink-0 rounded-full cursor-pointer"
             style={{
               backgroundImage: `url(${
@@ -24,7 +24,27 @@ export function UserComment({ comment }) {
                 `/dashboard/${comment.profileId.userName}/profile/${comment.profileId._id}`
               );
             }}
-          ></div>
+          ></div> */}
+          <div
+            style={{ maxWidth: "50px", maxHeight: "50px" }}
+            className="flex justify-center overflow-hidden rounded-full cursor-pointer"
+            onClick={() => {
+              navigate(
+                `/dashboard/${comment.profileId.userName}/profile/${comment.profileId._id}`
+              );
+            }}
+          >
+            <img
+              style={{
+                maxWidth: "50px",
+                aspectRatio: "1/1",
+                objectFit: "cover",
+              }}
+              src={
+                comment.profileId.image ? comment.profileId.image : profilePic
+              }
+            />
+          </div>
         </div>
       </div>
       <div className="flex flex-col grow ml-6">

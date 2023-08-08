@@ -148,6 +148,7 @@ export async function getLatestQuestion(req, res, next) {
     const userAnswers = await Answer.find({
       user: req.user.userId,
     });
+
     const userLikes = await Like.find({
       user: req.user.userId,
     });
@@ -162,7 +163,7 @@ export async function getLatestQuestion(req, res, next) {
     const userFollowers = await Follow.find({
       followingProfileId: userProfile._id,
     });
-
+    
     return res.status(200).json({
       sortBy: sortBy,
       found: sortedQuestions,
@@ -292,7 +293,7 @@ export async function postQuestion(req, res, next) {
 // delete
 export async function deleteQuestion(req, res, next) {
   const { questionId } = req.body;
-  console.log(questionId)
+  console.log(questionId);
   const userId = req.user.userId;
 
   try {
@@ -302,7 +303,7 @@ export async function deleteQuestion(req, res, next) {
       const deletedQuestion = await questionToDelete.deleteOne();
       return res.status(201).json(deletedQuestion);
     }
-    return res.status(400).json("Question not found.")
+    return res.status(400).json("Question not found.");
   } catch (err) {
     next(err);
   }

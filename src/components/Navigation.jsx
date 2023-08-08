@@ -210,7 +210,6 @@ export default function Navigation() {
         </nav>
       </div>
       <Outlet />
-
       <Footer />
     </>
   );

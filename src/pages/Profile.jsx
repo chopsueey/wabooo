@@ -12,8 +12,13 @@ import { countries } from "../../backend/model/data.js";
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
 import ProfileImage from "../components/ProfileImage";
+
 import ProfileMobileUserPanel from "../components/ProfileMobileUserPanel";
 import GeneralStore from "../store/GeneralContext";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("Profile");
@@ -64,6 +69,31 @@ export default function Profile() {
   // user data is stored in variable data
   async function handleProfileUpdate(e) {
     e.preventDefault();
+    //  const file = e.target.files[0];
+    //   const reader = new FileReader();
+
+    //   reader.onloadend = () => {
+    //     setImage(reader.result);
+    //     toast.success("Image uploaded!", {
+    //       className: "custom-toast",
+    //     });
+    //   };
+
+    //   if (file) {
+    //     reader.readAsDataURL(file);
+    //   } else {
+    //     toast.error("Image not uploaded.", {
+    //       className: "custom-toast",
+    //     });
+    //   }
+    // };
+
+    // const handleDeleteImage = () => {
+    //   setImage(null);
+    //   toast.info("Image deleted.", {
+    //     className: "custom-toast",
+    //   });
+    // };
     const data = { userName, country, birthYear, image, imageUrl };
     setIsSaving(true);
     await patchProfile(data);
@@ -75,6 +105,9 @@ export default function Profile() {
     setLikesOfUser(profileData.userLikes);
     setUserIsFollowing(profileData.userIsFollowing);
     setUserFollowers(profileData.userFollowers);
+    toast.info("Changes saved.", {
+      className: "custom-toast",
+      });
     setIsSaving(false);
   }
 
@@ -95,12 +128,29 @@ export default function Profile() {
     reader.onloadend = () => {
       setImageUrl(reader.result);
     };
+       toast.info("Click the button 'save changes'.", {
+       className: "custom-toast",
+       });
   };
 
-  async function handleImageDeleteClick() {
-    await deleteProfileImage();
-    window.location.reload();
-  }
+ const handleImageDeleteClick = async () => {
+   await deleteProfileImage();
+   setImage(null);
+   setImageUrl(null);
+   toast.info("Image deleted.", {
+     className: "custom-toast",
+   });
+   await deleteProfileImage();
+   const profileData = await getProfile();
+    setUserData(profileData);
+    setAskedQuestions(profileData.askedQuestions);
+    setLikedQuestions(profileData.likedQuestions);
+    setAnswersOfUser(profileData.userAnswers);
+    setLikesOfUser(profileData.userLikes);
+    setUserIsFollowing(profileData.userIsFollowing);
+    setUserFollowers(profileData.userFollowers);
+  //  window.location.reload();
+ };
 
   // get user profile data, refresh on every load
   useEffect(() => {
@@ -343,7 +393,9 @@ export default function Profile() {
                               </label>
                               <input
                                 id="username"
-                                className="mt-2 px-4 py-2 bg-slate-700 rounded-lg textc font-bold w-full focus:outline-none"
+
+                                className="mt-2 px-4 py-2 bg-slate-700 rounded-lg text-white font-bold w-full focus:outline-none"
+
                                 onChange={(e) => {
                                   setUserName(e.target.value);
                                   console.log(userName);
@@ -363,7 +415,9 @@ export default function Profile() {
                               </label>
                               <input
                                 id="birthyear"
-                                className="ml-2 rounded-lg mt-2 px-4 py-2 bg-slate-700  textc font-bold w-full focus:outline-none"
+
+                                className="ml-2 rounded-lg mt-2 px-4 py-2 bg-slate-700 text-white font-bold w-full focus:outline-none"
+
                                 onChange={(e) => {
                                   setBirthyear(e.target.value);
                                   console.log(birthYear);
@@ -386,10 +440,15 @@ export default function Profile() {
                                   onChange={(e) => {
                                     setCountry(e.target.value);
                                   }}
-                                  className="mt-2 px-4 py-2 bg-slate-700 bg-transparent textc w-full focus:outline-none"
+
+                                  className="mt-2 px-4 py-2 bg-slate-700 bg-transparent text-white w-full focus:outline-none"
                                 >
-                                  <option className="bg-slate-700" value="none">
-                                    country
+                                  <option
+                                    className="bg-slate-700"
+                                    value="none"
+                                  >
+                                    Country
+
                                   </option>
                                   {countries.map((item) => (
                                     <option
@@ -519,9 +578,8 @@ export default function Profile() {
                       <div
                         className="flex-shrink-0 rounded-full cursor-pointer"
                         style={{
-                          backgroundImage: `url(${
-                            follower.image ? follower.image : profilePic
-                          })`,
+                          backgroundImage: `url(${follower.image ? follower.image : profilePic
+                            })`,
                           backgroundSize: "100% 100%",
                           backgroundRepeat: "no-repeat",
                           width: "100%",
@@ -566,9 +624,8 @@ export default function Profile() {
                       <div
                         className="flex-shrink-0 rounded-full cursor-pointer"
                         style={{
-                          backgroundImage: `url(${
-                            follower.image ? follower.image : profilePic
-                          })`,
+                          backgroundImage: `url(${follower.image ? follower.image : profilePic
+                            })`,
                           backgroundSize: "100% 100%",
                           backgroundRepeat: "no-repeat",
                           width: "100%",
@@ -600,10 +657,12 @@ export default function Profile() {
           )}
         </div>
       </section>
+
       <ProfileMobileUserPanel
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
+
     </div>
   );
-}
+};
