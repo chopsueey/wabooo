@@ -433,7 +433,7 @@ export const Question = ({
                     {questionData.likes + " ❤️"}
                   </button>
                 )}
-                <div className="mt-2">
+                <div className="blubb rounded-lg p-2 px-2 mt-2">
                   <div className="italic text-white">
                     {allAnswers > 1
                       ? `${allAnswers} answers`
@@ -478,14 +478,14 @@ export const Question = ({
             <div className="flex text-black text-lg text-center">
               <div
                 style={{ width: `${yesWidth}%` }}
-                className="bg-gradient-to-r from-gray-900 to-gray-700  text-green-400 font-bold "
+                className="bg-gradient-to-r from-gray-900 to-gray-700 text-green-400 font-bold "
               >
                 {yesWidth / 2 + "%"}
               </div>
 
               <div
                 style={{ width: `${noWidth}%` }}
-                className="bg-gradient-to-r from-gray-700  to-gray-900   text-red-500 font-bold"
+                className="bg-gradient-to-r from-gray-700  to-gray-900 text-red-500 font-bold"
               >
                 {noWidth === 0 ? "" : noWidth / 2 + "%"}
               </div>

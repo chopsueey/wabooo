@@ -41,6 +41,7 @@ export function QuestionPage() {
     const questionId = state.question._id;
     const data = { questionId, userComment };
     await postComment(data);
+    setUserComment("");
     const response = await getComment(state.question._id);
     const responseData = await response.json();
     setAllComments(responseData);
@@ -156,12 +157,13 @@ export function QuestionPage() {
                   className="rounded-xl p-2 shadow-lg shadow-gray-950 bg-slate-700 bg-transparent text-white w-full border-2 border-cyan-400 font-bold placeholder-cyan-500 focus:border-cyan-400 focus:outline-none"
                   name=""
                   id=""
+                  value={userComment}
                   placeholder="Write a comment..."
                 ></textarea>
                 <div className="text-end">
                   <button
                     onClick={handlePostComment}
-                    className="mt-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1"
+                    className="mt-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1"
                   >
                     post
                   </button>

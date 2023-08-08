@@ -4,72 +4,187 @@ import { getQuestionData } from "../fetchRequests/QuestionRequests";
 
 export function QuestionChart({ type, questionId }) {
   let chartInstance;
+  let chartTitle = "";
 
+  if (type === "bar") {
+    chartTitle = "Average age of users";
+  }
+  if (type === "doughnut") {
+    chartTitle = "Origin of users";
+  }
   // store question data from the server for diagrams
   const [questionData, setQuestionData] = useState(null);
 
   const currentTime = new Date();
   const currentYear = currentTime.getFullYear();
-  // const test = [
-  //   { answer: "yes", age: 20 },
-  //   { answer: "no", age: 30 },
-  // ];
 
   function calcAverage(dataArray) {
     if (dataArray.length === 0) return 0;
     const sum = dataArray.reduce((total, number) => total + number, 0);
-    console.log(sum);
     return sum;
+  }
+
+  function countOccurrences(array) {
+    const count = {};
+    array.forEach((item) => {
+      count[item] = (count[item] || 0) + 1;
+    });
+    function formatCountryCounts(countryCounts) {
+      return Object.entries(countryCounts).map(([country, count]) => ({
+        country,
+        count,
+      }));
+    }
+
+    const formattedCounts = formatCountryCounts(count);
+
+    return formattedCounts;
   }
 
   function createDataSet(serverData) {
     if (type === "bar") {
       // create data for yes answer
       const birthYearYesAnswer = serverData.birthYears.filter(
-        (data) => data.answer === "yes"
+        (data) => data.answer === "yes" && data.birthYear
       );
-      const ageOfYesAnswer = birthYearYesAnswer.map((data) =>
-        data.birthYear ? currentYear - data.birthYear : 0
+      const ageOfYesAnswer = birthYearYesAnswer.map(
+        (data) => currentYear - data.birthYear
       );
+
       const averageAgeYes = calcAverage(ageOfYesAnswer) / ageOfYesAnswer.length;
 
       // create data for no answer
       const birthYearNoAnswer = serverData.birthYears.filter(
-        (data) => data.answer === "no"
+        (data) => data.answer === "no" && data.birthYear
       );
-      console.log(serverData);
-      const ageOfNoAnswer = birthYearNoAnswer.map((data) =>
-        data.birthYear ? currentYear - data.birthYear : 0
+      const ageOfNoAnswer = birthYearNoAnswer.map(
+        (data) => currentYear - data.birthYear
       );
-      console.log(ageOfNoAnswer);
       const averageAgeNo = calcAverage(ageOfNoAnswer) / ageOfNoAnswer.length;
 
       return [
-        { answer: "yes", age: averageAgeYes },
-        { answer: "no", age: averageAgeNo },
+        { answer: "yes", age: averageAgeYes.toFixed(1) },
+        { answer: "no", age: averageAgeNo.toFixed(1) },
       ];
     }
-    // if (type === "doughnut") {
-    //   const userCountries = serverData.countries.reduce(([],answer) => answer.country ? answer.country : "", [] )
-    //   console.log(userCountries)
-    // }
+    // only show the country of users without there answer
+    if (type === "doughnut") {
+      const userCountries = serverData.countries
+        .filter((data) => data.country)
+        .map((answer) => answer.country);
+
+      const countryCounts = countOccurrences(userCountries);
+
+      return countryCounts;
+    }
   }
 
   function createChart(dataSet) {
-    chartInstance = new Chart(document.getElementById(type), {
-      type: type,
-      options: {
+    let dataLabel = "";
+    let options = {};
+    let dataConfig = {};
+
+    // BAR
+    if (type === "bar") {
+      // dataLabel = [" yes", " no" ];
+      dataLabel = " average age";
+      options = {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
         aspectRatio: 1,
-      },
-      data: {
+        scales: {
+          x: {
+            // X-axis scale configuration
+            grid: {
+              color: "rgba(255, 255, 255, 0.2)", // Color of the vertical grid lines
+            },
+            ticks: {
+              color: "rgba(255, 255, 255, 1)", // Color of the x-axis labels
+            },
+          },
+          y: {
+            // title: {
+            //   display: true,
+            //   text: "age",
+            //   color: "white",
+            //   padding: {
+            //     bottom: 10,
+            //   },
+            //   font: {
+            //     size: 16
+            //   }
+            // },
+            // Y-axis scale configuration
+            grid: {
+              color: "rgba(255, 255, 255, 0.2)", // Color of the horizontal grid lines
+            },
+            ticks: {
+              color: "rgba(255, 255, 255, 1)", // Color of the y-axis labels
+            },
+          },
+        },
+      };
+      dataConfig = {
         labels: dataSet.map((row) => row.answer),
         datasets: [
           {
-            label: "Average age",
+            label: dataLabel,
             data: dataSet.map((row) => row.age),
+            backgroundColor: ["rgb(74 222 128)", "rgb(239 68 68)"],
+            // borderColor: ["rgb(0, 168, 61)", "rgb(189, 0, 0)"],
+            // borderWidth: 3,
           },
         ],
-      },
+      };
+    }
+
+    // DOUGHNUT
+    if (type === "doughnut") {
+      options = {
+        plugins: {
+          legend: {
+            display: true,
+            position: "bottom",
+            labels: {
+              color: "white",
+            },
+          },
+        },
+        aspectRatio: 1,
+        scales: {
+          x: {
+            // X-axis scale configuration
+            grid: {
+              display: false,
+              color: "rgba(255, 255, 255, 0.2)", // Color of the vertical grid lines
+            },
+            ticks: {
+              color: "rgba(255, 255, 255, 0)", // Color of the x-axis labels
+            },
+          },
+          y: {
+            display: false,
+          },
+        },
+      };
+      dataConfig = {
+        labels: dataSet.map((row) => row.country),
+        datasets: [
+          {
+            label: dataLabel,
+            data: dataSet.map((row) => row.count),
+          },
+        ],
+      };
+    }
+
+    chartInstance = new Chart(document.getElementById(type), {
+      type: type,
+      options: options,
+      data: dataConfig,
     });
   }
 
@@ -88,7 +203,8 @@ export function QuestionChart({ type, questionId }) {
   }, []);
 
   return (
-    <div className="flex flex-wrap justify-center items-center relative w-full max-w-[500px] p-8 m-5 bg-gray-900 rounded-xl">
+    <div className="flex flex-wrap justify-center items-center relative w-full max-w-[500px] p-8 m-5 rounded-xl blubb shadow-lg shadow-black">
+      <h1 className="title pb-4 text-xl">{chartTitle}</h1>
       <canvas id={type}></canvas>
     </div>
   );
