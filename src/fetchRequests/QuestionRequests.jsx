@@ -165,32 +165,40 @@ export async function deleteAnswer(data) {
 }
 
 export async function getFeed(sortBy) {
-  const response = await fetch(
-    `http://localhost:5000/dashboard/feed/sort/?sortBy=${sortBy}`,
-    {
-      credentials: "include",
+  try {
+    const response = await fetch(
+      `http://localhost:5000/dashboard/feed/sort/?sortBy=${sortBy}`,
+      {
+        credentials: "include",
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+    if (response.status === 200) {
+      // console.log(data);
+      return data;
     }
-  );
-  const data = await response.json();
-  console.log(data);
-  if (response.status === 200) {
-    // console.log(data);
-    return data;
+  } catch (err) {
+    console.log(err);
   }
 }
 
 export async function getTrend(sortBy) {
-  const response = await fetch(
-    `http://localhost:5000/dashboard/trend/sort/?sortBy=${sortBy}`,
-    {
-      credentials: "include",
+  try {
+    const response = await fetch(
+      `http://localhost:5000/dashboard/trend/sort/?sortBy=${sortBy}`,
+      {
+        credentials: "include",
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+    if (response.status === 200) {
+      // console.log(data);
+      return data;
     }
-  );
-  const data = await response.json();
-  console.log(data);
-  if (response.status === 200) {
-    // console.log(data);
-    return data;
+  } catch (err) {
+    console.log(err);
   }
 }
 
@@ -224,6 +232,20 @@ export async function postComment(data) {
       }
     );
     if (response.status === 201) {
+      return response;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getQuestionData(questionId) {
+  try {
+    const response = await fetch(
+      `http://localhost:5000/dashboard/statistics/${questionId}`,
+      { credentials: "include" }
+    );
+    if (response.status === 200) {
       return response;
     }
   } catch (err) {

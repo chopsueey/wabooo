@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Questions } from "../components/Questions";
 import {
   getComment,
+  getQuestionData,
   postComment,
   updateQuestion,
 } from "../fetchRequests/QuestionRequests";
@@ -28,10 +29,10 @@ export function QuestionPage() {
 
   const { isLoading, setIsLoading } = GeneralStore();
 
-  // usercomment
+  // usercomment for post request
   const [userComment, setUserComment] = useState(null);
 
-  // all commments of the question
+  // all commments of the question from the server
   const [allComments, setAllComments] = useState(null);
 
   const handleTabClick = (tab) => {
@@ -42,6 +43,7 @@ export function QuestionPage() {
     const questionId = state.question._id;
     const data = { questionId, userComment };
     await postComment(data);
+    setUserComment("");
     const response = await getComment(state.question._id);
     const responseData = await response.json();
     setAllComments(responseData);
@@ -53,6 +55,7 @@ export function QuestionPage() {
   useEffect(() => {
     (async function request() {
       setIsLoading(true);
+      // questions and data of the current user
       const feed = await updateQuestion(state.question._id);
       console.log(feed);
       setSortedQuestions([feed.found]);
@@ -60,9 +63,9 @@ export function QuestionPage() {
       setLikesOfUser(feed.userLikes);
       setUserIsFollowing(feed.userIsFollowing);
       setUserFollowers(feed.userFollowers);
-      const response = await getComment(state.question._id);
-      const responseData = await response.json();
-      setAllComments(responseData);
+      // comments
+      const comments = await getComment(state.question._id);
+      setAllComments(await comments.json());
       setIsLoading(false);
     })();
     AOS.init({
@@ -138,9 +141,9 @@ export function QuestionPage() {
           </div>
           {activeTab === "Statistics" ? (
             <div className="flex flex-wrap justify-around">
-              <QuestionChart type="bar" />
-              <QuestionChart type="doughnut" />
-              <QuestionChart type="line" />
+              <QuestionChart type="bar" questionId={state.question._id} />
+              <QuestionChart type="doughnut" questionId={state.question._id} />
+              {/* <QuestionChart type="line" /> */}
             </div>
           ) : (
             ""
@@ -159,12 +162,13 @@ export function QuestionPage() {
                   className="rounded-xl p-2 shadow-lg shadow-gray-950 bg-slate-700 bg-transparent text-white w-full border-2 border-cyan-400 font-bold placeholder-cyan-500 focus:border-cyan-400 focus:outline-none"
                   name=""
                   id=""
+                  value={userComment}
                   placeholder="Write a comment..."
                 ></textarea>
                 <div className="text-end">
                   <button
                     onClick={handlePostComment}
-                    className="mt-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1"
+                    className="mt-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1"
                   >
                     post
                   </button>
