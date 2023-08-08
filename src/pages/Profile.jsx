@@ -18,7 +18,7 @@ import GeneralStore from "../store/GeneralContext";
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("Profile");
   // const { activeTab, setActiveTab, results } = GeneralStore();
-  
+
   const [showEdit, setShowEdit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -477,7 +477,9 @@ export default function Profile() {
                   ownQuestion={true}
                 />
               ) : (
-                <h2 className="text-center">Nothing found :/</h2>
+                <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
+                  Nothing found 👀
+                </h2>
               )}
             </div>
           )}
@@ -496,7 +498,9 @@ export default function Profile() {
                   followers={userFollowers}
                 />
               ) : (
-                <h2 className="text-center">Nothing found :/</h2>
+                <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
+                  Nothing found 👀
+                </h2>
               )}
             </div>
           )}
@@ -596,7 +600,10 @@ export default function Profile() {
           )}
         </div>
       </section>
-      <ProfileMobileUserPanel activeTab={activeTab} setActiveTab={setActiveTab} />
+      <ProfileMobileUserPanel
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
     </div>
   );
 }

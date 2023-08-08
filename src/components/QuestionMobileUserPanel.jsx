@@ -3,16 +3,12 @@ import GeneralStore from "../store/GeneralContext";
 import { useEffect, useState } from "react";
 import { getProfile } from "../fetchRequests/ProfileRequests";
 import {
-  PlusCircleIcon,
-  UserCircleIcon,
+  ChatBubbleBottomCenterTextIcon,
   HomeIcon,
-  UserGroupIcon,
-  UsersIcon,
-  DocumentMagnifyingGlassIcon,
-  MegaphoneIcon,
+  ChartBarIcon,
 } from "@heroicons/react/24/solid";
 
-export default function QuestionMobileUserPanel({activeTab, setActiveTab}) {
+export default function QuestionMobileUserPanel({ activeTab, setActiveTab }) {
   const navigate = useNavigate();
 
   // const { activeTab, setActiveTab, results } = GeneralStore();
@@ -44,6 +40,24 @@ export default function QuestionMobileUserPanel({activeTab, setActiveTab}) {
         onClick={() => navigate(`/dashboard/`)}
       >
         <HomeIcon className="h-6 w-6" />
+      </div>
+      <div
+        className={
+          (activeTab === "Statistics" ? "active" : "") + " p-2 font-bold"
+        }
+        onClick={() => handleTabClick("Statistics")}
+        style={{ cursor: "pointer" }}
+      >
+        <ChartBarIcon className="h-6 w-6" />
+      </div>
+      <div
+        className={
+          (activeTab === "Comments" ? "active" : "") + " p-2 font-bold"
+        }
+        onClick={() => handleTabClick("Comments")}
+        style={{ cursor: "pointer" }}
+      >
+        <ChatBubbleBottomCenterTextIcon className="h-6 w-6" />
       </div>
       {/* <div
         className={(activeTab === "Profile" ? "active" : "") + " p-2 font-bold"}
