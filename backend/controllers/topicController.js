@@ -1,5 +1,5 @@
 //import PopularTopic from '../model/topicController.js'; // Passe den Pfad entsprechend an
-import question from '../models/questionModel.js';
+import Question from '../model/questionModel.js';
 
 export async function getAllQuestion(req, res, next) {
   const sortBy = req.query.sortBy;
@@ -24,7 +24,7 @@ export async function getAllQuestion(req, res, next) {
     currentTime.setHours(currentTime.getHours() - sortTime);
 
     // Alle Themen abrufen, sortiert nach Popularität
-   // const topics = await question.find().sort({ popularity: -1 });
+   // const topics = await Question.find().sort({ popularity: -1 });
 
     res.status(200).json(topics);
   } catch (error) {
