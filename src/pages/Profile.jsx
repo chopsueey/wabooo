@@ -100,7 +100,7 @@ export default function Profile() {
     setUserFollowers(profileData.userFollowers);
     toast.info("Changes saved.", {
       className: "custom-toast",
-      });
+    });
     setIsSaving(false);
   }
 
@@ -121,20 +121,20 @@ export default function Profile() {
     reader.onloadend = () => {
       setImageUrl(reader.result);
     };
-       toast.info("Click the button 'save changes'.", {
-       className: "custom-toast",
-       });
+    toast.info("Click the button 'save changes'.", {
+      className: "custom-toast",
+    });
   };
 
- const handleImageDeleteClick = async () => {
-   await deleteProfileImage();
-   setImage(null);
-   setImageUrl(null);
-   toast.info("Image deleted.", {
-     className: "custom-toast",
-   });
-   await deleteProfileImage();
-   const profileData = await getProfile();
+  const handleImageDeleteClick = async () => {
+    await deleteProfileImage();
+    setImage(null);
+    setImageUrl(null);
+    toast.info("Image deleted.", {
+      className: "custom-toast",
+    });
+    await deleteProfileImage();
+    const profileData = await getProfile();
     setUserData(profileData);
     setAskedQuestions(profileData.askedQuestions);
     setLikedQuestions(profileData.likedQuestions);
@@ -142,8 +142,8 @@ export default function Profile() {
     setLikesOfUser(profileData.userLikes);
     setUserIsFollowing(profileData.userIsFollowing);
     setUserFollowers(profileData.userFollowers);
-  //  window.location.reload();
- };
+    //  window.location.reload();
+  };
 
   // get user profile data, refresh on every load
   useEffect(() => {
@@ -268,7 +268,7 @@ export default function Profile() {
                       <div className="profile-portrait flex flex-col justify-center items-center">
                         {userData ? (
                           <>
-                            <div
+                            {/* <div
                               style={{ maxWidth: "150px", maxHeight: "150px" }}
                               className="flex justify-center overflow-hidden rounded-full"
                             >
@@ -284,7 +284,7 @@ export default function Profile() {
                                     : profilePic
                                 }
                               />
-                            </div>
+                            </div> */}
                             {/* <div className="flex justify-center"
                         style={{ maxWidth: "150px"}}>
                           <div
@@ -303,7 +303,7 @@ export default function Profile() {
                             }}
                           ></div>
                         </div> */}
-                            <div>
+                            {/* <div>
                               <button
                                 style={{ maxWidth: "150px" }}
                                 className="blubb text-cyan-400 bg-transparent border border-cyan-300 rounded-md p-2 mt-5 shadow-lg hover:bg-cyan-300 hover:text-white transition duration-300 ease-in-out"
@@ -311,8 +311,8 @@ export default function Profile() {
                               >
                                 delete img
                               </button>
-                            </div>
-                            {/* <ProfileImage/> */}
+                            </div> */}
+                            <ProfileImage />
                           </>
                         ) : (
                           ""
@@ -350,7 +350,6 @@ export default function Profile() {
                       </div>
                     </div>
                     <div className="row flex justify-end">
-                      
                       <div>
                         <button
                           className="blubb text-cyan-400 bg-transparent border border-cyan-300 rounded-md p-2 mt-2 ml-3 shadow-lg hover:bg-cyan-300 hover:text-white transition duration-300 ease-in-out"
@@ -418,10 +417,7 @@ export default function Profile() {
                                   }}
                                   className="mt-2 px-4 py-2 bg-slate-700 bg-transparent text-white w-full focus:outline-none"
                                 >
-                                  <option
-                                    className="bg-slate-700"
-                                    value="none"
-                                  >
+                                  <option className="bg-slate-700" value="none">
                                     Country
                                   </option>
                                   {countries.map((item) => (
@@ -548,8 +544,9 @@ export default function Profile() {
                       <div
                         className="flex-shrink-0 rounded-full cursor-pointer"
                         style={{
-                          backgroundImage: `url(${follower.image ? follower.image : profilePic
-                            })`,
+                          backgroundImage: `url(${
+                            follower.image ? follower.image : profilePic
+                          })`,
                           backgroundSize: "100% 100%",
                           backgroundRepeat: "no-repeat",
                           width: "100%",
@@ -594,8 +591,9 @@ export default function Profile() {
                       <div
                         className="flex-shrink-0 rounded-full cursor-pointer"
                         style={{
-                          backgroundImage: `url(${follower.image ? follower.image : profilePic
-                            })`,
+                          backgroundImage: `url(${
+                            follower.image ? follower.image : profilePic
+                          })`,
                           backgroundSize: "100% 100%",
                           backgroundRepeat: "no-repeat",
                           width: "100%",
@@ -630,4 +628,4 @@ export default function Profile() {
       <ToastContainer className="custom-toast" />
     </div>
   );
-};
+}
