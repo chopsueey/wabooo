@@ -16,9 +16,9 @@ import ProfileMobileUserPanel from "../components/ProfileMobileUserPanel";
 import GeneralStore from "../store/GeneralContext";
 
 export default function Profile() {
-  // const [activeTab, setActiveTab] = useState("Info");
-  const { activeTab, setActiveTab, results } = GeneralStore();
-  setActiveTab("Info");
+  const [activeTab, setActiveTab] = useState("Profile");
+  // const { activeTab, setActiveTab, results } = GeneralStore();
+  
   const [showEdit, setShowEdit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -124,7 +124,7 @@ export default function Profile() {
   }, [activeTab]);
 
   return (
-    <div className="max-w-2xl mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
+    <div className="mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
       <section className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
         <div className={userPanelClassName + " z-10"}>
           <div className="user-panel flex lg:flex-col mt-10">
@@ -146,14 +146,14 @@ export default function Profile() {
             <div
               style={{ cursor: "pointer" }}
               className={
-                (activeTab === "Info"
+                (activeTab === "Profile"
                   ? "active text-cyan-700 rounded-lg "
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg ") +
                 " p-2 text-xl"
               }
-              onClick={() => handleTabClick("Info")}
+              onClick={() => handleTabClick("Profile")}
             >
-              Info
+              Profile
             </div>
             <div
               className={
@@ -226,7 +226,7 @@ export default function Profile() {
           style={{ minHeight: "100vh" }}
           className="grow px-2 sm:px-6 lg:px-10 mb-5 lg:pl-[15rem] mt-5 relative"
         >
-          {activeTab === "Info" && (
+          {activeTab === "Profile" && (
             <>
               {isLoading ? (
                 <div className="flex justify-center mt-4">
@@ -596,7 +596,7 @@ export default function Profile() {
           )}
         </div>
       </section>
-      <ProfileMobileUserPanel />
+      <ProfileMobileUserPanel activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
   );
 }

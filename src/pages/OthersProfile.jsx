@@ -5,10 +5,11 @@ import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
+import ProfileMobileUserPanel from "../components/ProfileMobileUserPanel";
 
 export default function OthersProfile() {
   const { state } = useLocation();
-  const [activeTab, setActiveTab] = useState("Info");
+  const [activeTab, setActiveTab] = useState("Profile");
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const navigate = useNavigate();
@@ -71,11 +72,11 @@ export default function OthersProfile() {
   }, [activeTab, state]);
 
   useEffect(() => {
-    setActiveTab("Info");
+    setActiveTab("Profile");
   }, [state]);
 
   return (
-    <div className="max-w-2xl mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
+    <div className="mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
       <section className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
         <div className={userPanelClassName + " z-10"}>
           <div className="user-panel flex lg:flex-col  mt-10">
@@ -97,14 +98,14 @@ export default function OthersProfile() {
             <div
               style={{ cursor: "pointer" }}
               className={
-                (activeTab === "Info"
+                (activeTab === "Profile"
                   ? "active text-cyan-700 rounded-lg"
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
                 " p-2 text-xl"
               }
-              onClick={() => handleTabClick("Info")}
+              onClick={() => handleTabClick("Profile")}
             >
-              Info
+              Profile
             </div>
             <div
               className={
@@ -177,7 +178,7 @@ export default function OthersProfile() {
           style={{ minHeight: "100vh" }}
           className="grow px-2 sm:px-6 lg:px-10 lg:pl-[15rem] mb-5 mt-5 relative"
         >
-          {activeTab === "Info" && (
+          {activeTab === "Profile" && (
             <>
               {isLoading ? (
                 <div className="flex justify-center mt-4">
@@ -411,6 +412,7 @@ export default function OthersProfile() {
           )}
         </div>
       </section>
+      <ProfileMobileUserPanel activeTab={activeTab} setActiveTab={setActiveTab}/>
     </div>
   );
 }

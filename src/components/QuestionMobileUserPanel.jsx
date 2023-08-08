@@ -12,7 +12,7 @@ import {
   MegaphoneIcon,
 } from "@heroicons/react/24/solid";
 
-export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
+export default function QuestionMobileUserPanel({activeTab, setActiveTab}) {
   const navigate = useNavigate();
 
   // const { activeTab, setActiveTab, results } = GeneralStore();
@@ -45,7 +45,7 @@ export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
       >
         <HomeIcon className="h-6 w-6" />
       </div>
-      <div
+      {/* <div
         className={(activeTab === "Profile" ? "active" : "") + " p-2 font-bold"}
         onClick={() => handleTabClick("Profile")}
         style={{ cursor: "pointer" }}
@@ -79,7 +79,7 @@ export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
         style={{ cursor: "pointer" }}
       >
         <UsersIcon className="h-6 w-6" />
-      </div>
+      </div> */}
 
       {/* {results ? (
         <div

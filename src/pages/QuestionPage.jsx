@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { QuestionChart } from "../chartjs/QuestionChart.jsx";
 import { UserComment } from "../components/UserComment";
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid"; // Import des Back-Icons
+import QuestionMobileUserPanel from "../components/QuestionMobileUserPanel.jsx";
 
 export function QuestionPage() {
   const { state } = useLocation();
@@ -103,7 +104,7 @@ export function QuestionPage() {
           )}
         </section>
         <section className="details flex flex-col m-2 mb-10">
-          <div className="tab-menu mx-5 my-10">
+          <div className="tab-menu hidden sm:block mx-5 my-10">
             <div style={{ maxWidth: "200px" }} className="flex">
               <div
                 className={
@@ -170,6 +171,7 @@ export function QuestionPage() {
             ""
           )}
         </section>
+        <QuestionMobileUserPanel activeTab={activeTab} setActiveTab={setActiveTab}/>
       </div>
     </div>
   );
