@@ -79,7 +79,7 @@ export default function OthersProfile() {
     <div className="mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
       <section className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
         <div className={userPanelClassName + " z-10"}>
-          <div className="user-panel flex lg:flex-col  mt-10">
+          <div className="user-panel flex lg:flex-col justify-center  mt-10">
             <div
               style={{ cursor: "pointer" }}
               className="hidden lg:flex blubb mb-3 items-center space-x-2 hover:animate-pulse  text-cyan-300 font-bold py-2 px-4 rounded-lg"

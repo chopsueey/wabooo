@@ -15,7 +15,7 @@ import {
 export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
   const navigate = useNavigate();
 
-  // const { activeTab, setActiveTab, results } = GeneralStore();
+  // const { activeTab, setActiveTab } = GeneralStore();
 
   const [profileId, setProfileId] = useState(undefined);
   const [userName, setUserName] = useState(undefined);
