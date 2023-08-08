@@ -118,7 +118,7 @@ export async function getLatestQuestion(req, res, next) {
     const userProfile = await Profile.findOne({ userId: req.user.userId });
 
     if (sortBy === "latest") {
-      // latest questions not older than a week
+      // latest questions not older than a month
       sortTime = 720;
     }
     if (sortBy === "lastHour") {

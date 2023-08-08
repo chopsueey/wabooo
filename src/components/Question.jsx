@@ -324,7 +324,7 @@ export const Question = ({
             >
               <EllipsisHorizontalIcon
                 onClick={handleShowMoreInfo}
-                className="h-10 w-10 text-white relative -top-3"
+                className="h-10 w-10 text-white relative -top-3 rounded-full hover:bg-cyan-700 hover:bg-opacity-50"
               />
               {showMoreInfo ? (
                 <div className="blubb absolute right-16 rounded-lg p-2 text-sm text-center flex flex-col">

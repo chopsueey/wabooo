@@ -5,10 +5,11 @@ import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
+import ProfileMobileUserPanel from "../components/ProfileMobileUserPanel";
 
 export default function OthersProfile() {
   const { state } = useLocation();
-  const [activeTab, setActiveTab] = useState("Info");
+  const [activeTab, setActiveTab] = useState("Profile");
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ export default function OthersProfile() {
     (async function request() {
       setIsLoading(true);
       const profileData = await getOthersProfile(profileId);
-      console.log(profileData)
+      console.log(profileData);
       setUserData(profileData);
       setAskedQuestions(profileData.askedQuestions);
       setLikedQuestions(profileData.likedQuestions);
@@ -71,11 +72,11 @@ export default function OthersProfile() {
   }, [activeTab, state]);
 
   useEffect(() => {
-    setActiveTab("Info");
+    setActiveTab("Profile");
   }, [state]);
 
   return (
-    <div className="max-w-2xl mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
+    <div className="mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
       <section className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
         <div className={userPanelClassName + " z-10"}>
           <div className="user-panel flex lg:flex-col  mt-10">
@@ -97,26 +98,31 @@ export default function OthersProfile() {
             <div
               style={{ cursor: "pointer" }}
               className={
-                (activeTab === "Info"
+                (activeTab === "Profile"
                   ? "active text-cyan-700 rounded-lg"
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
                 " p-2 text-xl"
               }
-              onClick={() => handleTabClick("Info")}
+              onClick={() => handleTabClick("Profile")}
             >
-              Info
+              Profile
             </div>
             <div
               className={
                 (activeTab === "Questions"
                   ? "active text-cyan-700 rounded-lg"
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
-                " p-2 text-xl"
+                " p-2 text-xl flex items-center justify-center"
               }
               onClick={() => handleTabClick("Questions")}
               style={{ cursor: "pointer" }}
             >
-              Questions ({askedQuestions ? askedQuestions.length : ""})
+              {askedQuestions && (
+                <span className="mr-1 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">
+                  {askedQuestions.length}
+                </span>
+              )}
+              Questions
             </div>
             <div
               className={
@@ -136,25 +142,34 @@ export default function OthersProfile() {
                 (activeTab === "Follower"
                   ? "active text-cyan-700 rounded-lg"
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
-                " p-2 text-xl"
+                " p-2 text-xl flex items-center"
               }
               onClick={() => handleTabClick("Follower")}
               style={{ cursor: "pointer" }}
             >
-              Follower ({userFollowers ? userFollowers.length : ""})
+              {userFollowers && (
+                <span className="mr-2 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">
+                  {userFollowers.length}
+                </span>
+              )}
+              Follower
             </div>
             <div
               className={
                 (activeTab === "Following"
                   ? "active text-cyan-700 rounded-lg"
-                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 rounded-lg") +
-                " p-2 text-xl"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl flex items-center"
               }
-              // onClick={() => handleTabClick("Profile")}
-              style={{ cursor: "pointer" }}
               onClick={() => handleTabClick("Following")}
+              style={{ cursor: "pointer" }}
             >
-              Following ({userIsFollowing ? userIsFollowing.length : ""})
+              {userIsFollowing && (
+                <span className="mr-2 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">
+                  {userIsFollowing.length}
+                </span>
+              )}
+              Following
             </div>
           </div>
         </div>
@@ -163,7 +178,7 @@ export default function OthersProfile() {
           style={{ minHeight: "100vh" }}
           className="grow px-2 sm:px-6 lg:px-10 lg:pl-[15rem] mb-5 mt-5 relative"
         >
-          {activeTab === "Info" && (
+          {activeTab === "Profile" && (
             <>
               {isLoading ? (
                 <div className="flex justify-center mt-4">
@@ -224,9 +239,26 @@ export default function OthersProfile() {
                   <div className="profile-data flex flex-col justify-center text-cyan-300 font-bold">
                     {userData ? (
                       <>
-                        <h3>Username: {userData.userProfile.userName}</h3>
-                        <h3>Country: {userData.userProfile.country}</h3>
-                        <h3>Birthyear: {userData.userProfile.birthYear}</h3>
+                        <div className="flex mb-2">
+                          <h3 className="text-cyan-600 mr-2">Username:</h3>
+                          <h4 className="text-white">
+                            {userData.userProfile.userName}
+                          </h4>
+                        </div>
+                        <div className="flex justify-start border border-cyan-700 mb-2 mt-2"></div>
+                        <div className="flex mb-2">
+                          <h3 className="text-cyan-600 mr-2">Country: </h3>
+                          <h4 className="text-white">
+                            {userData.userProfile.country}
+                          </h4>
+                        </div>
+                        <div className="flex justify-start border border-cyan-700 mb-2 mt-2"></div>
+                        <div className="flex mb-2">
+                          <h3 className="text-cyan-600 mr-2">Birthyear: </h3>
+                          <h4 className="text-white">
+                            {userData.userProfile.birthYear}
+                          </h4>
+                        </div>
                       </>
                     ) : (
                       ""
@@ -251,7 +283,9 @@ export default function OthersProfile() {
                   followers={userFollowers}
                 />
               ) : (
-                <h2 className="text-center">Nothing found :/</h2>
+                <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
+                  Nothing found 👀
+                </h2>
               )}
             </div>
           )}
@@ -271,7 +305,7 @@ export default function OthersProfile() {
                 />
               ) : (
                 <div className="flex justify-center items-center">
-                  <h2 className="text-center items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
+                  <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
                     Nothing found 👀
                   </h2>
                 </div>
@@ -378,6 +412,7 @@ export default function OthersProfile() {
           )}
         </div>
       </section>
+      <ProfileMobileUserPanel activeTab={activeTab} setActiveTab={setActiveTab}/>
     </div>
   );
 }

@@ -12,11 +12,18 @@ import { countries } from "../../backend/model/data.js";
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
 import ProfileImage from "../components/ProfileImage";
-import { ToastContainer, toast } from "react-toastify";
+
+import ProfileMobileUserPanel from "../components/ProfileMobileUserPanel";
+import GeneralStore from "../store/GeneralContext";
+
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 export default function Profile() {
-  const [activeTab, setActiveTab] = useState("Info");
+  const [activeTab, setActiveTab] = useState("Profile");
+  // const { activeTab, setActiveTab, results } = GeneralStore();
+
   const [showEdit, setShowEdit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -167,7 +174,7 @@ export default function Profile() {
   }, [activeTab]);
 
   return (
-    <div className="max-w-2xl mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
+    <div className="mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
       <section className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
         <div className={userPanelClassName + " z-10"}>
           <div className="user-panel flex lg:flex-col mt-10">
@@ -189,26 +196,31 @@ export default function Profile() {
             <div
               style={{ cursor: "pointer" }}
               className={
-                (activeTab === "Info"
-                  ? "active text-cyan-700 rounded-lg"
-                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                (activeTab === "Profile"
+                  ? "active text-cyan-700 rounded-lg "
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg ") +
                 " p-2 text-xl"
               }
-              onClick={() => handleTabClick("Info")}
+              onClick={() => handleTabClick("Profile")}
             >
-              Info
+              Profile
             </div>
             <div
               className={
                 (activeTab === "Questions"
                   ? "active text-cyan-700 rounded-lg"
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
-                " p-2 text-xl"
+                " p-2 text-xl flex items-center justify-center"
               }
               onClick={() => handleTabClick("Questions")}
               style={{ cursor: "pointer" }}
             >
-              Questions ({askedQuestions ? askedQuestions.length : ""})
+              {askedQuestions && (
+                <span className="mr-1 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">
+                  {askedQuestions.length}
+                </span>
+              )}
+              Questions
             </div>
             <div
               className={
@@ -228,25 +240,34 @@ export default function Profile() {
                 (activeTab === "Follower"
                   ? "active text-cyan-700 rounded-lg"
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
-                " p-2 text-xl"
+                " p-2 text-xl flex items-center"
               }
               onClick={() => handleTabClick("Follower")}
               style={{ cursor: "pointer" }}
             >
-              Follower ({userFollowers ? userFollowers.length : ""})
+              {userFollowers && (
+                <span className="mr-2 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">
+                  {userFollowers.length}
+                </span>
+              )}
+              Follower
             </div>
             <div
               className={
                 (activeTab === "Following"
                   ? "active text-cyan-700 rounded-lg"
-                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 rounded-lg") +
-                " p-2 text-xl"
+                  : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
+                " p-2 text-xl flex items-center"
               }
-              // onClick={() => handleTabClick("Profile")}
-              style={{ cursor: "pointer" }}
               onClick={() => handleTabClick("Following")}
+              style={{ cursor: "pointer" }}
             >
-              Following ({userIsFollowing ? userIsFollowing.length : ""})
+              {userIsFollowing && (
+                <span className="mr-2 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">
+                  {userIsFollowing.length}
+                </span>
+              )}
+              Following
             </div>
           </div>
         </div>
@@ -255,7 +276,7 @@ export default function Profile() {
           style={{ minHeight: "100vh" }}
           className="grow px-2 sm:px-6 lg:px-10 mb-5 lg:pl-[15rem] mt-5 relative"
         >
-          {activeTab === "Info" && (
+          {activeTab === "Profile" && (
             <>
               {isLoading ? (
                 <div className="flex justify-center mt-4">
@@ -350,7 +371,6 @@ export default function Profile() {
                       </div>
                     </div>
                     <div className="row flex justify-end">
-                      
                       <div>
                         <button
                           className="blubb text-cyan-400 bg-transparent border border-cyan-300 rounded-md p-2 mt-2 ml-3 shadow-lg hover:bg-cyan-300 hover:text-white transition duration-300 ease-in-out"
@@ -373,7 +393,9 @@ export default function Profile() {
                               </label>
                               <input
                                 id="username"
+
                                 className="mt-2 px-4 py-2 bg-slate-700 rounded-lg text-white font-bold w-full focus:outline-none"
+
                                 onChange={(e) => {
                                   setUserName(e.target.value);
                                   console.log(userName);
@@ -393,7 +415,9 @@ export default function Profile() {
                               </label>
                               <input
                                 id="birthyear"
+
                                 className="ml-2 rounded-lg mt-2 px-4 py-2 bg-slate-700 text-white font-bold w-full focus:outline-none"
+
                                 onChange={(e) => {
                                   setBirthyear(e.target.value);
                                   console.log(birthYear);
@@ -416,6 +440,7 @@ export default function Profile() {
                                   onChange={(e) => {
                                     setCountry(e.target.value);
                                   }}
+
                                   className="mt-2 px-4 py-2 bg-slate-700 bg-transparent text-white w-full focus:outline-none"
                                 >
                                   <option
@@ -423,6 +448,7 @@ export default function Profile() {
                                     value="none"
                                   >
                                     Country
+
                                   </option>
                                   {countries.map((item) => (
                                     <option
@@ -510,7 +536,9 @@ export default function Profile() {
                   ownQuestion={true}
                 />
               ) : (
-                <h2 className="text-center">Nothing found :/</h2>
+                <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
+                  Nothing found 👀
+                </h2>
               )}
             </div>
           )}
@@ -529,7 +557,9 @@ export default function Profile() {
                   followers={userFollowers}
                 />
               ) : (
-                <h2 className="text-center">Nothing found :/</h2>
+                <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
+                  Nothing found 👀
+                </h2>
               )}
             </div>
           )}
@@ -627,7 +657,12 @@ export default function Profile() {
           )}
         </div>
       </section>
-      <ToastContainer className="custom-toast" />
+
+      <ProfileMobileUserPanel
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
+
     </div>
   );
 };
