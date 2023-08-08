@@ -373,7 +373,7 @@ export default function Profile() {
                               </label>
                               <input
                                 id="username"
-                                className="mt-2 px-4 py-2 bg-slate-700 rounded-lg textc font-bold w-full focus:outline-none"
+                                className="mt-2 px-4 py-2 bg-slate-700 rounded-lg text-white font-bold w-full focus:outline-none"
                                 onChange={(e) => {
                                   setUserName(e.target.value);
                                   console.log(userName);
@@ -393,7 +393,7 @@ export default function Profile() {
                               </label>
                               <input
                                 id="birthyear"
-                                className="ml-2 rounded-lg mt-2 px-4 py-2 bg-slate-700  textc font-bold w-full focus:outline-none"
+                                className="ml-2 rounded-lg mt-2 px-4 py-2 bg-slate-700 text-white font-bold w-full focus:outline-none"
                                 onChange={(e) => {
                                   setBirthyear(e.target.value);
                                   console.log(birthYear);
@@ -416,13 +416,13 @@ export default function Profile() {
                                   onChange={(e) => {
                                     setCountry(e.target.value);
                                   }}
-                                  className="mt-2 px-4 py-2 bg-slate-700 bg-transparent textc w-full focus:outline-none"
+                                  className="mt-2 px-4 py-2 bg-slate-700 bg-transparent text-white w-full focus:outline-none"
                                 >
                                   <option
                                     className="bg-slate-700"
                                     value="none"
                                   >
-                                    country
+                                    Country
                                   </option>
                                   {countries.map((item) => (
                                     <option
