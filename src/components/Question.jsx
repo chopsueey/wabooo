@@ -19,6 +19,8 @@ import GeneralStore from "../store/GeneralContext";
 import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/solid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Question = ({
   question,
@@ -79,6 +81,9 @@ export const Question = ({
     );
     setAllAnswers(updatedData.found.yes + updatedData.found.no);
     setIsAnswered(true);
+    toast.info("You submitted your answer", {
+    className: "custom-toast",
+    });
   }
 
   async function handleLikeClick(likeOrUnlike) {
@@ -103,6 +108,9 @@ export const Question = ({
     const questionId = question._id;
     const response = await deleteAnswer({ questionId });
     setIsAnswered(false);
+    toast.info("You deleted your answer.", {
+    className: "custom-toast",
+   });
   }
 
   async function handleFollowClick() {
@@ -112,6 +120,9 @@ export const Question = ({
     const response = await getFollower(questionData.profileId._id);
     setNumOfFollower(response.profileFollower.length);
     setIsFollowed(true);
+    toast.info("You are following.", {
+    className: "custom-toast",
+   });
   }
 
   async function handleUnfollowClick() {
@@ -121,6 +132,9 @@ export const Question = ({
     const response = await getFollower(questionData.profileId._id);
     setNumOfFollower(response.profileFollower.length);
     setIsFollowed(false);
+    toast.info("You stopped following.", {
+    className: "custom-toast",
+   });
   }
 
   const handleMouseEnter = async () => {
@@ -160,6 +174,9 @@ export const Question = ({
     const response = await deleteQuestion(data);
     // const responseData = await response.json();
     // console.log(responseData);
+    toast.info("You deleted question.", {
+    className: "custom-toast",
+   });
   }
 
   function handleShowMoreInfo() {
@@ -464,6 +481,7 @@ export const Question = ({
       ) : (
         ""
       )}
+    <ToastContainer className="custom-toast" />
     </>
   );
 };
