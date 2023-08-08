@@ -16,6 +16,7 @@ import * as statisticController from "../controllers/statisticController.js";
 //   createProfile,
 //   deleteProfile,
 // } from "../controllers/profileControllers.js";
+import * as topicController from "../controllers/topicController.js";
 
 import * as cloudyController from "../Upload/cloudyController.js"
 
@@ -88,5 +89,7 @@ dashboardRouter.get("/question/:questionId/allcomments", questionController.getC
 dashboardRouter.post("/question/:questionId/comment", questionController.postComment);
 // dashboardRouter.delete("/question/:questionId/comment", answerController.deleteAnswer);
 
+// DASHBOARD/TOPICS
+dashboardRouter.get("/topics/", topicController.getAllQuestion);
 
 export default dashboardRouter;
