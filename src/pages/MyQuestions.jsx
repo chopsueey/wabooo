@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { postQuestion } from "../fetchRequests/QuestionRequests";
 import GeneralStore from "../store/GeneralContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function MyQuestions() {
   const { setActiveTab } = GeneralStore();
@@ -26,6 +28,9 @@ export default function MyQuestions() {
     setSaveLoading(false);
 
     setActiveTab("Feed");
+    toast.info("You posted a question", {
+    className: "custom-toast",
+    });
   }
 
   const handleQuestionClick = (questionKey) => {
@@ -39,6 +44,9 @@ export default function MyQuestions() {
     if (topic.length >= 0) {
       setTopicsArray([...topicsArray, topic]);
       setTopic("");
+      toast.info("You added a topic", {
+      className: "custom-toast",
+      });
     }
   }
 
@@ -47,6 +55,9 @@ export default function MyQuestions() {
       (item) => item !== e.target.innerText
     );
     setTopicsArray([...filteredArray]);
+    toast.info("You deleted a topic", {
+    className: "custom-toast",
+    });
   }
 
   return (
@@ -170,6 +181,7 @@ export default function MyQuestions() {
           )}
         </button>
       </div>
+      <ToastContainer className="custom-toast" />
     </div>
   );
 }

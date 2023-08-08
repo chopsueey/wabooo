@@ -12,6 +12,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { QuestionChart } from "../chartjs/QuestionChart.jsx";
 import { UserComment } from "../components/UserComment";
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid"; // Import des Back-Icons
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function QuestionPage() {
   const { state } = useLocation();
@@ -43,6 +45,9 @@ export function QuestionPage() {
     const response = await getComment(state.question._id);
     const responseData = await response.json();
     setAllComments(responseData);
+    toast.info("You posted a comment.", {
+      className: "custom-toast",
+    });
   }
 
   useEffect(() => {
@@ -171,6 +176,7 @@ export function QuestionPage() {
           )}
         </section>
       </div>
+      <ToastContainer className="custom-toast" />
     </div>
   );
 }
