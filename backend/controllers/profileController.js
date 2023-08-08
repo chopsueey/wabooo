@@ -255,7 +255,7 @@ async function updateProfileData(req, res, next) {
       {
         $set: req.body,
       },
-      { new: true }
+      { new: true, runValidators: true }
       // { new: true, runValidators: true }
       // Object.entries(req.body).forEach(([key, value]) => {
       //   if (value !== null && value !== undefined) {

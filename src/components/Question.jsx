@@ -179,7 +179,7 @@ export const Question = ({
             >
               <figcaption className="blubb rounded-lg p-2 px-2 flex items-center justify-between">
                 <div className="flex items-center">
-                  <div style={{ width: "40px", height: "40px" }}>
+                  {/* <div style={{ width: "40px", height: "40px" }}>
                     <div
                       className="flex-shrink-0 rounded-full cursor-pointer"
                       style={{
@@ -209,6 +209,37 @@ export const Question = ({
                         )
                       }
                     ></div>
+                  </div> */}
+                  <div
+                    style={{ maxWidth: "50px", maxHeight: "50px" }}
+                    className="flex justify-center overflow-hidden rounded-full cursor-pointer"
+                    onClick={() =>
+                      navigate(
+                        `/dashboard/${questionData.profileId.userName}/profile/${questionData.profileId._id}`,
+                        {
+                          state: {
+                            question,
+                            answer,
+                            like,
+                            isFollowing,
+                            followsUser,
+                          },
+                        }
+                      )
+                    }
+                  >
+                    <img
+                      style={{
+                        maxWidth: "50px",
+                        aspectRatio: "1/1",
+                        objectFit: "cover",
+                      }}
+                      src={
+                        questionData.profileId.image
+                          ? questionData.profileId.image
+                          : profilePic
+                      }
+                    />
                   </div>
                   <div className="italic ml-2">
                     <h5
@@ -227,7 +258,7 @@ export const Question = ({
                           }
                         );
                       }}
-                      className="text-white hover:underline"
+                      className="text-white font-bold hover:underline"
                     >
                       {questionData.profileId.userName}
                     </h5>
