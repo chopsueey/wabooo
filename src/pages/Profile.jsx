@@ -98,6 +98,9 @@ export default function Profile() {
     setLikesOfUser(profileData.userLikes);
     setUserIsFollowing(profileData.userIsFollowing);
     setUserFollowers(profileData.userFollowers);
+    toast.info("Changes saved.", {
+      className: "custom-toast",
+      });
     setIsSaving(false);
   }
 
@@ -131,7 +134,15 @@ export default function Profile() {
      className: "custom-toast",
    });
    await deleteProfileImage();
-   window.location.reload();
+   const profileData = await getProfile();
+    setUserData(profileData);
+    setAskedQuestions(profileData.askedQuestions);
+    setLikedQuestions(profileData.likedQuestions);
+    setAnswersOfUser(profileData.userAnswers);
+    setLikesOfUser(profileData.userLikes);
+    setUserIsFollowing(profileData.userIsFollowing);
+    setUserFollowers(profileData.userFollowers);
+  //  window.location.reload();
  };
 
   // get user profile data, refresh on every load
