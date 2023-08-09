@@ -8,10 +8,10 @@ import {
   ChartBarIcon,
 } from "@heroicons/react/24/solid";
 
-export default function QuestionMobileUserPanel({ activeTab, setActiveTab }) {
+export default function QuestionMobileUserPanel({ activeTab2, setActiveTab2 }) {
   const navigate = useNavigate();
 
-  // const { activeTab, setActiveTab, results } = GeneralStore();
+  const { activeTab, setActiveTab, results } = GeneralStore();
 
   const [profileId, setProfileId] = useState(undefined);
   const [userName, setUserName] = useState(undefined);
@@ -27,7 +27,7 @@ export default function QuestionMobileUserPanel({ activeTab, setActiveTab }) {
   }, []);
 
   const handleTabClick = (tab) => {
-    setActiveTab(tab);
+    setActiveTab2(tab);
   };
 
   return (
@@ -35,15 +35,16 @@ export default function QuestionMobileUserPanel({ activeTab, setActiveTab }) {
       <div
         style={{ cursor: "pointer" }}
         className={
-          (activeTab === "Dashboard" ? "active" : "") + " p-2 font-bold"
+          (activeTab2 === "Dashboard" ? "active" : "") + " p-2 font-bold"
         }
-        onClick={() => navigate(`/dashboard/`)}
+        onClick={() => {navigate(`/dashboard/`)
+      setActiveTab("Feed")}}
       >
         <HomeIcon className="h-6 w-6" />
       </div>
       <div
         className={
-          (activeTab === "Statistics" ? "active" : "") + " p-2 font-bold"
+          (activeTab2 === "Statistics" ? "active" : "") + " p-2 font-bold"
         }
         onClick={() => handleTabClick("Statistics")}
         style={{ cursor: "pointer" }}
@@ -52,7 +53,7 @@ export default function QuestionMobileUserPanel({ activeTab, setActiveTab }) {
       </div>
       <div
         className={
-          (activeTab === "Comments" ? "active" : "") + " p-2 font-bold"
+          (activeTab2 === "Comments" ? "active" : "") + " p-2 font-bold"
         }
         onClick={() => handleTabClick("Comments")}
         style={{ cursor: "pointer" }}

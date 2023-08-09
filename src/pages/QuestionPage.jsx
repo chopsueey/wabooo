@@ -116,7 +116,7 @@ export function QuestionPage() {
         </section>
         <section className="details flex flex-col m-2 mb-10">
 
-          <div className="tab-menu mx-5 my-10">
+          <div className="tab-menu hidden sm:block mx-5 my-10">
             <div className="flex">
 
               <div
@@ -185,7 +185,7 @@ export function QuestionPage() {
             ""
           )}
         </section>
-        <QuestionMobileUserPanel activeTab={activeTab} setActiveTab={setActiveTab}/>
+        <QuestionMobileUserPanel activeTab2={activeTab} setActiveTab2={setActiveTab}/>
       </div>
       
     </div>

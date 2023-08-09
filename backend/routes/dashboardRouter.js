@@ -91,6 +91,6 @@ dashboardRouter.post("/question/:questionId/comment", questionController.postCom
 // dashboardRouter.delete("/question/:questionId/comment", answerController.deleteAnswer);
 
 // DASHBOARD/TOPICS
-dashboardRouter.get("/topics/", topicController.getAllQuestion);
+dashboardRouter.get("/topics", topicController.getPopularTopics);
 
 export default dashboardRouter;

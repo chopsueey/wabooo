@@ -1,7 +1,6 @@
-//import PopularTopic from '../model/topicController.js'; // Passe den Pfad entsprechend an
-import Question from '../model/questionModel.js';
+import Question from "../model/questionModel.js";
 
-export async function getAllQuestion(req, res, next) {
+export async function getPopularTopics(req, res, next) {
   const sortBy = req.query.sortBy;
   let sortTime = 168; // Eine Woche
 
@@ -23,11 +22,33 @@ export async function getAllQuestion(req, res, next) {
     const currentTime = new Date();
     currentTime.setHours(currentTime.getHours() - sortTime);
 
-    // Alle Themen abrufen, sortiert nach Popularität
-   // const topics = await Question.find().sort({ popularity: -1 });
+    const foundQuestions = await Question.find({
+      createdAt: { $gte: currentTime },
+    }).exec();
+    const questionsWithTopics = foundQuestions.filter(
+      (question) => question.topics.length > 0
+    );
 
-    res.status(200).json(topics);
+    const allTopics = questionsWithTopics
+      .map((question) => question.topics)
+      .join(",")
+      .split(",");
+
+    const topicCount = {};
+    const topicPopularity = allTopics.forEach((topic) => {
+      topicCount[topic.toLowerCase()] = allTopics.filter(
+        (toCompare) => toCompare.toLowerCase() === topic.toLowerCase()
+      ).length;
+    });
+    const mostPopularTopics = Object.entries(topicCount);
+    mostPopularTopics.sort((a, b) => b[1] - a[1]);
+    const fiveMostPopularTopics = mostPopularTopics.filter(
+      (topic, index) => index <= 4
+    );
+    res.status(200).json({
+      mostPopularTopics: fiveMostPopularTopics,
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Fehler beim Abrufen der Themen.' });
+    next()
   }
 }

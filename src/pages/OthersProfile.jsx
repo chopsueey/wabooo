@@ -188,19 +188,10 @@ export default function OthersProfile() {
                 <div className="row flex flex-col justify-around flex-wrap sm:flex-row text-center p-10 blubb1 rounded-xl mt-2 lg:mt-8">
                   <div className="profile-portrait flex justify-center">
                     {userData ? (
-                      // <div className="flex justify-center">
-                      //   <img
-                      //     style={{ maxWidth: "100px", aspectRatio: "1/1", objectFit: "cover" }}
-                      //     src={
-                      //       userData.userProfile.image
-                      //         ? userData.userProfile.image
-                      //         : profilePic
-                      //     }
-                      //   />
-                      // </div>
+                      
                       <div
                         style={{ maxWidth: "150px" }}
-                        className="flex justify-center overflow-hidden rounded-full"
+                        className="flex justify-center mb-10 overflow-hidden rounded-full"
                       >
                         <img
                           style={{
@@ -216,23 +207,7 @@ export default function OthersProfile() {
                         />
                       </div>
                     ) : (
-                      // <div style={{ maxWidth: "150px" }}>
-                      //   <div
-                      //     className="flex-shrink-0 rounded-full"
-                      //     style={{
-                      //       backgroundImage: `url(${
-                      //         userData.userProfile.image
-                      //           ? userData.userProfile.image
-                      //           : profilePic
-                      //       })`,
-                      //       backgroundSize: "100% 100%",
-                      //       backgroundRepeat: "no-repeat",
-                      //       width: "100%",
-                      //       height: "100%",
-                      //       aspectRatio: "1/1",
-                      //     }}
-                      //   ></div>
-                      // </div>
+                      
                       ""
                     )}
                   </div>
@@ -412,7 +387,7 @@ export default function OthersProfile() {
           )}
         </div>
       </section>
-      <ProfileMobileUserPanel activeTab={activeTab} setActiveTab={setActiveTab}/>
+      <ProfileMobileUserPanel activeTab2={activeTab} setActiveTab2={setActiveTab}/>
     </div>
   );
 }

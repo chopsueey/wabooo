@@ -102,6 +102,10 @@ export function QuestionChart({ type, questionId }) {
               color: "rgba(255, 255, 255, 0.2)", // Color of the vertical grid lines
             },
             ticks: {
+              font: {
+                size: 18,
+              },
+
               color: "rgba(255, 255, 255, 1)", // Color of the x-axis labels
             },
           },
@@ -143,12 +147,17 @@ export function QuestionChart({ type, questionId }) {
 
     // DOUGHNUT
     if (type === "doughnut") {
+      dataLabel = " users from this country";
+
       options = {
         plugins: {
           legend: {
             display: true,
             position: "bottom",
             labels: {
+              font: {
+                size: 16,
+              },
               color: "white",
             },
           },
@@ -162,6 +171,7 @@ export function QuestionChart({ type, questionId }) {
               color: "rgba(255, 255, 255, 0.2)", // Color of the vertical grid lines
             },
             ticks: {
+             
               color: "rgba(255, 255, 255, 0)", // Color of the x-axis labels
             },
           },
@@ -203,8 +213,8 @@ export function QuestionChart({ type, questionId }) {
   }, []);
 
   return (
-    <div className="flex flex-wrap justify-center items-center relative w-full max-w-[500px] p-8 m-5 rounded-xl blubb shadow-lg shadow-black">
-      <h1 className="title pb-4 text-xl">{chartTitle}</h1>
+    <div className="flex flex-wrap justify-center items-center relative w-full max-w-[500px] p-6 m-5 rounded-xl blubb shadow-lg shadow-black">
+      <h1 className="title pb-4 text-xl sm:text-2xl">{chartTitle}</h1>
       <canvas id={type}></canvas>
     </div>
   );

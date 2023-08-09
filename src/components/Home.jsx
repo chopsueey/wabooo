@@ -10,6 +10,7 @@ import Typewriter from "typewriter-effect";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 
 //"Your account is created. You are logged in!";
 // Account not yet created")
@@ -237,7 +238,9 @@ export default function Home() {
             </button>
             {register ? (
               <p className="register">
-                <span onClick={() => setRegister(false)}>To sign in</span>
+                {/* <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" /> */}
+                <span className="cursor-pointer" onClick={() => setRegister(false)}>
+                to sign in</span>
               </p>
             ) : (
               <p className="register mb-4">
