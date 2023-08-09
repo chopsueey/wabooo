@@ -254,7 +254,7 @@ export async function getQuestion(req, res, next) {
     });
 
     if (!questions) {
-      return res.status(404).json({ message: "Frage nicht gefunden" });
+      return res.status(404).json({ message: "Question not found" });
     }
 
     res.status(200).json({
@@ -323,6 +323,52 @@ export async function postComment(req, res, next) {
 
     const savedComment = await newComment.save();
     res.status(201).json(savedComment);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// patch comment
+export async function patchComment(req, res, next) {
+  const commentId = req.params.questionId;
+  const userId = req.user.userId;
+  const { comment } = req.body;
+
+  try {
+    const userProfile = await Profile.findOne({ userId: userId });
+    const foundComment = await Comment.findOneAndUpdate(
+      { _id: commentId, profileId: userProfile._id },
+      { comment: comment },
+      { new: true }
+    );
+
+    if (!comment) {
+      return res.status(404).json({ error: 'Comment not found' });
+    }
+
+    res.status(200).json(comment);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// delete comment
+export async function deleteComment(req, res, next) {
+  const commentId = req.params.questionId;
+  const userId = req.user.userId;
+
+  try {
+    const userProfile = await Profile.findOne({ userId: userId });
+    const deletedComment = await Comment.findOneAndDelete({
+      _id: commentId,
+      profileId: userProfile._id,
+    });
+
+    if (!deleteComment) {
+      return res.status(404).json({ error: 'Comment not found' });
+    }
+
+    res.status(200).json({ message: 'Comment successfully deleted' });
   } catch (err) {
     next(err);
   }
