@@ -13,8 +13,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { QuestionChart } from "../chartjs/QuestionChart.jsx";
 import { UserComment } from "../components/UserComment";
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid"; // Import des Back-Icons
-import { ToastContainer, toast } from "react-toastify";
+
+import QuestionMobileUserPanel from "../components/QuestionMobileUserPanel.jsx";
+
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 export function QuestionPage() {
   const { state } = useLocation();
@@ -111,8 +115,10 @@ export function QuestionPage() {
           )}
         </section>
         <section className="details flex flex-col m-2 mb-10">
+
           <div className="tab-menu mx-5 my-10">
             <div className="flex">
+
               <div
                 className={
                   (activeTab === "Statistics"
@@ -179,8 +185,9 @@ export function QuestionPage() {
             ""
           )}
         </section>
+        <QuestionMobileUserPanel activeTab={activeTab} setActiveTab={setActiveTab}/>
       </div>
-      <ToastContainer className="custom-toast" />
+      
     </div>
   );
 }

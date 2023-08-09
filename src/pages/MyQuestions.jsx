@@ -77,17 +77,14 @@ export default function MyQuestions() {
           }`}
           onClick={() => handleQuestionClick("question1")}
         >
-          Was könnte ich fragen?
+          What could I ask?
         </h3>
         {isContentVisible.question1 && (
           <>
             <div className="w-full max-w-sm p-8 blubb rounded-md">
-              <p>Nervt euch der Sommer?</p>
-              <p>
-                Sollte meine Katze als Präsidentschaftskandidat nominiert
-                werden?{" "}
-              </p>
-              <p>Sollte man vegetarisch leben?</p>
+              <p>Does summer annoy you?</p>
+              <p>Should my cat be nominated as a presidential candidate?</p>
+              <p>Is living a vegetarian lifestyle advisable?</p>
             </div>
           </>
         )}
@@ -97,15 +94,32 @@ export default function MyQuestions() {
           }`}
           onClick={() => handleQuestionClick("question2")}
         >
-          Wie erstelle ich eine Frage?
+          How do I create a question?
         </h3>
         {isContentVisible.question2 && (
           <div className="w-full max-w-sm p-8 blubb rounded-md">
             <p>
-              Nachdem du dich für eine Frage entschieden hast, klickst du unten
-              einfach in das Eingabefeld und erstellst deine Frage. Bitte
-              beachte, das ein Wort maximal 15 Buchstaben enthalten darf und die
-              Gesamtfrage nicht mehr als 1000 Zeichen haben sollte.
+              After you have chosen a question, simply click on the input field
+              below and create your question. Please note that a word can
+              contain a maximum of 15 letters and the total question length
+              should not exceed 1000 characters.
+            </p>
+          </div>
+        )}
+        <h3
+          className={`cursor-pointer text-cyan-300 mb-2 ${
+            isContentVisible.question3 ? "" : ""
+          }`}
+          onClick={() => handleQuestionClick("question3")}
+        >
+          Rules for asking questions:
+        </h3>
+        {isContentVisible.question3 && (
+          <div className="w-full max-w-sm p-8 blubb rounded-md">
+            <p className="leading-relaxed space-y-2">
+              Please do not ask offensive questions! Bullying is not allowed, so
+              please refrain from asking about it as well! No racist or
+              far-right questions! Sexual questions are also not welcome!
             </p>
           </div>
         )}
@@ -114,22 +128,24 @@ export default function MyQuestions() {
         </h2>
 
         <input
+          placeholder="Please present your question here."
           onChange={(e) => {
             setQuestion(e.target.value);
             console.log(question);
           }}
           type="text"
-          className="w-full p-4 rounded-md shadow-md mb-4 text-gray-800"
+          className="w-full p-4 rounded-md blubb1 placeholder-white shadow-md mb-4 text-white border-cyan-300 border-2"
         />
-        <div className="flex flex-col text-yellow-100">
-          <label htmlFor="topic-choice">Topics</label>
+        <div className="flex flex-col text-white ">
+          <label className="flex justify-center" htmlFor="topic-choice"></label>
           <input
-            className="text-black"
+            className="text-white border-cyan-300 border-2 rounded-md blubb placeholder-white placeholder:text-center"
             onChange={(e) => setTopic(e.target.value)}
             value={topic}
             list="topic-list"
             id="topic-choice"
             name="question-topics"
+            placeholder="Choose or add topics"
           />
 
           <datalist id="topic-list">
@@ -140,18 +156,20 @@ export default function MyQuestions() {
             <option value="Movies" />
             {/* <option value={topic}></option> */}
           </datalist>
-          <button
-            className="text-green-500 text-end"
-            onClick={(e) => handleAddClick(e)}
-          >
-            add
-          </button>
+          <div className="flex justify-end">
+            <button
+              className="py-1 px-3 text-center text-green-500 font-bold border-cyan-300 border-2 rounded-md shadow-lg shadow-gray-900  text-xs sm ml-2 block max-w-[4rem] mb-3 mt-2 animate-pulse"
+              onClick={(e) => handleAddClick(e)}
+            >
+              add
+            </button>
+          </div>
         </div>
-        <div className="flex">
+        <div className="flex ">
           {topicsArray.map((item) => (
             <div
               onClick={(e) => handleDeleteTopic(e)}
-              className="text-white mr-2 hover:text-red-500 cursor-pointer"
+              className=" py-1 px-3 text-center text-white border-cyan-300 border-2 rounded-md shadow-lg shadow-gray-900  text-xs sm ml-2 max-w-[4rem] mb-3 mt-2 hover:text-red-500 cursor-pointer"
             >
               {item}
             </div>
