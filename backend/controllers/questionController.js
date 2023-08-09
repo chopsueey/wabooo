@@ -293,7 +293,6 @@ export async function postQuestion(req, res, next) {
 // delete
 export async function deleteQuestion(req, res, next) {
   const { questionId } = req.body;
-  console.log(questionId);
   const userId = req.user.userId;
 
   try {

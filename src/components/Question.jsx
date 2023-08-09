@@ -21,6 +21,7 @@ import { PlusIcon, MinusIcon } from "@heroicons/react/24/solid";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/solid";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ConfirmationDialog from "./ConfirmationDialog";
 
 export const Question = ({
   question,
@@ -41,6 +42,10 @@ export const Question = ({
   const [numOfFollower, setNumOfFollower] = useState(undefined);
   const [showDetails, setShowDetails] = useState(false);
   const [showMoreInfo, setShowMoreInfo] = useState(false);
+
+  // question delete
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   // calculate percentage of yes or no
   // multiplied by two, because yes and no take half of the place of the div element
@@ -82,7 +87,7 @@ export const Question = ({
     setAllAnswers(updatedData.found.yes + updatedData.found.no);
     setIsAnswered(true);
     toast.success("You submitted your answer.", {
-    className: "custom-toast",
+      className: "custom-toast",
     });
   }
 
@@ -109,8 +114,8 @@ export const Question = ({
     const response = await deleteAnswer({ questionId });
     setIsAnswered(false);
     toast.success("You deleted your answer.", {
-    className: "custom-toast",
-   });
+      className: "custom-toast",
+    });
   }
 
   async function handleFollowClick() {
@@ -121,8 +126,8 @@ export const Question = ({
     setNumOfFollower(response.profileFollower.length);
     setIsFollowed(true);
     toast.info("You are following.", {
-    className: "custom-toast",
-   });
+      className: "custom-toast",
+    });
   }
 
   async function handleUnfollowClick() {
@@ -133,8 +138,8 @@ export const Question = ({
     setNumOfFollower(response.profileFollower.length);
     setIsFollowed(false);
     toast.info("You stopped following.", {
-    className: "custom-toast",
-   });
+      className: "custom-toast",
+    });
   }
 
   const handleMouseEnter = async () => {
@@ -168,20 +173,37 @@ export const Question = ({
     setShowDetails(!showDetails);
   };
 
-  async function handleDeleteQuestionClick() {
+  function handleDeleteQuestionClick() {
+    setIsConfirmationOpen(true);
+  }
+
+  const handleCloseConfirmation = () => {
+    setIsConfirmationOpen(false);
+  };
+
+  async function deleteQuestionConfirmed() {
+    setIsConfirmationOpen(false);
     const questionId = question._id;
     const data = { questionId };
     const response = await deleteQuestion(data);
+    // const newArray = questionData.filter((question) => question)
+    // setQuestionData(...newArray)
     // const responseData = await response.json();
     // console.log(responseData);
-    toast.info("You deleted question.", {
-    className: "custom-toast",
-   });
+    setIsDeleted(true);
+    toast.info("Question deleted.", {
+      className: "custom-toast",
+    });
   }
 
   function handleShowMoreInfo() {
     setShowMoreInfo(!showMoreInfo);
   }
+
+  if (isDeleted) {
+    return null;
+  }
+
   return (
     <>
       {questionData ? (
@@ -196,37 +218,6 @@ export const Question = ({
             >
               <figcaption className="blubb rounded-lg p-2 px-2 flex items-center justify-between">
                 <div className="flex items-center">
-                  {/* <div style={{ width: "40px", height: "40px" }}>
-                    <div
-                      className="flex-shrink-0 rounded-full cursor-pointer"
-                      style={{
-                        backgroundImage: `url(${
-                          questionData.profileId.image
-                            ? questionData.profileId.image
-                            : profilePic
-                        })`,
-                        backgroundSize: "100% 100%",
-                        backgroundRepeat: "no-repeat",
-                        width: "100%",
-                        height: "100%",
-                        aspectRatio: "1/1",
-                      }}
-                      onClick={() =>
-                        navigate(
-                          `/dashboard/${questionData.profileId.userName}/profile/${questionData.profileId._id}`,
-                          {
-                            state: {
-                              question,
-                              answer,
-                              like,
-                              isFollowing,
-                              followsUser,
-                            },
-                          }
-                        )
-                      }
-                    ></div>
-                  </div> */}
                   <div
                     style={{ maxWidth: "50px", maxHeight: "50px" }}
                     className="flex justify-center overflow-hidden rounded-full cursor-pointer"
@@ -350,12 +341,19 @@ export const Question = ({
                   </span>
                   {/* ownQuestion variable only on own profile for deleting own questions */}
                   {ownQuestion ? (
-                    <div
-                      onClick={handleDeleteQuestionClick}
-                      className="text-red-800 font-bold hover:underline cursor-pointer"
-                    >
-                      delete question
-                    </div>
+                    <>
+                      <div
+                        onClick={handleDeleteQuestionClick}
+                        className="text-red-800 font-bold hover:underline cursor-pointer"
+                      >
+                        delete question
+                      </div>
+                      <ConfirmationDialog
+                        isOpen={isConfirmationOpen}
+                        onRequestClose={handleCloseConfirmation}
+                        onConfirm={deleteQuestionConfirmed}
+                      />
+                    </>
                   ) : (
                     ""
                   )}

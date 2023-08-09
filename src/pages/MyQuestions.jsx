@@ -41,12 +41,20 @@ export default function MyQuestions() {
   };
 
   function handleAddClick(e) {
-    if (topic.length >= 0) {
+    if (topic.length >= 2 && topicsArray.length < 5) {
       setTopicsArray([...topicsArray, topic]);
       setTopic("");
       toast.info("You added a topic", {
         className: "custom-toast",
       });
+    }
+    if (topicsArray.length === 5) {
+      toast.error("The number of maximum topics is 5.");
+    }
+    if (topic.length < 2) {
+      toast.error(
+        "Your topic has to have 2 or more characters and shouldn't consist of spaces!"
+      );
     }
   }
 
@@ -199,7 +207,6 @@ export default function MyQuestions() {
           )}
         </button>
       </div>
-      <ToastContainer className="custom-toast" />
     </div>
   );
 }

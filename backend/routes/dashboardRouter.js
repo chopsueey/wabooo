@@ -38,6 +38,7 @@ dashboardRouter.get("/profile", profileController.showProfile);
 dashboardRouter.get("/profile/:profileId", profileController.getProfile);
 dashboardRouter.get("/profile/:profileId/follower", followController.getFollower);
 dashboardRouter.patch("/profile", profileController.updateProfileData);
+dashboardRouter.patch("/profile/upload/image", profileController.updateProfileImage);
 dashboardRouter.put("/profile", profileController.editProfile);
 dashboardRouter.delete("/profile", profileController.deleteAccount);
 dashboardRouter.delete("/profile/questions/delete", questionController.deleteQuestion);
