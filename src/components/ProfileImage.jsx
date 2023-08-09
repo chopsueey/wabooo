@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
+import {
+  deleteProfileImage,
+  patchProfileImage,
+} from "../fetchRequests/ProfileRequests";
 
-function ProfileImage() {
+function ProfileImage({ profileImg }) {
   // cloudinary
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(profileImg ? profileImg : null);
   const [imageUrl, setImageUrl] = useState(null);
 
   const handleUploadButtonClick = () => {
     document.getElementById("imageInput").click();
   };
 
-  const handleImageUpload = () => {};
+  const handleImageUpload = async () => {
+    const data = { image, imageUrl };
+    await patchProfileImage(data);
+    toast.info("Image uploaded successfully.", {
+      className: "custom-toast",
+    });
+  };
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0].name);
@@ -25,18 +36,25 @@ function ProfileImage() {
     });
   };
 
-  const handleDeleteImage = () => {
-    // Handle the delete action
+  const handleImageDeleteClick = async () => {
+    await deleteProfileImage();
     setImage(null);
-    
+    setImageUrl(null);
+    toast.success("Image deleted.", {
+      className: "custom-toast",
+    });
   };
+
+  useEffect(() => {
+
+  },[])
 
   return (
     <>
       <div style={{ position: "relative", display: "inline-block" }}>
         {image ? (
           <img
-            src={imageUrl}
+            src={image ? image : profilePic}
             alt="Profile"
             style={{
               width: "150px",
@@ -58,13 +76,21 @@ function ProfileImage() {
             }}
             onClick={handleUploadButtonClick}
           >
-            <span>Upload Image</span>
+            <img
+            src={image ? image : profilePic}
+            alt="Profile"
+            style={{
+              width: "150px",
+              height: "150px",
+              borderRadius: "50%",
+            }}
+          />
           </div>
         )}
 
         {image && (
           <button
-            onClick={handleDeleteImage}
+            onClick={handleImageDeleteClick}
             style={{
               position: "absolute",
               bottom: "5px",

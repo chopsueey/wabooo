@@ -130,7 +130,7 @@ async function getProfile(req, res, next) {
     const userLikes = await Like.find({
       user: userId,
     });
-// what the user of the requested profile likes
+    // what the user of the requested profile likes
     const likesOfRequestedProfile = await Like.find({
       user: profileOfRequestedProfileId.userId,
     });
@@ -164,7 +164,9 @@ async function getProfile(req, res, next) {
     });
 
     // find only liked questions by the user profile
-    const likedQuestionsIds = likesOfRequestedProfile.map((question) => question.question);
+    const likedQuestionsIds = likesOfRequestedProfile.map(
+      (question) => question.question
+    );
     const likedQuestions = await Question.find({
       _id: { $in: likedQuestionsIds },
     })
@@ -181,7 +183,7 @@ async function getProfile(req, res, next) {
       likedQuestions: likedQuestions,
       // profile of requested profile
       userProfile: profileOfRequestedProfileId,
-      
+
       // data of current logged in user
       userAnswers: userAnswers,
       userLikes: userLikes,
@@ -216,6 +218,64 @@ async function getProfile(req, res, next) {
 // patch
 async function updateProfileData(req, res, next) {
   const updateId = req.user.userId;
+  // const { image, imageUrl } = req.body;
+  try {
+    // if (image && imageUrl) {
+    //   // upload image to cloudinary
+    //   const uploadedImage = await cloudinary.uploader.upload(
+    //     imageUrl,
+    //     {
+    //       upload_preset: "Wabooo-Profile-Picture",
+    //       public_id: `${image}`,
+    //       allowed_formats: [
+    //         "jpg",
+    //         "png",
+    //         "jpeg",
+    //         "gif",
+    //         "svg",
+    //         "webp",
+    //         "jfif",
+    //         "ico",
+    //       ],
+    //     },
+    //     function (error, result) {
+    //       if (error) throw error;
+    //     }
+    //   );
+    //   //console.log(uploadedImage);
+    //   const cloudImg = uploadedImage.secure_url;
+    //   const cloudImgPub = uploadedImage.public_id;
+    //   req.body.image = cloudImg;
+    //   req.body.imgPub = cloudImgPub;
+    // } else {
+    //   delete req.body.image;
+    //   delete req.body.imageUrl;
+    // }
+
+    const updatedItem = await Profile.findOneAndUpdate(
+      { userId: updateId },
+      {
+        $set: req.body,
+      },
+      { new: true, runValidators: true }
+    );
+    res.status(200).json({
+      updatedProfile: updatedItem,
+    });
+  } catch (err) {
+    next(err);
+  }
+  // {
+  //   userName: userName,
+  //   country: country,
+  //   birthYear: birthYear,
+  //   image: cloudImg,
+  //   imgPub: cloudImgPub,
+  // },
+}
+
+async function updateProfileImage(req, res, next) {
+  const updateId = req.user.userId;
   const { image, imageUrl } = req.body;
   try {
     if (image && imageUrl) {
@@ -245,9 +305,6 @@ async function updateProfileData(req, res, next) {
       const cloudImgPub = uploadedImage.public_id;
       req.body.image = cloudImg;
       req.body.imgPub = cloudImgPub;
-    } else {
-      delete req.body.image;
-      delete req.body.imageUrl;
     }
 
     const updatedItem = await Profile.findOneAndUpdate(
@@ -256,13 +313,6 @@ async function updateProfileData(req, res, next) {
         $set: req.body,
       },
       { new: true, runValidators: true }
-      // { new: true, runValidators: true }
-      // Object.entries(req.body).forEach(([key, value]) => {
-      //   if (value !== null && value !== undefined) {
-      //     // Include the field in the updateObject only if the value is not null or undefined
-      //     updateObject[key] = value;
-      //   }
-      // });
     );
     res.status(200).json({
       updatedProfile: updatedItem,
@@ -348,7 +398,7 @@ export {
   showProfile,
   getProfile,
   editProfile,
-  // postProfileData,
+  updateProfileImage,
   updateProfileData,
   deleteImage,
   deleteAccount,

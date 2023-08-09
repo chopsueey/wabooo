@@ -3,6 +3,7 @@ import {
   deleteProfileImage,
   getProfile,
   patchProfile,
+  patchProfileImage,
 } from "../fetchRequests/ProfileRequests";
 import { Questions } from "../components/Questions";
 import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
@@ -11,8 +12,7 @@ import { countries } from "../../backend/model/data.js";
 
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
-import ProfileImage from "../components/ProfileImage";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Profile() {
@@ -57,39 +57,28 @@ export default function Profile() {
   // cloudinary
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [imageUploaded, setImageUploaded] = useState(false);
 
   // patch request to update user profile when 'save' button clicked
   // user data is stored in variable data
   async function handleProfileUpdate(e) {
     e.preventDefault();
-    //  const file = e.target.files[0];
-    //   const reader = new FileReader();
 
-    //   reader.onloadend = () => {
-    //     setImage(reader.result);
-    //     toast.success("Image uploaded!", {
-    //       className: "custom-toast",
-    //     });
-    //   };
-
-    //   if (file) {
-    //     reader.readAsDataURL(file);
-    //   } else {
-    //     toast.error("Image not uploaded.", {
-    //       className: "custom-toast",
-    //     });
-    //   }
-    // };
-
-    // const handleDeleteImage = () => {
-    //   setImage(null);
-    //   toast.info("Image deleted.", {
-    //     className: "custom-toast",
-    //   });
-    // };
-    const data = { userName, country, birthYear, image, imageUrl };
+    const data = { userName, country, birthYear };
     setIsSaving(true);
-    await patchProfile(data);
+    const response = await patchProfile(data);
+    const responseData = await response.json();
+    if (response.status === 200) {
+      toast.success("Changes uploaded.", {
+        className: "custom-toast",
+      });
+      console.log(responseData);
+    } else {
+      toast.error("Something went wrong.", {
+        className: "custom-toast",
+      });
+      console.log(responseData);
+    }
     const profileData = await getProfile();
     setUserData(profileData);
     setAskedQuestions(profileData.askedQuestions);
@@ -98,9 +87,6 @@ export default function Profile() {
     setLikesOfUser(profileData.userLikes);
     setUserIsFollowing(profileData.userIsFollowing);
     setUserFollowers(profileData.userFollowers);
-    toast.info("Changes saved.", {
-      className: "custom-toast",
-    });
     setIsSaving(false);
   }
 
@@ -112,8 +98,22 @@ export default function Profile() {
     setShowEdit(!showEdit);
   }
 
-  // cloudinary
-  const handleImgUpload = (e) => {
+  const handleUploadButtonClick = () => {
+    document.getElementById("imageInput").click();
+  };
+
+  const handleImageUpload = async () => {
+    const data = { image, imageUrl };
+    await patchProfileImage(data);
+    toast.success("Image uploaded successfully.", {
+      className: "custom-toast",
+    });
+    setImage(null);
+    setImageUrl(null);
+    setImageUploaded(!imageUploaded);
+  };
+
+  const handleImageChange = (e) => {
     setImage(e.target.files[0].name);
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -121,28 +121,23 @@ export default function Profile() {
     reader.onloadend = () => {
       setImageUrl(reader.result);
     };
-    toast.info("Click the button 'save changes'.", {
+    toast.info("Click on save to upload your profile image.", {
       className: "custom-toast",
     });
   };
 
   const handleImageDeleteClick = async () => {
+    setImage(null);
+    setImageUrl(null);
+  };
+
+  const handleImageDelete = async () => {
     await deleteProfileImage();
     setImage(null);
     setImageUrl(null);
-    toast.info("Image deleted.", {
+    toast.success("Image deleted.", {
       className: "custom-toast",
     });
-    await deleteProfileImage();
-    const profileData = await getProfile();
-    setUserData(profileData);
-    setAskedQuestions(profileData.askedQuestions);
-    setLikedQuestions(profileData.likedQuestions);
-    setAnswersOfUser(profileData.userAnswers);
-    setLikesOfUser(profileData.userLikes);
-    setUserIsFollowing(profileData.userIsFollowing);
-    setUserFollowers(profileData.userFollowers);
-    //  window.location.reload();
   };
 
   // get user profile data, refresh on every load
@@ -164,7 +159,7 @@ export default function Profile() {
       once: true,
       mirror: false,
     });
-  }, [activeTab]);
+  }, [activeTab, imageUploaded]);
 
   return (
     <div className="max-w-2xl mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
@@ -242,7 +237,6 @@ export default function Profile() {
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 rounded-lg") +
                 " p-2 text-xl"
               }
-              // onClick={() => handleTabClick("Profile")}
               style={{ cursor: "pointer" }}
               onClick={() => handleTabClick("Following")}
             >
@@ -268,51 +262,104 @@ export default function Profile() {
                       <div className="profile-portrait flex flex-col justify-center items-center">
                         {userData ? (
                           <>
-                            {/* <div
-                              style={{ maxWidth: "150px", maxHeight: "150px" }}
-                              className="flex justify-center overflow-hidden rounded-full"
+                            <div
+                              className="rounded-full"
+                              style={{
+                                position: "relative",
+                                display: "inline-block",
+                              }}
                             >
-                              <img
-                                style={{
-                                  maxWidth: "150px",
-                                  aspectRatio: "1/1",
-                                  objectFit: "cover",
-                                }}
-                                src={
-                                  userData.userProfile.image
-                                    ? userData.userProfile.image
-                                    : profilePic
-                                }
+                              {userData.userProfile.image ? (
+                                <img
+                                  src={
+                                    imageUrl
+                                      ? imageUrl
+                                      : userData.userProfile.image
+                                  }
+                                  alt="Profile"
+                                  style={{
+                                    width: "150px",
+                                    height: "150px",
+                                    aspectRatio: "1/1",
+                                    objectFit: "cover",
+                                    borderRadius: "50%",
+                                  }}
+                                />
+                              ) : (
+                                <img
+                                  src={imageUrl ? imageUrl : profilePic}
+                                  alt="Profile"
+                                  style={{
+                                    width: "150px",
+                                    height: "150px",
+                                    aspectRatio: "1/1",
+                                    objectFit: "cover",
+                                    borderRadius: "50%",
+                                  }}
+                                />
+                              )}
+
+                              {imageUrl ? (
+                                <button
+                                  onClick={handleImageDeleteClick}
+                                  style={{
+                                    position: "absolute",
+                                    bottom: "5px",
+                                    right: "5px",
+                                    backgroundColor: "red",
+                                    color: "#fff",
+                                    border: "none",
+                                    borderRadius: "50%",
+                                    width: "30px",
+                                    height: "30px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  X
+                                </button>
+                              ) : (
+                                <button
+                                  onClick={handleUploadButtonClick}
+                                  style={{
+                                    position: "absolute",
+                                    bottom: "5px",
+                                    right: "5px",
+                                    backgroundColor: "black",
+                                    color: "#fff",
+                                    border: "none",
+                                    borderRadius: "50%",
+                                    width: "30px",
+                                    height: "30px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  stift
+                                </button>
+                              )}
+
+                              <input
+                                type="file"
+                                id="imageInput"
+                                accept="image/*"
+                                style={{ display: "none" }}
+                                onChange={handleImageChange}
                               />
-                            </div> */}
-                            {/* <div className="flex justify-center"
-                        style={{ maxWidth: "150px"}}>
-                          <div
-                            className="flex-shrink-0 rounded-full"
-                            style={{
-                              backgroundImage: `url(${
-                                userData.userProfile.image
-                                  ? userData.userProfile.image
-                                  : profilePic
-                              })`,
-                              backgroundSize: "100% 100%",
-                              backgroundRepeat: "no-repeat",
-                              width: "100%",
-                              height: "100%",
-                              aspectRatio: "1/1",
-                            }}
-                          ></div>
-                        </div> */}
-                            {/* <div>
+                            </div>
+                            <div>
                               <button
                                 style={{ maxWidth: "150px" }}
                                 className="blubb text-cyan-400 bg-transparent border border-cyan-300 rounded-md p-2 mt-5 shadow-lg hover:bg-cyan-300 hover:text-white transition duration-300 ease-in-out"
-                                onClick={handleImageDeleteClick}
+                                onClick={handleImageUpload}
                               >
-                                delete img
+                                save
                               </button>
-                            </div> */}
-                            <ProfileImage />
+                            </div>
                           </>
                         ) : (
                           ""
@@ -433,21 +480,6 @@ export default function Profile() {
                               </div>
                             </div>
                           </div>
-                          <input
-                            className="mt-2 text-white"
-                            onChange={handleImgUpload}
-                            type="file"
-                          />
-
-                          {imageUrl ? (
-                            <div className="pt-10 flex justify-center">
-                              <img
-                                className="w-48"
-                                src={imageUrl}
-                                alt="Uploaded"
-                              />
-                            </div>
-                          ) : null}
                         </form>
 
                         <div className="flex justify-center my-4">
@@ -531,9 +563,6 @@ export default function Profile() {
           )}
           {activeTab === "Follower" && (
             <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row px-4 sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
-              {/* <h1 className="my-4 text-lg border-b-4 border-sky-500 text-center">
-                Friends{" "}
-              </h1> */}
               <div className="flex flex-col my-4">
                 {userFollowers.map((follower) => (
                   <div className="flex mb-2 items-center">
@@ -578,9 +607,6 @@ export default function Profile() {
           )}
           {activeTab === "Following" && (
             <div className="bg-gray-500 bg-opacity-25 rounded-xl row flex flex-col lg:flex-row px-4 sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
-              {/* <h1 className="my-4 text-lg border-b-4 border-sky-500 text-center">
-              Friends{" "}
-            </h1> */}
               <div className="flex flex-col my-4">
                 {userIsFollowing.map((follower) => (
                   <div className="flex mb-2 items-center">
@@ -625,7 +651,6 @@ export default function Profile() {
           )}
         </div>
       </section>
-      <ToastContainer className="custom-toast" />
     </div>
   );
 }

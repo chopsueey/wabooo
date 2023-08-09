@@ -112,7 +112,7 @@ export function QuestionPage() {
         </section>
         <section className="details flex flex-col m-2 mb-10">
           <div className="tab-menu mx-5 my-10">
-            <div style={{ maxWidth: "200px" }} className="flex">
+            <div className="flex">
               <div
                 className={
                   (activeTab === "Statistics"
@@ -135,7 +135,7 @@ export function QuestionPage() {
                 }
                 onClick={() => handleTabClick("Comments")}
               >
-                comments
+                comments ({allComments ? allComments.length : ""})
               </div>
             </div>
           </div>

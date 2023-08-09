@@ -40,11 +40,27 @@ export async function patchProfile(data) {
       },
       credentials: "include",
     });
-    if (response.status === 200) {
-      const result = await response.json();
-      return console.log("Profile updated!", result);
-    }
-    throw new Error("Profile update failed");
+
+    return response;
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function patchProfileImage(data) {
+  try {
+    const response = await fetch(`http://localhost:5000/dashboard/profile/upload/image`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+
+    return response;
+    
   } catch (err) {
     console.log(err);
   }
