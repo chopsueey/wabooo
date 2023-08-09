@@ -29,7 +29,7 @@ export default function MyQuestions() {
 
     setActiveTab("Feed");
     toast.info("You posted a question", {
-    className: "custom-toast",
+      className: "custom-toast",
     });
   }
 
@@ -45,7 +45,7 @@ export default function MyQuestions() {
       setTopicsArray([...topicsArray, topic]);
       setTopic("");
       toast.info("You added a topic", {
-      className: "custom-toast",
+        className: "custom-toast",
       });
     }
   }
@@ -56,7 +56,7 @@ export default function MyQuestions() {
     );
     setTopicsArray([...filteredArray]);
     toast.info("You deleted a topic", {
-    className: "custom-toast",
+      className: "custom-toast",
     });
   }
 
@@ -108,7 +108,7 @@ export default function MyQuestions() {
         </h3>
         {isContentVisible.question3 && (
           <div className="w-full max-w-sm p-8 blubb rounded-md">
-            <p>
+            <p className="leading-relaxed space-y-2">
               Please do not ask offensive questions! Bullying is not allowed, so
               please refrain from asking about it as well! No racist or
               far-right questions! Sexual questions are also not welcome!
@@ -120,22 +120,24 @@ export default function MyQuestions() {
         </h2>
 
         <input
+          placeholder="Please present your question here."
           onChange={(e) => {
             setQuestion(e.target.value);
             console.log(question);
           }}
           type="text"
-          className="w-full p-4 rounded-md shadow-md mb-4 text-gray-800"
+          className="w-full p-4 rounded-md blubb1 placeholder-white shadow-md mb-4 text-white border-cyan-300 border-2"
         />
-        <div className="flex flex-col text-yellow-100">
-          <label htmlFor="topic-choice">Topics</label>
+        <div className="flex flex-col text-white ">
+          <label className="flex justify-center" htmlFor="topic-choice"></label>
           <input
-            className="text-black"
+            className="text-white border-cyan-300 border-2 rounded-md blubb placeholder-white placeholder:text-center"
             onChange={(e) => setTopic(e.target.value)}
             value={topic}
             list="topic-list"
             id="topic-choice"
             name="question-topics"
+            placeholder="Choose or add topics"
           />
 
           <datalist id="topic-list">
@@ -146,18 +148,20 @@ export default function MyQuestions() {
             <option value="Movies" />
             {/* <option value={topic}></option> */}
           </datalist>
-          <button
-            className="text-green-500 text-end"
-            onClick={(e) => handleAddClick(e)}
-          >
-            add
-          </button>
+          <div className="flex justify-end">
+            <button
+              className="py-1 px-3 text-center text-green-500 font-bold border-cyan-300 border-2 rounded-md shadow-lg shadow-gray-900  text-xs sm ml-2 block max-w-[4rem] mb-3 mt-2 animate-pulse"
+              onClick={(e) => handleAddClick(e)}
+            >
+              add
+            </button>
+          </div>
         </div>
-        <div className="flex">
+        <div className="flex ">
           {topicsArray.map((item) => (
             <div
               onClick={(e) => handleDeleteTopic(e)}
-              className="text-white mr-2 hover:text-red-500 cursor-pointer"
+              className=" py-1 px-3 text-center text-white border-cyan-300 border-2 rounded-md shadow-lg shadow-gray-900  text-xs sm ml-2 max-w-[4rem] mb-3 mt-2 hover:text-red-500 cursor-pointer"
             >
               {item}
             </div>
