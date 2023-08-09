@@ -260,7 +260,7 @@ export default function Profile() {
               style={{ cursor: "pointer" }}
 
               onClick={() => handleTabClick("Following")}
-              style={{ cursor: "pointer" }}
+              
             >
               {userIsFollowing && (
                 <span className="mr-2 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">

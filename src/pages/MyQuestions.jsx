@@ -20,6 +20,12 @@ export default function MyQuestions() {
 
   async function handlePostQuestion(e) {
     e.preventDefault();
+    if (question.length < 5) {
+      toast.error("Your question should have atleast 5 characters.", {
+        className: "custom-toast",
+      });
+      return
+    }
     const topics = topicsArray;
     setSaveLoading(true);
     const data = { question, topics };
@@ -44,9 +50,6 @@ export default function MyQuestions() {
     if (topic.length >= 2 && topicsArray.length < 5) {
       setTopicsArray([...topicsArray, topic]);
       setTopic("");
-      toast.info("You added a topic", {
-        className: "custom-toast",
-      });
     }
     if (topicsArray.length === 5) {
       toast.error("The number of maximum topics is 5.");
@@ -63,9 +66,6 @@ export default function MyQuestions() {
       (item) => item !== e.target.innerText
     );
     setTopicsArray([...filteredArray]);
-    toast.info("You deleted a topic", {
-      className: "custom-toast",
-    });
   }
 
   return (
