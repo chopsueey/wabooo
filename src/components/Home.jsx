@@ -7,7 +7,7 @@ import gifIcon from "../assets/4dg1.gif";
 import ask from "../assets/ask.mp4";
 import GeneralStore from "../store/GeneralContext";
 import Typewriter from "typewriter-effect";
-import Smiley from "../assets/Smiley.png";
+import Smiley from "../assets/smiley.png";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

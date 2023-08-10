@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import GeneralStore from "../store/GeneralContext";
-import Smiley from "../assets/Smiley.png";
+import Smiley from "../assets/smiley.png";
 import schrift from "../assets/schrift2.png";
 import { userLogout } from "../fetchRequests/UserRequests";
 import Footer from "./Footer";
