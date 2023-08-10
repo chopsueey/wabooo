@@ -349,7 +349,7 @@ export async function postComment(req, res, next) {
 
 // patch comment
 export async function patchComment(req, res, next) {
-  const commentId = req.params.questionId;
+  const commentId = req.params.commentId;
   const userId = req.user.userId;
   const { comment } = req.body;
 

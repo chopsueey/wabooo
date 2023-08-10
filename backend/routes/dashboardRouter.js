@@ -88,8 +88,8 @@ dashboardRouter.get("/statistics/:questionId", statisticController.findProfilesB
 //DASHBOARD/COMMENT
 dashboardRouter.get("/question/:questionId/allcomments", questionController.getComment);
 dashboardRouter.post("/question/:questionId/comment", questionController.postComment);
-dashboardRouter.patch("/question/:questionId/comment", questionController.patchComment);
-dashboardRouter.delete("/question/:questionId/comment", questionController.deleteComment);
+dashboardRouter.patch("/question/:questionId/:commentId", questionController.patchComment);
+dashboardRouter.delete("/question/:questionId/:commentId", questionController.deleteComment);
 
 // DASHBOARD/TOPICS
 dashboardRouter.get("/topics/", topicController.getAllQuestion);
