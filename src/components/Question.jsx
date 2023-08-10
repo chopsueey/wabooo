@@ -276,7 +276,7 @@ export const Question = ({
 
               <div
                 style={{ width: "115px", maxHeight: "100px" }}
-                className="popup-profile-info blubb absolute -bottom-[5rem] rounded-lg p-2 text-sm text-center flex flex-col"
+                className="popup-profile-info blubb absolute -bottom-[5rem] rounded-lg p-2 text-sm text-center flex flex-col border-gray-200 border-[1px]"
               >
                 <div className="text-white">{numOfFollower} Follower</div>
                 {followsYou ? (
@@ -448,7 +448,7 @@ export const Question = ({
                     {questionData.likes + " ❤️"}
                   </button>
                 )}
-                <div className="blubb rounded-lg p-2 px-2 mt-2">
+                <div className="flex flex-col justify-center blubb rounded-lg p-2 px-2 mt-2">
                   <div className="italic text-white">
                     {allAnswers > 1
                       ? `${allAnswers} answers`
