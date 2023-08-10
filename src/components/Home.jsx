@@ -185,12 +185,18 @@ export default function Home() {
               <input
                 className="mt-2 px-4 py-2 bg-white text-gray-800 rounded-md w-full"
                 type="password"
-                minlength="8"
+                minLength="8"
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 value={password}
                 placeholder="password (minimum 8 characters)"
                 onChange={(evt) => setPassword(evt.target.value)}
               />
+              {!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password) && (
+                <p className="text-red-700">
+                  Password shall have minimum 8 characters, including at least
+                  one capital letter and a symbol
+                </p>
+              )}
             </label>
             {register && (
               <label className="block text-white text-xs font-bold mb-2">
