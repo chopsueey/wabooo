@@ -19,7 +19,6 @@ import QuestionMobileUserPanel from "../components/QuestionMobileUserPanel.jsx";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 export function QuestionPage() {
   const { state } = useLocation();
   const [activeTab, setActiveTab] = useState("Statistics");
@@ -111,14 +110,15 @@ export function QuestionPage() {
               followers={userFollowers}
             />
           ) : (
-            <h2 className="text-center">Nothing found :/</h2>
+            <h2 className="text-center">Nothing found 👀</h2>
           )}
         </section>
         <section className="details flex flex-col m-2 mb-10">
 
-          <div className="tab-menu hidden sm:block mx-5 my-10">
-            <div className="flex">
 
+          <div className="tab-menu hidden sm:block mx-5 my-10">
+
+            <div className="flex">
               <div
                 className={
                   (activeTab === "Statistics"
@@ -141,7 +141,10 @@ export function QuestionPage() {
                 }
                 onClick={() => handleTabClick("Comments")}
               >
-                comments ({allComments ? allComments.length : ""})
+                <span className="pl-2 pr-2 mr-1 w-8 h-8 rounded-lg bg-cyan-800 text-cyan-300">
+                  {allComments ? allComments.length : ""}
+                </span>
+                comments
               </div>
             </div>
           </div>
@@ -185,9 +188,10 @@ export function QuestionPage() {
             ""
           )}
         </section>
+
         <QuestionMobileUserPanel activeTab2={activeTab} setActiveTab2={setActiveTab}/>
+
       </div>
-      
     </div>
   );
 }

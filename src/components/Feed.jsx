@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Questions } from "./Questions";
 import { getFeed } from "../fetchRequests/QuestionRequests";
 import GeneralStore from "../store/GeneralContext";
+import gifIcon from "../assets/6os.gif";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SortByMenu from "./SortByMenu";
@@ -50,7 +51,7 @@ export default function Feed() {
 
       {isLoading ? (
         <div className="flex justify-center mt-4">
-          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-sky-500"></div>
+          <img src={gifIcon} alt="" />
         </div>
       ) : sortedQuestions && sortedQuestions.length > 0 ? (
         <>
