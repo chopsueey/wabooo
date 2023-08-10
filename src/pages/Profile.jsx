@@ -10,7 +10,11 @@ import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import { useNavigate } from "react-router-dom";
 import { countries } from "../../backend/model/data.js";
 
-import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowLongLeftIcon,
+  PencilIcon,
+  XCircleIcon,
+} from "@heroicons/react/24/solid";
 import AOS from "aos";
 
 import ProfileImage from "../components/ProfileImage";
@@ -20,7 +24,6 @@ import GeneralStore from "../store/GeneralContext";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("Profile");
@@ -256,11 +259,8 @@ export default function Profile() {
                   : "text-cyan-300 hover:bg-gray-400 hover:bg-opacity-25 hover:rounded-lg rounded-lg") +
                 " p-2 text-xl flex items-center"
               }
-
               style={{ cursor: "pointer" }}
-
               onClick={() => handleTabClick("Following")}
-              
             >
               {userIsFollowing && (
                 <span className="mr-2 rounded-lg bg-cyan-800 flex items-center justify-center w-8 h-8 text-cyan-300">
@@ -334,7 +334,7 @@ export default function Profile() {
                                     bottom: "5px",
                                     right: "5px",
                                     backgroundColor: "red",
-                                    color: "#fff",
+                                    color: "black",
                                     border: "none",
                                     borderRadius: "50%",
                                     width: "30px",
@@ -345,7 +345,7 @@ export default function Profile() {
                                     cursor: "pointer",
                                   }}
                                 >
-                                  X
+                                  <XCircleIcon className="" />
                                 </button>
                               ) : (
                                 <button
@@ -366,7 +366,7 @@ export default function Profile() {
                                     cursor: "pointer",
                                   }}
                                 >
-                                  stift
+                                  <PencilIcon className="h-4 w-4 text-sky-400" />
                                 </button>
                               )}
 
@@ -446,9 +446,7 @@ export default function Profile() {
                               </label>
                               <input
                                 id="username"
-
                                 className="mt-2 px-4 py-2 bg-slate-700 rounded-lg text-white font-bold w-full focus:outline-none"
-
                                 onChange={(e) => {
                                   setUserName(e.target.value);
                                   console.log(userName);
@@ -468,9 +466,7 @@ export default function Profile() {
                               </label>
                               <input
                                 id="birthyear"
-
                                 className="ml-2 rounded-lg mt-2 px-4 py-2 bg-slate-700 text-white font-bold w-full focus:outline-none"
-
                                 onChange={(e) => {
                                   setBirthyear(e.target.value);
                                   console.log(birthYear);
@@ -493,12 +489,10 @@ export default function Profile() {
                                   onChange={(e) => {
                                     setCountry(e.target.value);
                                   }}
-
                                   className="mt-2 px-4 py-2 bg-slate-700 bg-transparent text-white w-full focus:outline-none"
                                 >
                                   <option className="bg-slate-700" value="none">
                                     Country
-
                                   </option>
                                   {countries.map((item) => (
                                     <option
@@ -689,13 +683,10 @@ export default function Profile() {
         </div>
       </section>
 
-
       <ProfileMobileUserPanel
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-
-
     </div>
   );
 }

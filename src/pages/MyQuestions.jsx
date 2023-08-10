@@ -24,7 +24,7 @@ export default function MyQuestions() {
       toast.error("Your question should have atleast 5 characters.", {
         className: "custom-toast",
       });
-      return
+      return;
     }
     const topics = topicsArray;
     setSaveLoading(true);
@@ -117,9 +117,10 @@ export default function MyQuestions() {
         {isContentVisible.question3 && (
           <div className="w-full max-w-sm p-8 blubb rounded-md">
             <p className="leading-relaxed space-y-2">
-              Please do not ask offensive questions! Bullying is not allowed, so
-              please refrain from asking about it as well! No racist or
-              far-right questions! Sexual questions are also not welcome!
+              Please do not ask offensive questions!
+              <br /> Bullying is not allowed, so please refrain from asking
+              about it as well! <br /> No racist or far-right questions! <br />{" "}
+              Sexual questions are also not welcome!
             </p>
           </div>
         )}
@@ -158,7 +159,7 @@ export default function MyQuestions() {
           </datalist>
           <div className="flex justify-end">
             <button
-              className="py-1 px-3 text-center text-green-500 font-bold border-cyan-300 border-2 rounded-md shadow-lg shadow-gray-900  text-xs sm ml-2 block max-w-[4rem] mb-3 mt-2 animate-pulse"
+              className="py-1 px-3 text-center text-green-500 font-bold border-green-500 border-2 rounded-md shadow-lg shadow-gray-900  text-xs sm ml-2 block max-w-[4rem] mb-3 mt-2 animate-pulse"
               onClick={(e) => handleAddClick(e)}
             >
               add

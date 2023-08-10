@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import GeneralStore from "../store/GeneralContext";
-import logo from "../assets/Logo123.png";
+import Smiley from "../assets/Smiley.png";
+import schrift from "../assets/schrift2.png";
 import { userLogout } from "../fetchRequests/UserRequests";
 import Footer from "./Footer";
 import MobileUserPanel from "./MobileUserPanel";
@@ -55,9 +56,16 @@ export default function Navigation() {
           }`}
         >
           <div className="flex justify-between items-center">
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-                <img className="w-30 h-16 mr-2" src={logo} alt="wabooo logo" />
+                <img className="w-30 h-16" src={Smiley} alt="wabooo logo" />
+              </Link>
+              <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+                <img
+                  className=" h-10 ml-[-13px] mr-2 "
+                  src={schrift}
+                  alt="wabooo logo"
+                />
               </Link>
               <ul className="hidden sm:flex items-center space-x-4">
                 <Link to="/about">

@@ -4,7 +4,7 @@ import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 export function UserComment({ comment }) {
   const navigate = useNavigate();
   return (
-    <figcaption className="w-full max-w-2xl blubb rounded-lg p-3 flex overflow-scroll mb-3 shadow-lg shadow-black">
+    <figcaption className="w-full max-w-2xl blubb rounded-lg p-3 flex mb-3 shadow-lg shadow-black">
       <div>
         <div className="ml-3 profile-portrait flex flex-col justify-center items-center">
           {/* <div
