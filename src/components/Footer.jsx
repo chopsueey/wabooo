@@ -2,8 +2,8 @@ export default function Footer() {
   return (
     <footer className="mb-[40px] blubb1 shadow-up flex items-center justify-center sm:mb-0 mt-10">
       <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-3 gap-6 sm:grid-cols-3">
-          <div>
+        <div className="flex flex-wrap justify-around text-center">
+          <div className="m-3">
             <h2 className="textc text-lg font-semibold mb-4">About</h2>
             <ul>
               <li className="text-gray-400 hover:text-white transition-colors duration-300">
@@ -14,7 +14,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="m-3">
             <h2 className="textc text-lg font-semibold mb-4">Community</h2>
             <ul>
               <li className="text-gray-400 hover:text-white transition-colors duration-300">
@@ -25,7 +25,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="m-3">
             <h2 className="textc text-lg font-semibold mb-4">More</h2>
             <ul>
               <li className="text-gray-400 hover:text-white transition-colors duration-300">

@@ -24,7 +24,7 @@ export default function MyQuestions() {
       toast.error("Your question should have atleast 5 characters.", {
         className: "custom-toast",
       });
-      return
+      return;
     }
     const topics = topicsArray;
     setSaveLoading(true);
@@ -165,11 +165,11 @@ export default function MyQuestions() {
             </button>
           </div>
         </div>
-        <div className="flex ">
+        <div className="flex flex-wrap">
           {topicsArray.map((item) => (
             <div
               onClick={(e) => handleDeleteTopic(e)}
-              className=" py-1 px-3 text-center text-white border-cyan-300 border-2 rounded-md shadow-lg shadow-gray-900  text-xs sm ml-2 max-w-[4rem] mb-3 mt-2 hover:text-red-500 cursor-pointer"
+              className=" py-1 px-3 text-center text-white border-cyan-300 border-2 rounded-md shadow-lg shadow-gray-900 text-xs sm ml-2 mb-3 mt-2 hover:text-red-500 cursor-pointer"
             >
               {item}
             </div>

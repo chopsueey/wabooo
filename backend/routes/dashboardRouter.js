@@ -92,6 +92,6 @@ dashboardRouter.patch("/question/:questionId/:commentId", questionController.pat
 dashboardRouter.delete("/question/:questionId/:commentId", questionController.deleteComment);
 
 // DASHBOARD/TOPICS
-dashboardRouter.get("/topics/", topicController.getAllQuestion);
+dashboardRouter.get("/topics", topicController.getPopularTopics);
 
 export default dashboardRouter;

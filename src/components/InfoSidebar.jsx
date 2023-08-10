@@ -1,4 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getMostPopularTopics } from "../fetchRequests/TopicRequest.jsx";
+import { searchRequest } from "../fetchRequests/SearchRequests.jsx";
+import GeneralStore from "../store/GeneralContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 export function InfoSidebar() {
   const [infoSidebarClassName, setInfoSidebarClassName] = useState(
@@ -17,20 +21,48 @@ export function InfoSidebar() {
     }
   });
 
+  const navigate = useNavigate();
+  const { activeTab, setActiveTab, results, setResults } = GeneralStore();
+  const [topics, setTopics] = useState(null);
+
+  async function handleTopicClick(e) {
+    const response = await searchRequest(e.target.innerText);
+    const responseData = await response.json();
+    // console.log(responseData);
+    setResults(responseData);
+    navigate("/dashboard");
+    setActiveTab("Results");
+  }
+
+  useEffect(() => {
+    (async function request() {
+      const response = await getMostPopularTopics();
+      const responseData = await response.json();
+      console.log(responseData);
+      setTopics(responseData.mostPopularTopics);
+    })();
+  }, []);
+
   return (
     <div className={infoSidebarClassName}>
-      <div className="pr-10">
-        <div className="bg-slate-200 rounded-md flex flex-wrap max-w-[200px]">
-          <div className="p-2">popular topics</div>
-          <span className="bg-slate-600 rounded-md m-2 text-white">topic1</span>
+      <div className="bg-slate-200 rounded-lg mr-10">
+        <div className="p-2 text-center text-xl">popular topics</div>
 
-          <span className="bg-slate-600 rounded-md m-2 text-white">topic2</span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">topic3</span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">topic4</span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">topic5</span>
+        <div className="flex flex-wrap justify-center max-w-[225px]">
+          {topics
+            ? topics.map((topic) => (
+                <div
+                  style={{ fontSize: `${topic[1] + 16}px` }}
+                  onClick={handleTopicClick}
+                  className="bg-slate-600 rounded-full m-1 p-3 cursor-pointer text-white"
+                >
+                  {topic[0]}
+                </div>
+              ))
+            : ""}
         </div>
       </div>
-      <div className="pr-10 mt-2">
+      {/* <div className="pr-10 mt-2">
         <div className="bg-slate-200 rounded-md flex flex-wrap max-w-[200px]">
           <div className="p-2">popular questions</div>
           <span className="bg-slate-600 rounded-md m-2 text-white">
@@ -69,7 +101,7 @@ export function InfoSidebar() {
             profile 5
           </span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

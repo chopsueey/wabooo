@@ -1,21 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import GeneralStore from "../store/GeneralContext";
 import { useEffect, useState } from "react";
 import { getProfile } from "../fetchRequests/ProfileRequests";
 import {
-  PlusCircleIcon,
   UserCircleIcon,
   HomeIcon,
   UserGroupIcon,
   UsersIcon,
-  DocumentMagnifyingGlassIcon,
   MegaphoneIcon,
 } from "@heroicons/react/24/solid";
+import GeneralStore from "../store/GeneralContext";
 
-export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
+export default function ProfileMobileUserPanel({activeTab2, setActiveTab2}) {
   const navigate = useNavigate();
 
-  // const { activeTab, setActiveTab } = GeneralStore();
+  const { activeTab, setActiveTab } = GeneralStore();
 
   const [profileId, setProfileId] = useState(undefined);
   const [userName, setUserName] = useState(undefined);
@@ -31,7 +29,7 @@ export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
   }, []);
 
   const handleTabClick = (tab) => {
-    setActiveTab(tab);
+    setActiveTab2(tab);
   };
 
   return (
@@ -39,14 +37,15 @@ export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
       <div
         style={{ cursor: "pointer" }}
         className={
-          (activeTab === "Dashboard" ? "active" : "") + " p-2 font-bold"
+          (activeTab2 === "Dashboard" ? "active" : "") + " p-2 font-bold"
         }
-        onClick={() => navigate(`/dashboard/`)}
+        onClick={() => {navigate(`/dashboard/`);
+      setActiveTab("Feed")}}
       >
         <HomeIcon className="h-6 w-6" />
       </div>
       <div
-        className={(activeTab === "Profile" ? "active" : "") + " p-2 font-bold"}
+        className={(activeTab2 === "Profile" ? "active" : "") + " p-2 font-bold"}
         onClick={() => handleTabClick("Profile")}
         style={{ cursor: "pointer" }}
       >
@@ -54,7 +53,7 @@ export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
       </div>
       <div
         className={
-          (activeTab === "Questions" ? "active" : "") + " p-2 font-bold"
+          (activeTab2 === "Questions" ? "active" : "") + " p-2 font-bold"
         }
         onClick={() => handleTabClick("Questions")}
         style={{ cursor: "pointer" }}
@@ -63,7 +62,7 @@ export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
       </div>
       <div
         className={
-          (activeTab === "Follower" ? "active" : "") + " p-2 font-bold"
+          (activeTab2 === "Follower" ? "active" : "") + " p-2 font-bold"
         }
         onClick={() => handleTabClick("Follower")}
         style={{ cursor: "pointer" }}
@@ -73,7 +72,7 @@ export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
 
       <div
         className={`${
-          activeTab === "Following" ? "active" : ""
+          activeTab2 === "Following" ? "active" : ""
         } p-2 font-bold flex items-center`}
         onClick={() => handleTabClick("Following")}
         style={{ cursor: "pointer" }}
@@ -84,7 +83,7 @@ export default function ProfileMobileUserPanel({activeTab, setActiveTab}) {
       {/* {results ? (
         <div
           className={
-            (activeTab === "Results" ? "active" : "") + " p-2 font-bold"
+            (activeTab2 === "Results" ? "active" : "") + " p-2 font-bold"
           }
           style={{ cursor: "pointer" }}
           onClick={() => handleTabClick("Results")}

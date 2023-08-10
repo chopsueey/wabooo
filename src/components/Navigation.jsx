@@ -55,7 +55,7 @@ export default function Navigation() {
           }`}
         >
           <div className="flex justify-between items-center">
-            <div className="flex items-center">
+            <div className="w-full flex items-center justify-between mx-2">
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
                 <img className="w-30 h-16 mr-2" src={logo} alt="wabooo logo" />
               </Link>
@@ -66,10 +66,11 @@ export default function Navigation() {
                 <Link to="/contact">
                   <li className="textc hover:text-cyan-300 text-xl">Contact</li>
                 </Link>
+                <span class="w-px h-6 bg-slate-400 mx-4"></span>
                 {hasCookie || document.cookie.includes("isLoggedIn") ? (
                   <li>
                     <button
-                      className={`"mt-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 ${
+                      className={`"mt-2 mr-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 ${
                         logoutLoading ? "cursor-not-allowed opacity-75" : ""
                       }`}
                       onClick={handleLogout}

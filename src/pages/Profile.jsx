@@ -691,8 +691,8 @@ export default function Profile() {
 
 
       <ProfileMobileUserPanel
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        activeTab2={activeTab}
+        setActiveTab2={setActiveTab}
       />
 
 
