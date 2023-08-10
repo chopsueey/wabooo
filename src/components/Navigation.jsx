@@ -57,19 +57,21 @@ export default function Navigation() {
         >
           <div className="flex justify-between items-center">
 
-            <div className="flex items-center ">
+            <div className="w-full flex items-center justify-between mx-2">
+              <div className="flex">
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
                 <img className="w-30 h-16" src={Smiley} alt="wabooo logo" />
               </Link>
 
-              <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link className="flex items-center ml-3" to="/" onClick={() => setIsMobileMenuOpen(false)}>
                 <img
                   className=" h-10 ml-[-13px] mr-2 "
                   src={schrift}
                   alt="wabooo logo"
                 />
               </Link>
-              <ul className="hidden sm:flex items-center space-x-4">
+              </div>
+              <ul className="hidden sm:flex items-center space-x-4 mr-2">
                 <Link to="/about">
                   <li className="textc hover:text-cyan-300 text-xl">About</li>
                 </Link>
@@ -175,7 +177,7 @@ export default function Navigation() {
                   {" "}
                   <div className="flex justify-end mr-5 items-center">
                     <button
-                      className={`mb-2 ml-6 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-4 py-2 ${
+                      className={`my-2 ml-6 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-4 py-2 ${
                         logoutLoading ? "cursor-not-allowed opacity-75" : ""
                       }`}
                       onClick={handleLogout}
