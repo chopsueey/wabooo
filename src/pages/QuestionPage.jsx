@@ -20,9 +20,10 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export function QuestionPage() {
-  const { state } = useLocation();
-  const [activeTab, setActiveTab] = useState("Statistics");
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { isEdited } = GeneralStore();
+  const [activeTab, setActiveTab] = useState("Statistics");
 
   const [sortedQuestions, setSortedQuestions] = useState(null);
   const [answersOfUser, setAnswersOfUser] = useState(null);
@@ -76,10 +77,10 @@ export function QuestionPage() {
       once: true,
       mirror: false,
     });
-  }, []);
+  }, [activeTab, isEdited]);
 
   return (
-    <div className="max-w-2xl sm:mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
+    <div className="max-w-2xl sm:mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8 overflow-hidden">
       <div className="row min-h-screen bg-gray-500 bg-opacity-25 rounded-xl flex flex-col justify-evenly sm:px-6 lg:px-8 xl:px-20 relative shadow-lg shadow-gray-950">
         <div className="mb-5 mt-5 ml-3">
           <button
@@ -114,10 +115,7 @@ export function QuestionPage() {
           )}
         </section>
         <section className="details flex flex-col m-2 mb-10">
-
-
           <div className="tab-menu hidden sm:block mx-5 my-10">
-
             <div className="flex">
               <div
                 className={
@@ -189,8 +187,10 @@ export function QuestionPage() {
           )}
         </section>
 
-        <QuestionMobileUserPanel activeTab2={activeTab} setActiveTab2={setActiveTab}/>
-
+        <QuestionMobileUserPanel
+          activeTab2={activeTab}
+          setActiveTab2={setActiveTab}
+        />
       </div>
     </div>
   );

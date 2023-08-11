@@ -221,9 +221,51 @@ export async function getComment(questionId) {
 export async function postComment(data) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/question/:questionId/comment`,
+      `http://localhost:5000/dashboard/question/${data.questionId}/comment`,
       {
         method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }
+    );
+    if (response.status === 201) {
+      return response;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function patchComment(data) {
+  try {
+    const response = await fetch(
+      `http://localhost:5000/dashboard/question/${data.questionId}/${data.commentId}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }
+    );
+    if (response.status === 201) {
+      return response;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function deleteComment(data) {
+  try {
+    const response = await fetch(
+      `http://localhost:5000/dashboard/question/${data.questionId}/${data.commentId}`,
+      {
+        method: "DELETE",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",

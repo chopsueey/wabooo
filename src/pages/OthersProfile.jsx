@@ -5,7 +5,10 @@ import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 import AOS from "aos";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ProfileMobileUserPanel from "../components/ProfileMobileUserPanel";
+import { deleteFollow, getFollower, postFollow } from "../fetchRequests/FollowRequests";
 
 export default function OthersProfile() {
   const { state } = useLocation();
@@ -42,19 +45,41 @@ export default function OthersProfile() {
   const [userFollowers, setUserFollowers] = useState(null);
 
   // variables for profile
-
+  const [isFollowed, setIsFollowed] = useState(null);
+  const [isOwnProfile, setIsOwnProfile] = useState(undefined);
   const [userData, setUserData] = useState(null);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
+  async function handleFollowClick() {
+    const followingProfileId = profileId;
+    const data = { followingProfileId };
+    await postFollow(data);
+
+    setIsFollowed(true);
+    toast.success("You are now following.", {
+      className: "custom-toast",
+    });
+  }
+
+  async function handleUnfollowClick() {
+    const followingProfileId = profileId;
+    const data = { followingProfileId };
+    await deleteFollow(data);
+
+    setIsFollowed(false);
+    toast.info("You stopped following.", {
+      className: "custom-toast",
+    });
+  }
+
   // get user profile data, refresh on every load
   useEffect(() => {
     (async function request() {
       setIsLoading(true);
       const profileData = await getOthersProfile(profileId);
-      console.log(profileData);
       setUserData(profileData);
       setAskedQuestions(profileData.askedQuestions);
       setLikedQuestions(profileData.likedQuestions);
@@ -62,6 +87,22 @@ export default function OthersProfile() {
       setLikesOfUser(profileData.userLikes);
       setUserIsFollowing(profileData.userIsFollowing);
       setUserFollowers(profileData.userFollowers);
+
+      // check if already followed and if own profile
+      const response = await getFollower(profileId);
+
+      // check if the profile of the question creator
+      // is the same as the current user, so that the user
+      // can't follow himself
+      response.userProfileId._id === profileId
+        ? setIsOwnProfile(true)
+        : setIsOwnProfile(false);
+
+      // if user follows the question creator
+      // switch follow/unfollow button
+      response.isUserFollowingTheProfile === null
+        ? setIsFollowed(false)
+        : setIsFollowed(true);
       setIsLoading(false);
     })();
     AOS.init({
@@ -185,10 +226,34 @@ export default function OthersProfile() {
                   <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-sky-500"></div>
                 </div>
               ) : (
-                <div className="row flex flex-col justify-around flex-wrap sm:flex-row text-center p-10 blubb1 rounded-xl mt-2 lg:mt-8">
+                <div className="row relative flex flex-col justify-around flex-wrap sm:flex-row text-center p-10 blubb1 rounded-xl mt-2 lg:mt-8">
+                  {!isOwnProfile ? (
+                    <div
+                      
+                      className="absolute top-3 right-4 text-black bg-white p-2"
+                    >
+                      {!isFollowed ? (
+                        <button
+                          className="text-green-400"
+                          onClick={handleFollowClick}
+                        >
+                          Follow
+                        </button>
+                      ) : (
+                        <button
+                          className="text-red-400"
+                          onClick={handleUnfollowClick}
+                        >
+                          Unfollow
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
                   <div className="profile-portrait flex justify-center">
                     {userData ? (
-                      
                       <div
                         style={{ maxWidth: "150px" }}
                         className="flex justify-center mb-10 overflow-hidden rounded-full"
@@ -207,7 +272,6 @@ export default function OthersProfile() {
                         />
                       </div>
                     ) : (
-                      
                       ""
                     )}
                   </div>
@@ -387,7 +451,10 @@ export default function OthersProfile() {
           )}
         </div>
       </section>
-      <ProfileMobileUserPanel activeTab2={activeTab} setActiveTab2={setActiveTab}/>
+      <ProfileMobileUserPanel
+        activeTab2={activeTab}
+        setActiveTab2={setActiveTab}
+      />
     </div>
   );
 }

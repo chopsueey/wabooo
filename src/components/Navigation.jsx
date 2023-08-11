@@ -63,7 +63,7 @@ export default function Navigation() {
                 <img className="w-30 h-16" src={Smiley} alt="wabooo logo" />
               </Link>
 
-              <Link className="flex items-center ml-3" to="/" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link className="flex items-center ml-1" to="/" onClick={() => setIsMobileMenuOpen(false)}>
                 <img
                   className=" h-10 ml-[-13px] mr-2 "
                   src={schrift}

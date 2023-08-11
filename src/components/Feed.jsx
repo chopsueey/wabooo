@@ -41,7 +41,6 @@ export default function Feed() {
     }
   };
 
-
   return (
     <div
       data-aos="zoom-in-down"
@@ -52,7 +51,10 @@ export default function Feed() {
 
       {isLoading ? (
         <div className="flex justify-center mt-4">
-          <img src={randomGif} alt="" />
+          <img
+            src={randomGif[Math.floor(Math.random() * (randomGif.length + 1))]}
+            alt=""
+          />
         </div>
       ) : sortedQuestions && sortedQuestions.length > 0 ? (
         <>
@@ -77,7 +79,11 @@ export default function Feed() {
           )}
         </>
       ) : (
-        <h2 className="text-center text-white">Nothing found :/</h2>
+        <div className="flex justify-center mt-20">
+          <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full w-full max-w-md p-4">
+            Nothing found 👀
+          </h2>
+        </div>
       )}
     </div>
   );

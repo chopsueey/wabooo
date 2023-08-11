@@ -4,6 +4,8 @@ import Like from "../model/likeModel.js";
 import Profile from "../model/profileModel.js";
 import Question from "../model/questionModel.js";
 import Comment from "../model/commentModel.js";
+import mongoose from "mongoose";
+
 // trend controller
 export async function getAllQuestions(req, res, next) {
   // const numOfQuestionsToShow = 10;
@@ -163,7 +165,7 @@ export async function getLatestQuestion(req, res, next) {
     const userFollowers = await Follow.find({
       followingProfileId: userProfile._id,
     });
-    
+
     return res.status(200).json({
       sortBy: sortBy,
       found: sortedQuestions,
@@ -315,12 +317,48 @@ export async function getComment(req, res, next) {
 
   try {
     const userProfile = await Profile.findOne({ userId: userId });
-    const questionComments = await Comment.find({ questionId: questionId })
-      .populate({
-        path: "profileId",
-        select: "userName image",
-      })
-      .exec();
+    // const questionComments = await Comment.find({ questionId: questionId })
+    //   .populate({
+    //     path: "profileId",
+    //     select: "userName image",
+    //   })
+    //   .exec();
+    const questionComments = await Comment.aggregate([
+      {
+        $match: {
+          questionId: new mongoose.Types.ObjectId(questionId),
+        },
+      },
+      {
+        $project: {
+          profileId: 1,
+          comment: 1,
+          createdAt: 1,
+          updatedAt: 1,
+          isOwnComment: {
+            $eq: ["$profileId", new mongoose.Types.ObjectId(userProfile._id)],
+          },
+        },
+      },
+      {
+        $lookup: {
+          from: "profiles",
+          localField: "profileId",
+          foreignField: "_id",
+          as: "profile",
+        },
+      },
+      {
+        $addFields: {
+          profileId: { $arrayElemAt: ["$profile", 0] },
+        },
+      },
+      {
+        $project: {
+          profile: 0,
+        },
+      },
+    ]);
     res.status(200).json(questionComments);
   } catch (err) {
     next(err);
@@ -351,21 +389,21 @@ export async function postComment(req, res, next) {
 export async function patchComment(req, res, next) {
   const commentId = req.params.commentId;
   const userId = req.user.userId;
-  const { comment } = req.body;
+  const { updatedComment } = req.body;
 
   try {
     const userProfile = await Profile.findOne({ userId: userId });
     const foundComment = await Comment.findOneAndUpdate(
       { _id: commentId, profileId: userProfile._id },
-      { comment: comment },
+      { comment: updatedComment },
       { new: true }
     );
 
-    if (!comment) {
-      return res.status(404).json({ error: 'Comment not found' });
+    if (!commentId) {
+      return res.status(404).json({ error: "Comment not found" });
     }
 
-    res.status(200).json(comment);
+    res.status(200).json(foundComment);
   } catch (err) {
     next(err);
   }
@@ -373,7 +411,7 @@ export async function patchComment(req, res, next) {
 
 // delete comment
 export async function deleteComment(req, res, next) {
-  const commentId = req.params.questionId;
+  const commentId = req.params.commentId;
   const userId = req.user.userId;
 
   try {
@@ -384,10 +422,10 @@ export async function deleteComment(req, res, next) {
     });
 
     if (!deleteComment) {
-      return res.status(404).json({ error: 'Comment not found' });
+      return res.status(404).json({ error: "Comment not found" });
     }
 
-    res.status(200).json({ message: 'Comment successfully deleted' });
+    res.status(201).json({ message: "Comment successfully deleted" });
   } catch (err) {
     next(err);
   }
