@@ -62,17 +62,15 @@ export default function Navigation() {
                   <img className="w-30 h-16" src={Smiley} alt="wabooo logo" />
                 </Link>
 
-                <Link
-                  className="flex items-center ml-3"
-                  to="/"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <img
-                    className=" h-10 ml-[-13px] mr-2 "
-                    src={schrift}
-                    alt="wabooo logo"
-                  />
-                </Link>
+
+              <Link className="flex items-center ml-1" to="/" onClick={() => setIsMobileMenuOpen(false)}>
+                <img
+                  className=" h-10 ml-[-13px] mr-2 "
+                  src={schrift}
+                  alt="wabooo logo"
+                />
+              </Link>
+
               </div>
               <ul className="hidden sm:flex items-center space-x-4 mr-2">
                 <Link to="/about">

@@ -74,9 +74,11 @@ export default function Recommended() {
           )}
         </>
       ) : (
-        <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
-          Nothing found 👀
-        </h2>
+        <div className="flex justify-center mt-20">
+          <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full w-full max-w-md p-4">
+            Nothing found 👀
+          </h2>
+        </div>
       )}
     </div>
   );

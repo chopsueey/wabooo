@@ -19,6 +19,10 @@ export function GeneralContext({ children }) {
 
   // search results
   const [results, setResults] = useState(null);
+
+  // edited comment
+  const [isEdited, setIsEdited] = useState(false);
+  
   const sharedData = {
     modal,
     setModal,
@@ -31,7 +35,9 @@ export function GeneralContext({ children }) {
     sortBy,
     setSortBy,
     results,
-    setResults
+    setResults,
+    isEdited,
+    setIsEdited,
   };
 
   return (

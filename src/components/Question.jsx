@@ -318,7 +318,7 @@ export const Question = ({
                 className="h-10 w-10 text-white relative -top-3 rounded-full hover:bg-cyan-700 hover:bg-opacity-50"
               />
               {showMoreInfo ? (
-                <div className="blubb absolute right-16 rounded-lg p-2 text-sm text-center flex flex-col">
+                <div className="blubb absolute right-16 rounded-lg p-2 text-sm text-center flex flex-col border-[1px] border-gray-200">
                   <span
                     style={{ cursor: "pointer" }}
                     onClick={() =>
