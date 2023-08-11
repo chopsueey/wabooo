@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userRegister, userLogin } from "../fetchRequests/UserRequests.jsx";
-import bg from "../assets/background.jpg";
+import origin from "../assets/origin.png";
+import age from "../assets/age.png";
 import bg2 from "../assets/karte.jpg";
-import gifIcon from "../assets/4dg1.gif";
+import gifIcon from "../assets/gifs/6os.gif";
 import ask from "../assets/ask.mp4";
 import GeneralStore from "../store/GeneralContext";
 import Typewriter from "typewriter-effect";
@@ -16,7 +17,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
-
+import MyQuestions from "../pages/MyQuestions.jsx";
+import FakeMyQuestions from "../pages/FakeMyQuestion.jsx";
 
 //"Your account is created. You are logged in!";
 // Account not yet created")
@@ -41,6 +43,17 @@ export default function Home() {
   const [password, setPassword] = useState("");
   const [doubleCheckPassword, setDoubleCheckPassword] = useState("");
 
+  const [isContentVisible, setIsContentVisible] = useState({
+    question1: false,
+    question2: false,
+    question3: false,
+  });
+  const handleQuestionClick = (questionKey) => {
+    setIsContentVisible((prevState) => ({
+      ...prevState,
+      [questionKey]: !prevState[questionKey],
+    }));
+  };
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (register && doubleCheckPassword !== password) {
@@ -118,7 +131,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col " style={{ height: "100vh" }}>
+    <div className="flex flex-col " style={{ minHeight: "100vh" }}>
       {/* <h1 className="text-4xl textc">Welcome to Wabooo!</h1> */}
 
       {/* text effekt */}
@@ -218,7 +231,7 @@ export default function Home() {
               </label>
             )}
             <button
-              className={` mt-4 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2 ${
+              className={` mt-4 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2 ${
                 loading ? "cursor-not-allowed opacity-75" : ""
               }`}
               type="submit"
@@ -252,8 +265,12 @@ export default function Home() {
             {register ? (
               <p className="register">
                 {/* <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" /> */}
-                <span className="cursor-pointer" onClick={() => setRegister(false)}>
-                to sign in</span>
+                <span
+                  className="cursor-pointer"
+                  onClick={() => setRegister(false)}
+                >
+                  to sign in
+                </span>
               </p>
             ) : (
               <p className="register mb-4">
@@ -293,108 +310,23 @@ export default function Home() {
             <p className="mt-2 text-cyan-500 text-center">Ask Wabooo!</p>
           </div>
         </div>
-
-        {/* Card zwei */}
-        {/* <div className=" mx-4 blubb shadow-md rounded-lg overflow-hidden">
-            <div
-              className="w-full h-32 object-cover"
-              style={{
-                backgroundImage: `url(${bg3})`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
-              }}
-              // src="https://dummyimage.com/150%20x%20150/1f2937/06b5d4.jpg&text=+Wabooo"
-            />
-            <div className="py-4 px-6">
-              <h2 className="text-cyan-300 text-xl font-semibold">
-                You have a question?
-              </h2>
-              <p className="mt-2 text-cyan-500">Ask Wabooo!</p>
-            </div>
-          </div>
-
-          {/* Card drei */}
-        {/* <div className=" mx-4 blubb shadow-md rounded-lg overflow-hidden">
-            <div
-              className="w-full h-32 object-cover"
-              style={{
-                backgroundImage: `url(${bg4})`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
-              }}
-              // src="https://dummyimage.com/150%20x%20150/1f2937/06b5d4.jpg&text=+Wabooo"
-            />
-            <div className="py-4 px-6">
-              <h2 className="text-cyan-300 text-xl font-semibold">
-                You have a question?
-              </h2>
-              <p className="mt-2 text-cyan-500">Ask Wabooo!</p>
-            </div>
-          </div>  */}
       </div>
-      <section className="flex justify-center items center w-full max-w-sm p-8 blubb1 rounded-md shadow-md gap-4 mt-8">
-        <div className="flex flex-col items-center">
-          <img src={gifIcon} alt="Questions icon" />
 
-          <p className="mt-2 text-cyan-500 text-center">
-            Hier Kann Marius einen tollen text schreiben
-          </p>
+      <div>
+        <h2 className="text-white  text-center text-5xl lg:text-7xl mb-10 font-bold ">
+          You have a question? Ask Wabooo!
+        </h2>
+      </div>
+      <div className="flex flex-row items-center justify-center">
+        <FakeMyQuestions />
+        <div className="flex items-center justify-center">
+          <img src={origin} alt="chart" className="w-2/3 h-2/3 " />
         </div>
-        <div>
-          {/* <video autoPlay loop muted>
-            <source src={ask} type="video/mp4" />
-            
-          </video> */}
+        <div className="flex items-center justify-center">
+          <img src={age} alt="chart" className="w-2/3 h-2/3 " />
         </div>
-      </section>
-      {/* <section className="flex justify-center gap-4 mt-8 blubb">
-        <div
-          className="flex flex-col items-center "
-          data-aos="fade-up"
-          data-aos-delay="3000"
-        >
-          <svg
-            className="h-8 w-8 text-cyan-500"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 100-12 6 6 0 000 12zm-2.293-3.293a1 1 0 111.414-1.414 1 1 0 01-1.414 1.414zm4.586 0a1 1 0 111.414-1.414 1 1 0 01-1.414 1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-
-          <p className="mt-2 text-cyan-500 text-center">
-            Hier Kann Marius einen tollen text schreiben
-          </p>
-        </div>
-      </section>
-      <section className="flex justify-center gap-4  mt-8 blubb1">
-        <div
-          className="flex flex-col items-center "
-          data-aos="fade-up"
-          data-aos-delay="3000"
-        >
-          <svg
-            className="h-8 w-8 text-cyan-500"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 100-12 6 6 0 000 12zm-2.293-3.293a1 1 0 111.414-1.414 1 1 0 01-1.414 1.414zm4.586 0a1 1 0 111.414-1.414 1 1 0 01-1.414 1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-
-          <p className="mt-2 text-cyan-500 text-center">
-            Hier Kann Marius einen tollen text schreiben
-          </p>
-        </div>
-      </section> */}
+        <div className="ml-4 mt-40"></div>
+      </div>
     </div>
   );
 }
