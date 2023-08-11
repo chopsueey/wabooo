@@ -20,7 +20,7 @@ import AOS from "aos";
 import ProfileImage from "../components/ProfileImage";
 
 import ProfileMobileUserPanel from "../components/ProfileMobileUserPanel";
-import GeneralStore from "../store/GeneralContext";
+import randomGif from "../assets/gifs/randomGif.jsx";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -280,7 +280,10 @@ export default function Profile() {
             <>
               {isLoading ? (
                 <div className="flex justify-center mt-4">
-                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-sky-500"></div>
+                  <img
+            src={randomGif[Math.floor(Math.random() * (randomGif.length + 1))]}
+            alt=""
+          />
                 </div>
               ) : (
                 <>

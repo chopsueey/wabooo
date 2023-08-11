@@ -32,6 +32,7 @@ import FakeMyQuestions from "../pages/FakeMyQuestion.jsx";
 export default function Home() {
   const navigate = useNavigate();
   const { modal, setModal, hasCookie, setHasCookie } = GeneralStore();
+  const [testAccount, setTestAccount] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [login, setLogin] = useState(false);
@@ -48,14 +49,39 @@ export default function Home() {
     question2: false,
     question3: false,
   });
+
   const handleQuestionClick = (questionKey) => {
     setIsContentVisible((prevState) => ({
       ...prevState,
       [questionKey]: !prevState[questionKey],
     }));
   };
+
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+    if (testAccount) {
+      setTestAccount(false);
+      setLoading(true);
+      const data = { email, password };
+      setEmail("");
+      setPassword("");
+      console.log(data);
+      setRegister(false);
+      const testAccResponse = await userLogin(data);
+
+      if (testAccResponse.status === 200) {
+        setHasCookie(true);
+        setModal(false);
+        navigate("/dashboard");
+        toast.success("Login successful!", {
+          className: "custom-toast",
+        });
+        setLoading(false);
+        return;
+      }
+      return;
+    }
+
     if (register && doubleCheckPassword !== password) {
       toast.error("Your passwords do not match.", {
         className: "custom-toast",
@@ -177,6 +203,44 @@ export default function Home() {
             <h3 className="text-white">
               {register ? "Sign up" : "Log into your account!"}
             </h3>
+            {/* test acc */}
+            <button
+              className={` mt-4 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2 ${
+                loading ? "cursor-not-allowed opacity-75" : ""
+              }`}
+              onClick={() => {
+                setEmail("testAccount@gmail.com");
+                setPassword("123456Test!");
+                setTestAccount(true);
+              }}
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <div className="flex items-center">
+                  <div className="mr-2 animate-spin">
+                    <svg
+                      className="w-5 h-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M16 12a4 4 0 1 1-8 0m8 0H8" />
+                    </svg>
+                  </div>
+                  Signing in...
+                </div>
+              ) : register ? (
+                "Test account"
+              ) : (
+                "Test account"
+              )}
+            </button>
             {register && (
               <>
                 <label className="block text-white text-xs font-bold mb-2">
@@ -218,12 +282,13 @@ export default function Home() {
                 placeholder="password (minimum 8 characters)"
                 onChange={(evt) => setPassword(evt.target.value)}
               />
-              {password.length >= 1 && !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password) && (
-                <p className="text-red-700 mt-2">
-                  Password shall have minimum 8 characters, including at least
-                  one capital letter and a symbol
-                </p>
-              )}
+              {password.length >= 1 &&
+                !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password) && (
+                  <p className="text-red-700 mt-2">
+                    Password shall have minimum 8 characters, including at least
+                    one capital letter and a symbol
+                  </p>
+                )}
             </label>
             {register && (
               <label className="block text-white text-xs font-bold mb-2">

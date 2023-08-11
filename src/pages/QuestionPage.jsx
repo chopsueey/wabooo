@@ -18,6 +18,7 @@ import QuestionMobileUserPanel from "../components/QuestionMobileUserPanel.jsx";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import randomGif from "../assets/gifs/randomGif.jsx";
 
 export function QuestionPage() {
   const navigate = useNavigate();
@@ -100,7 +101,10 @@ export function QuestionPage() {
         >
           {isLoading ? (
             <div className="flex justify-center mt-4">
-              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-sky-500"></div>
+              <img
+            src={randomGif[Math.floor(Math.random() * (randomGif.length + 1))]}
+            alt=""
+          />
             </div>
           ) : sortedQuestions && sortedQuestions.length > 0 ? (
             <Questions
