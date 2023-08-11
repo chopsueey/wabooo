@@ -205,8 +205,8 @@ export default function Home() {
                 placeholder="password (minimum 8 characters)"
                 onChange={(evt) => setPassword(evt.target.value)}
               />
-              {!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password) && (
-                <p className="text-red-700">
+              {password.length >= 1 && !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password) && (
+                <p className="text-red-700 mt-2">
                   Password shall have minimum 8 characters, including at least
                   one capital letter and a symbol
                 </p>
