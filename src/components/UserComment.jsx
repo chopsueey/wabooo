@@ -112,9 +112,7 @@ export function UserComment({ comment }) {
           </div>
         </div>
         <div className="flex flex-col grow w-full ml-4 mt-4 sm:mt-0 p-2 sm:pl-4 relative border-t-[1px] sm:border-l-[1px] sm:border-t-0 border-gray-500 overflow-scroll sm:overflow-hidden">
-          <div className="text-white mb-4">
-            {comment.comment}
-          </div>
+          <div className="text-white mb-4">{comment.comment}</div>
           <div className="flex flex-col absolute bottom-0 right-[9px]">
             <span className="text-white text-sm ml-2 text-end">
               {new Date(comment.createdAt).toLocaleDateString("en-US", {
@@ -168,11 +166,12 @@ export function UserComment({ comment }) {
                   onRequestClose={handleCloseEdit}
                   contentLabel="Delete Confirmation"
                 >
-                  <div className="bg-white rounded-lg p-6 w-full max-w-md flex flex-col text-center">
-                    <h2 className="text-lg font-semibold mb-4">
+                  <div className="blubb rounded-lg p-6 w-full max-w-md flex flex-col text-center">
+                    <h2 className="text-lg text-cyan-300 font-semibold mb-4">
                       Type your changes here.
                     </h2>
                     <textarea
+                      className="bg-gray-700 text-white p-2 rounded-lg"
                       onChange={(e) => setEditedComment(e.target.value)}
                       name="edit-comment"
                       id=""
@@ -183,13 +182,13 @@ export function UserComment({ comment }) {
                     </textarea>
                     <div>
                       <button
-                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 mr-2 w-fit"
+                        className="px-4 py-2 mt-5 bg-gray-900 border border-red-700 text-red-700 rounded hover:bg-gradient-to-br mr-2 w-fit"
                         onClick={editCommentConfirmed}
                       >
                         Yes
                       </button>
                       <button
-                        className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 w-fit"
+                        className="px-4 py-2 bg-gray-900 border border-cyan-300 text-cyan-300 rounded hover:bg-gradient-to-br w-fit"
                         onClick={handleCloseEdit}
                       >
                         No
