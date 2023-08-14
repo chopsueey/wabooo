@@ -101,10 +101,7 @@ export function QuestionPage() {
         >
           {isLoading ? (
             <div className="flex justify-center mt-4">
-              <img
-            src={randomGif[Math.floor(Math.random() * (randomGif.length + 1))]}
-            alt=""
-          />
+             <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-sky-500"></div>
             </div>
           ) : sortedQuestions && sortedQuestions.length > 0 ? (
             <Questions
