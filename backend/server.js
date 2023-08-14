@@ -29,9 +29,10 @@ app.use("/", userRouter);
 app.use("/statistics", statisticsRouter)
 app.use("/dashboard", authMiddleware, dashboardRouter);
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "index.html"));
+// });
+
 // Operational error handling
 //app.get("/", (req, res, next) => {
 // mimic an error by throwing an error to break the app!
