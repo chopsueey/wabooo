@@ -1,6 +1,6 @@
 export const userRegister = async (data) => {
   try {
-    const response = await fetch("http://localhost:5000/register", {
+    const response = await fetch("https://wabooo-server.up.railway.app/register", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -23,7 +23,7 @@ export const userRegister = async (data) => {
 
 export const userLogin = async (data) => {
   try {
-    const response = await fetch("http://localhost:5000/login", {
+    const response = await fetch("https://wabooo-server.up.railway.app/login", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -46,7 +46,7 @@ export const userLogin = async (data) => {
 
 export async function userLogout() {
   try {
-    const response = await fetch("http://localhost:5000/logout", {
+    const response = await fetch("https://wabooo-server.up.railway.app/logout", {
       credentials: "include",
     });
     if (response.status === 201) {

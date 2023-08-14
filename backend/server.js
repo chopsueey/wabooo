@@ -19,7 +19,7 @@ const port = process.env.PORT || 5050;
 const connectionString = process.env.MONGO_URL;
 
 // Start MIDDLEWARES
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cors({ credentials: true, origin: "https://wabooo.vercel.app/" }));
 app.use(cookieParser());
 app.use(express.json({ limit: "50mb" }));
 app.use(
@@ -30,6 +30,9 @@ app.use("/", userRouter);
 app.use("/statistics", statisticsRouter)
 app.use("/dashboard", authMiddleware, dashboardRouter);
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 // Operational error handling
 //app.get("/", (req, res, next) => {
 // mimic an error by throwing an error to break the app!
