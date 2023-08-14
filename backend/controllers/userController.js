@@ -36,10 +36,13 @@ export async function createUserController(req, res, next) {
 // LOGIN
 
 export async function loginController(req, res, next) {
+  const email = req.body.email;
+  const password = req.body.password;
+
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: email });
     if (user) {
-      const isMatch = await bcrypt.compare(req.body.password, user.password);
+      const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
         const userProfile = await Profile.findOne({ userId: user._id });
         // console.log(userProfile)

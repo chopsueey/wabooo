@@ -4,6 +4,7 @@ import { getFeed } from "../fetchRequests/QuestionRequests";
 import GeneralStore from "../store/GeneralContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import randomGif from "../assets/gifs/randomGif.jsx";
 import SortByMenu from "./SortByMenu";
 
 export default function Recommended() {
@@ -50,7 +51,10 @@ export default function Recommended() {
 
       {isLoading ? (
         <div className="flex justify-center mt-4">
-          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-sky-500"></div>
+          <img
+            src={randomGif[Math.floor(Math.random() * (randomGif.length + 1))]}
+            alt=""
+          />
         </div>
       ) : sortedQuestions && sortedQuestions.length > 0 ? (
         <>
