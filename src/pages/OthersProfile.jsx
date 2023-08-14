@@ -3,7 +3,11 @@ import { getOthersProfile } from "../fetchRequests/ProfileRequests";
 import { Questions } from "../components/Questions";
 import profilePic from "../assets/tg-stockach-de-dummy-profile-pic.png";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowLongLeftIcon,
+  UserMinusIcon,
+  UserPlusIcon,
+} from "@heroicons/react/24/solid";
 import AOS from "aos";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -235,17 +239,25 @@ export default function OthersProfile() {
                     <div className="absolute top-3 right-4 text-black p-2">
                       {!isFollowed ? (
                         <button
-                          className="text-cyan-300 border bg-gray-900 rounded-lg p-1 border-cyan-300 font-bold"
+
+                          className="text-cyan-300 tooltip bg-gray-900 rounded-lg p-3 font-bold"
                           onClick={handleFollowClick}
                         >
-                          + Follow
+                          <span class="tooltiptext blubb border  border-white text-cyan-300">
+                            Follow
+                          </span>{" "}
+                          <UserPlusIcon className="h-5 w-5" />
                         </button>
                       ) : (
                         <button
-                          className="text-red-700 border bg-gray-900 rounded-lg p-1 border-red-700 font-bold"
+                          className="text-red-700   bg-gray-900 rounded-lg p-3 tooltip font-bold"
+
                           onClick={handleUnfollowClick}
                         >
-                          Unfollow
+                          <span class="tooltiptext border  border-white text-red-700">
+                            Unfollow
+                          </span>{" "}
+                          <UserMinusIcon className="h-5 w-5" />
                         </button>
                       )}
                     </div>
