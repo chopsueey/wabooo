@@ -284,7 +284,7 @@ export async function deleteComment(data) {
 export async function getQuestionData(questionId) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/statistics/${questionId}`,
+      `http://localhost:5000/statistics/${questionId}`,
       { credentials: "include" }
     );
     if (response.status === 200) {

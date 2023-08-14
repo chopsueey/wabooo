@@ -81,7 +81,7 @@ export default function MyQuestions() {
         </h3>
         {isContentVisible.question1 && (
           <>
-            <div className="w-full max-w-sm p-8 blubb rounded-md">
+            <div className="w-full max-w-sm p-8">
               <p>Does summer annoy you?</p>
               <p>Should my cat be nominated as a presidential candidate?</p>
               <p>Is living a vegetarian lifestyle advisable?</p>
@@ -97,7 +97,7 @@ export default function MyQuestions() {
           How do I create a question?
         </h3>
         {isContentVisible.question2 && (
-          <div className="w-full max-w-sm p-8 blubb rounded-md">
+          <div className="w-full max-w-sm p-8">
             <p>
               After you have chosen a question, simply click on the input field
               below and create your question. Please note that a word can
@@ -115,7 +115,7 @@ export default function MyQuestions() {
           Rules for asking questions:
         </h3>
         {isContentVisible.question3 && (
-          <div className="w-full max-w-sm p-8 blubb rounded-md">
+          <div className="w-full max-w-sm p-8">
             <p className="leading-relaxed space-y-2">
               Please do not ask offensive questions!
               <br /> Bullying is not allowed, so please refrain from asking

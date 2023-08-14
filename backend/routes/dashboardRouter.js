@@ -81,8 +81,8 @@ dashboardRouter.get("/profile/:profileId/following", followController.getFollowe
 dashboardRouter.get("/search", searchController.searchFor);
 
 
-// DASHBOARD/STATISTICS
-dashboardRouter.get("/statistics/:questionId", statisticController.findProfilesByQuestionId);
+// // DASHBOARD/STATISTICS
+// dashboardRouter.get("/statistics/:questionId", statisticController.findProfilesByQuestionId);
 
 
 //DASHBOARD/COMMENT

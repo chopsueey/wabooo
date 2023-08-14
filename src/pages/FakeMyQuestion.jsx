@@ -20,9 +20,9 @@ export default function FakeMyQuestions() {
   async function handlePostQuestion(e) {
     e.preventDefault();
     if (question.length < 5) {
-      toast.error("Your question should have atleast 5 characters.", {
-        className: "custom-toast",
-      });
+      // toast.error("Your question should have atleast 5 characters.", {
+      //   className: "custom-toast",
+      // });
       return;
     }
     const topics = topicsArray;
@@ -33,9 +33,9 @@ export default function FakeMyQuestions() {
     setSaveLoading(false);
 
     setActiveTab("Feed");
-    toast.info("You posted a question", {
-      className: "custom-toast",
-    });
+    // toast.info("You posted a question", {
+    //   className: "custom-toast",
+    // });
   }
 
   const handleQuestionClick = (questionKey) => {
@@ -50,14 +50,14 @@ export default function FakeMyQuestions() {
       setTopicsArray([...topicsArray, topic]);
       setTopic("");
     }
-    if (topicsArray.length === 5) {
-      toast.error("The number of maximum topics is 5.");
-    }
-    if (topic.length < 2) {
-      toast.error(
-        "Your topic has to have 2 or more characters and shouldn't consist of spaces!"
-      );
-    }
+    // if (topicsArray.length === 5) {
+    //   toast.error("The number of maximum topics is 5.");
+    // }
+    // if (topic.length < 2) {
+    //   toast.error(
+    //     "Your topic has to have 2 or more characters and shouldn't consist of spaces!"
+    //   );
+    // }
   }
 
   function handleDeleteTopic(e) {
@@ -69,7 +69,7 @@ export default function FakeMyQuestions() {
 
   return (
     <div className="flex items-center justify-center mt-5 mb-5">
-      <div className="w-full max-w-sm p-8 blubb1 rounded-md shadow-md">
+      <div className="w-full max-w-sm p-8 blubb rounded-xl shadow-lg shadow-black">
         <h3
           className={`cursor-pointer text-cyan-300  mb-2 ${
             isContentVisible.question1 ? "" : ""
@@ -80,7 +80,7 @@ export default function FakeMyQuestions() {
         </h3>
         {isContentVisible.question1 && (
           <>
-            <div className="w-full max-w-sm p-8 blubb rounded-md">
+            <div className="w-full max-w-sm p-8">
               <p>
                 Ask a question that can be answered with a simple yes or no.
                 Your question will be added on the dashboard.
@@ -116,10 +116,10 @@ export default function FakeMyQuestions() {
           }`}
           onClick={() => handleQuestionClick("question3")}
         >
-          Add your own Topic!!!
+          Add your own Topic
         </h3>
         {isContentVisible.question3 && (
-          <div className="w-full max-w-sm p-8 blubb rounded-md">
+          <div className="w-full max-w-sm p-8">
             <p className="leading-relaxed space-y-2">
               You can choose from various topics, or you can select your own!
             </p>
