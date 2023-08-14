@@ -37,6 +37,9 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+        <p className="text-center font-extralight">
+          &copy; Marius - Alex - Basti - Nargiza
+        </p>
       </div>
     </footer>
   );
