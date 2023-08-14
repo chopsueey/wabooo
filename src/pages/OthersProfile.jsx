@@ -235,14 +235,14 @@ export default function OthersProfile() {
                     <div className="absolute top-3 right-4 text-black p-2">
                       {!isFollowed ? (
                         <button
-                          className="text-cyan-300 border bg-gray-900 rounded-lg p-3 border-cyan-300 font-bold"
+                          className="text-cyan-300 border bg-gray-900 rounded-lg p-1 border-cyan-300 font-bold"
                           onClick={handleFollowClick}
                         >
-                          Follow
+                          + Follow
                         </button>
                       ) : (
                         <button
-                          className="text-red-700 border bg-gray-900 rounded-lg p-3 border-red-700 font-bold"
+                          className="text-red-700 border bg-gray-900 rounded-lg p-1 border-red-700 font-bold"
                           onClick={handleUnfollowClick}
                         >
                           Unfollow

@@ -61,7 +61,7 @@ export function QuestionChart({ type, questionId }) {
         (data) => currentYear - data.birthYear
       );
       const averageAgeNo = calcAverage(ageOfNoAnswer) / ageOfNoAnswer.length;
-
+console.log(averageAgeNo)
       return [
         { answer: "yes", age: averageAgeYes.toFixed(1) },
         { answer: "no", age: averageAgeNo.toFixed(1) },

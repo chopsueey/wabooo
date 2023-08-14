@@ -182,7 +182,7 @@ export function UserComment({ comment }) {
                     </textarea>
                     <div>
                       <button
-                        className="px-4 py-2 mt-5 bg-gray-900 border border-red-700 text-red-700 rounded hover:bg-gradient-to-br mr-2 w-fit"
+                        className="px-4 py-2 mt-5 bg-gray-900 border border-green-400 text-green-400 rounded hover:bg-gradient-to-br mr-2 w-fit"
                         onClick={editCommentConfirmed}
                       >
                         Yes
