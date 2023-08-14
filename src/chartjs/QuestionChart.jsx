@@ -6,8 +6,8 @@ export function QuestionChart({ type, questionId }) {
   let chartInstance;
   let chartTitle = "";
 
-  if (type === "bar") {
-    chartTitle = "Average age of users";
+  if (type === "line") {
+    chartTitle = "Average user age";
   }
   if (type === "doughnut") {
     chartTitle = "Origin of users";
@@ -42,7 +42,7 @@ export function QuestionChart({ type, questionId }) {
   }
 
   function createDataSet(serverData) {
-    if (type === "bar") {
+    if (type === "line") {
       // create data for yes answer
       const birthYearYesAnswer = serverData.birthYears.filter(
         (data) => data.answer === "yes" && data.birthYear
@@ -61,10 +61,10 @@ export function QuestionChart({ type, questionId }) {
         (data) => currentYear - data.birthYear
       );
       const averageAgeNo = calcAverage(ageOfNoAnswer) / ageOfNoAnswer.length;
-
+      console.log(averageAgeNo);
       return [
-        { answer: "yes", age: averageAgeYes.toFixed(1) },
-        { answer: "no", age: averageAgeNo.toFixed(1) },
+        { answer: "Yes", age: averageAgeYes.toFixed(1) },
+        { answer: "No", age: averageAgeNo.toFixed(1) },
       ];
     }
     // only show the country of users without there answer
@@ -85,11 +85,19 @@ export function QuestionChart({ type, questionId }) {
     let dataConfig = {};
 
     // BAR
-    if (type === "bar") {
+    if (type === "line") {
       // dataLabel = [" yes", " no" ];
-      dataLabel = " average age";
+      dataLabel = " Average age";
       options = {
         plugins: {
+          tooltip: {
+            titleFont: {
+              size: 18, // Increase font size for tooltip title
+            },
+            bodyFont: {
+              size: 16, // Increase font size for tooltip body
+            },
+          },
           legend: {
             display: false,
           },
@@ -97,46 +105,87 @@ export function QuestionChart({ type, questionId }) {
         aspectRatio: 1,
         scales: {
           x: {
-            // X-axis scale configuration
+            type: 'category',
+            title: {
+              display: true,
+              text: "Answer Type",
+              color: "white",
+              padding: {
+                bottom: 10,
+              },
+              font: {
+                size: 16
+              }
+            },
+            position: "bottom",
             grid: {
               color: "rgba(255, 255, 255, 0.2)", // Color of the vertical grid lines
             },
             ticks: {
+              color: "rgba(255, 255, 255, 1)",
               font: {
-                size: 18,
+                size: 16,
               },
-
-              color: "rgba(255, 255, 255, 1)", // Color of the x-axis labels
+              
+              // callback: function(value, index, values) {
+              //   return ''; // Hide x-axis labels
+              // },
             },
           },
+          // x: {
+          //   // X-axis scale configuration
+          //   grid: {
+          //     color: "rgba(255, 255, 255, 0.2)", // Color of the vertical grid lines
+          //   },
+          //   ticks: {
+          //     font: {
+          //       size: 18,
+          //     },
+
+          //     color: "rgba(255, 255, 255, 1)", // Color of the x-axis labels
+          //   },
+          // },
           y: {
-            // title: {
-            //   display: true,
-            //   text: "age",
-            //   color: "white",
-            //   padding: {
-            //     bottom: 10,
-            //   },
-            //   font: {
-            //     size: 16
-            //   }
-            // },
+            title: {
+              display: true,
+              text: "Age",
+              color: "white",
+              padding: {
+                bottom: 10,
+              },
+              font: {
+                size: 16
+              }
+            },
             // Y-axis scale configuration
+            ticks: {
+              color: "rgba(255, 255, 255, 1)",
+              stepSize: 10,
+              font: {
+                size: 16,
+              },
+            },
             grid: {
               color: "rgba(255, 255, 255, 0.2)", // Color of the horizontal grid lines
             },
-            ticks: {
-              color: "rgba(255, 255, 255, 1)", // Color of the y-axis labels
-            },
+            // ticks: {
+            //   color: "rgba(255, 255, 255, 1)", // Color of the y-axis labels
+            // },
           },
         },
       };
       dataConfig = {
-        labels: dataSet.map((row) => row.answer),
+        labels: dataSet.map((item) => item.answer),
+
         datasets: [
           {
             label: dataLabel,
-            data: dataSet.map((row) => row.age),
+            data: dataSet.map((item) => item.age),
+            fill: false,
+            showLine: false,
+            pointRadius: 15,
+            pointHoverRadius: 20,
+            // dataSet.map((row) => row.age),
             backgroundColor: ["rgb(74 222 128)", "rgb(239 68 68)"],
             // borderColor: ["rgb(0, 168, 61)", "rgb(189, 0, 0)"],
             // borderWidth: 3,
@@ -151,6 +200,14 @@ export function QuestionChart({ type, questionId }) {
 
       options = {
         plugins: {
+          tooltip: {
+            titleFont: {
+              size: 18, // Increase font size for tooltip title
+            },
+            bodyFont: {
+              size: 16, // Increase font size for tooltip body
+            },
+          },
           legend: {
             display: true,
             position: "bottom",
@@ -171,7 +228,6 @@ export function QuestionChart({ type, questionId }) {
               color: "rgba(255, 255, 255, 0.2)", // Color of the vertical grid lines
             },
             ticks: {
-             
               color: "rgba(255, 255, 255, 0)", // Color of the x-axis labels
             },
           },

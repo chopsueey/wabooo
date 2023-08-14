@@ -239,6 +239,7 @@ export default function OthersProfile() {
                     <div className="absolute top-3 right-4 text-black p-2">
                       {!isFollowed ? (
                         <button
+
                           className="text-cyan-300 tooltip bg-gray-900 rounded-lg p-3 font-bold"
                           onClick={handleFollowClick}
                         >
@@ -250,6 +251,7 @@ export default function OthersProfile() {
                       ) : (
                         <button
                           className="text-red-700   bg-gray-900 rounded-lg p-3 tooltip font-bold"
+
                           onClick={handleUnfollowClick}
                         >
                           <span class="tooltiptext border  border-white text-red-700">

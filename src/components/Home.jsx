@@ -394,18 +394,8 @@ export default function Home() {
           <div className=" blubb shadow-md rounded-lg overflow-hidden sm:w-1/2">
             <p className=" text-center pt-3">
               {" "}
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
-              Hier könnte ihre Werbung stehen!
+              This chart provides an overview of the average age of the
+              participants in relation to the aforementioned question.
             </p>
           </div>
 
@@ -421,18 +411,18 @@ export default function Home() {
           <div className="w-1/4 blubb shadow-md rounded-lg overflow-hidden p-2">
             <p className="text-center">
               {" "}
-              Marius, füge hier deine Bankdaten ein!Marius, füge hier deine
-              Bankdaten ein! Marius, füge hier deine Bankdaten ein!Marius, füge
-              hier deine Bankdaten ein!Marius, füge hier deine Bankdaten
-              ein!Marius, füge hier deine Bankdaten ein!Marius, füge hier deine
-              Bankdaten ein!Marius, füge hier deine Bankdaten ein!Marius, füge
-              hier deine Bankdaten ein!Marius, füge hier deine Bankdaten
-              ein!Marius, füge hier deine Bankdaten ein!Marius, füge hier deine
-              Bankdaten ein!Marius, füge hier deine Bankdaten ein!Marius, füge
-              hier deine Bankdaten ein!Marius, füge hier deine Bankdaten
-              ein!Marius, füge hier deine Bankdaten ein!Marius, füge hier deine
-              Bankdaten ein!Marius, füge hier deine Bankdaten ein!Marius, füge
-              hier deine Bankdaten ein!Marius, füge hier deine Bankdaten ein!
+              Do you possess strong convictions regarding matters of importance,
+              both to yourself and to society at large? Are you eager to
+              cultivate awareness about specific issues? Do you aspire to
+              enhance your sociability by comprehending the viewpoints of both
+              the majority and minority populations in your country, region, and
+              across the globe? This is the platform that empowers you to
+              achieve all these aspirations and more! Engage in questioning,
+              sharing, agreeing, and dissenting. Pose your inquiries, articulate
+              your viewpoints, comment thoughtfully, and embrace openness. By
+              embracing diverse perspectives, we can collaboratively uncover
+              more effective solutions for individuals and the collective. Join
+              in now!
             </p>
           </div>
         </section>
@@ -440,18 +430,8 @@ export default function Home() {
         <section className="container mx-auto flex flex-col sm:flex-row justify-center blubb1 rounded-lg pt-3 pb-3 w-full">
           <div className="blubb shadow-md rounded-lg overflow-hidden sm:w-1/2">
             <p className="text-center">
-              Der, die, das, der, die, das... Wieso, weshalb, warum? Wer nicht
-              fragt bleibt dumm! Der, die, das, der, die, das... Wieso, weshalb,
-              warum? Wer nicht fragt bleibt dumm! Der, die, das, der, die,
-              das... Wieso, weshalb, warum? Wer nicht fragt bleibt dumm! Der,
-              die, das, der, die, das... Wieso, weshalb, warum? Wer nicht fragt
-              bleibt dumm! Der, die, das, der, die, das... Wieso, weshalb,
-              warum? Wer nicht fragt bleibt dumm! Der, die, das, der, die,
-              das... Wieso, weshalb, warum? Wer nicht fragt bleibt dumm! Der,
-              die, das, der, die, das... Wieso, weshalb, warum? Wer nicht fragt
-              bleibt dumm! Der, die, das, der, die, das... Wieso, weshalb,
-              warum? Wer nicht fragt bleibt dumm! Der, die, das, der, die,
-              das... Wieso, weshalb, warum? Wer nicht fragt bleibt dumm!{" "}
+              This pie chart visually represents the distribution of
+              participants based on their respective countries.
             </p>
           </div>
           <div className="w-1/4 blubb shadow-md rounded-lg overflow-hidden p-4">
