@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Question } from "./Question";
 
 export const Questions = ({
@@ -13,10 +13,19 @@ export const Questions = ({
   const likedQuestions = likes.map((id) => id.question);
   const isFollowingIds = isFollowing.map((follow) => follow.followingProfileId);
   const followsUserIds = followers.map((follow) => follow.followerProfileId);
+
+  const [numQuestionsToShow, setNumQuestionsToShow] = useState(5);
+
+  const handleLoadMore = () => {
+    if (questions.length > numQuestionsToShow) {
+      setNumQuestionsToShow(numQuestionsToShow + 5);
+    }
+  };
+
   return (
     <div>
       {questions
-        ? questions.map((item) => {
+        ? questions.slice(0, numQuestionsToShow).map((item) => {
             let userAnswer = false;
             let userLike = false;
             let userIsFollowing = false;
@@ -58,6 +67,17 @@ export const Questions = ({
             );
           })
         : ""}
+
+      {questions.length > numQuestionsToShow && (
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={handleLoadMore}
+            className="mb-2 ml-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br animate-pulse duration- shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-4 py-2"
+          >
+            show more
+          </button>
+        </div>
+      )}
     </div>
   );
 };
