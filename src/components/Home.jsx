@@ -218,12 +218,13 @@ export default function Home() {
                 placeholder="password (minimum 8 characters)"
                 onChange={(evt) => setPassword(evt.target.value)}
               />
-              {password.length >= 1 && !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password) && (
-                <p className="text-red-700 mt-2">
-                  Password shall have minimum 8 characters, including at least
-                  one capital letter and a symbol
-                </p>
-              )}
+              {password.length >= 1 &&
+                !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password) && (
+                  <p className="text-red-700 mt-2">
+                    Password shall have minimum 8 characters, including at least
+                    one capital letter and a symbol
+                  </p>
+                )}
             </label>
             {register && (
               <label className="block text-white text-xs font-bold mb-2">
@@ -320,18 +321,79 @@ export default function Home() {
 
       <div>
         <h2 className="text-white  text-center text-5xl lg:text-7xl mb-10 font-bold ">
-          You have a question? Ask Wabooo!
+          Wabooo asking us?
         </h2>
       </div>
-      <div className="flex flex-row items-center justify-center">
-        <FakeMyQuestions />
-        <div className="flex items-center justify-center">
-          <img src={origin} alt="chart" className="w-2/3 h-2/3 " />
-        </div>
-        <div className="flex items-center justify-center">
-          <img src={age} alt="chart" className="w-2/3 h-2/3 " />
-        </div>
-        <div className="ml-4 mt-40"></div>
+
+      <div className="flex flex-col space-y-4">
+        <section className="container mx-auto flex flex-col sm:flex-row justify-center blubb1 rounded-lg pt-3 pb-3 w-full">
+          <div className=" blubb shadow-md rounded-lg overflow-hidden sm:w-1/2">
+            <p className=" text-center pt-3">
+              {" "}
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen! Hier könnte ihre Werbung stehen!
+              Hier könnte ihre Werbung stehen!
+            </p>
+          </div>
+
+          <div className="sm:w-1/2 blubb shadow-md rounded-lg overflow-hidden p-4">
+            <FakeMyQuestions />
+          </div>
+        </section>
+        <div className="border border-b border-cyan-300 mr-10 ml-10"></div>
+        <section className="container mx-auto flex flex-col sm:flex-row justify-center blubb1 rounded-lg pt-3 pb-3 w-full">
+          <div className="blubb shadow-md rounded-lg overflow-hidden sm:w-1/2">
+            <img src={age} alt="chart" className="" />
+          </div>
+          <div className="w-1/4 blubb shadow-md rounded-lg overflow-hidden p-2">
+            <p className="text-center">
+              {" "}
+              Marius, füge hier deine Bankdaten ein!Marius, füge hier deine
+              Bankdaten ein! Marius, füge hier deine Bankdaten ein!Marius, füge
+              hier deine Bankdaten ein!Marius, füge hier deine Bankdaten
+              ein!Marius, füge hier deine Bankdaten ein!Marius, füge hier deine
+              Bankdaten ein!Marius, füge hier deine Bankdaten ein!Marius, füge
+              hier deine Bankdaten ein!Marius, füge hier deine Bankdaten
+              ein!Marius, füge hier deine Bankdaten ein!Marius, füge hier deine
+              Bankdaten ein!Marius, füge hier deine Bankdaten ein!Marius, füge
+              hier deine Bankdaten ein!Marius, füge hier deine Bankdaten
+              ein!Marius, füge hier deine Bankdaten ein!Marius, füge hier deine
+              Bankdaten ein!Marius, füge hier deine Bankdaten ein!Marius, füge
+              hier deine Bankdaten ein!Marius, füge hier deine Bankdaten ein!
+            </p>
+          </div>
+        </section>
+        <div className="border border-b border-cyan-300 mr-10 ml-10"></div>
+        <section className="container mx-auto flex flex-col sm:flex-row justify-center blubb1 rounded-lg pt-3 pb-3 w-full">
+          <div className="blubb shadow-md rounded-lg overflow-hidden sm:w-1/2">
+            <p className="text-center">
+              Der, die, das, der, die, das... Wieso, weshalb, warum? Wer nicht
+              fragt bleibt dumm! Der, die, das, der, die, das... Wieso, weshalb,
+              warum? Wer nicht fragt bleibt dumm! Der, die, das, der, die,
+              das... Wieso, weshalb, warum? Wer nicht fragt bleibt dumm! Der,
+              die, das, der, die, das... Wieso, weshalb, warum? Wer nicht fragt
+              bleibt dumm! Der, die, das, der, die, das... Wieso, weshalb,
+              warum? Wer nicht fragt bleibt dumm! Der, die, das, der, die,
+              das... Wieso, weshalb, warum? Wer nicht fragt bleibt dumm! Der,
+              die, das, der, die, das... Wieso, weshalb, warum? Wer nicht fragt
+              bleibt dumm! Der, die, das, der, die, das... Wieso, weshalb,
+              warum? Wer nicht fragt bleibt dumm! Der, die, das, der, die,
+              das... Wieso, weshalb, warum? Wer nicht fragt bleibt dumm!{" "}
+            </p>
+          </div>
+          <div className="w-1/4 blubb shadow-md rounded-lg overflow-hidden p-4">
+            <img src={origin} alt="chart" className="" />
+          </div>
+        </section>
       </div>
     </div>
   );

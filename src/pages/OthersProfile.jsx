@@ -8,7 +8,11 @@ import AOS from "aos";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProfileMobileUserPanel from "../components/ProfileMobileUserPanel";
-import { deleteFollow, getFollower, postFollow } from "../fetchRequests/FollowRequests";
+import {
+  deleteFollow,
+  getFollower,
+  postFollow,
+} from "../fetchRequests/FollowRequests";
 
 export default function OthersProfile() {
   const { state } = useLocation();
@@ -228,20 +232,17 @@ export default function OthersProfile() {
               ) : (
                 <div className="row relative flex flex-col justify-around flex-wrap sm:flex-row text-center p-10 blubb1 rounded-xl mt-2 lg:mt-8">
                   {!isOwnProfile ? (
-                    <div
-                      
-                      className="absolute top-3 right-4 text-black bg-white p-2"
-                    >
+                    <div className="absolute top-3 right-4 text-black p-2">
                       {!isFollowed ? (
                         <button
-                          className="text-green-400"
+                          className="text-cyan-300 border bg-gray-900 rounded-lg p-3 border-cyan-300 font-bold"
                           onClick={handleFollowClick}
                         >
                           Follow
                         </button>
                       ) : (
                         <button
-                          className="text-red-400"
+                          className="text-red-700 border bg-gray-900 rounded-lg p-3 border-red-700 font-bold"
                           onClick={handleUnfollowClick}
                         >
                           Unfollow

@@ -71,7 +71,7 @@ export default function FakeMyQuestions() {
     <div className="flex items-center justify-center mt-5 mb-5">
       <div className="w-full max-w-sm p-8 blubb1 rounded-md shadow-md">
         <h3
-          className={`cursor-pointer text-cyan-300 mb-2 ${
+          className={`cursor-pointer text-cyan-300  mb-2 ${
             isContentVisible.question1 ? "" : ""
           }`}
           onClick={() => handleQuestionClick("question1")}
