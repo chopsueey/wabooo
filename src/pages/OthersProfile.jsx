@@ -31,6 +31,8 @@ export default function OthersProfile() {
     "hidden sm:block lg:fixed xl:w-auto sm:px-6 lg:px-10"
   );
 
+  const [numQuestionsToShow1, setNumQuestionsToShow1] = useState(5);
+  const [numQuestionsToShow2, setNumQuestionsToShow2] = useState(5);
   // set user panel fixed when scrollY above 60px
   window.addEventListener("scroll", () => {
     if (window.scrollY >= 60) {
@@ -60,7 +62,16 @@ export default function OthersProfile() {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-
+  const handleLoadMoreAsked = () => {
+    if (askedQuestions.length > numQuestionsToShow1) {
+      setNumQuestionsToShow1((num) => num + 5);
+    }
+  };
+  const handleLoadMoreLiked = () => {
+    if (likedQuestions.length > numQuestionsToShow2) {
+      setNumQuestionsToShow2((num) => num + 5);
+    }
+  };
   async function handleFollowClick() {
     const followingProfileId = profileId;
     const data = { followingProfileId };
@@ -239,7 +250,6 @@ export default function OthersProfile() {
                     <div className="absolute top-3 right-4 text-black p-2">
                       {!isFollowed ? (
                         <button
-
                           className="text-cyan-300 tooltip bg-gray-900 rounded-lg p-3 font-bold"
                           onClick={handleFollowClick}
                         >
@@ -251,7 +261,6 @@ export default function OthersProfile() {
                       ) : (
                         <button
                           className="text-red-700   bg-gray-900 rounded-lg p-3 tooltip font-bold"
-
                           onClick={handleUnfollowClick}
                         >
                           <span class="tooltiptext border  border-white text-red-700">
@@ -328,7 +337,7 @@ export default function OthersProfile() {
                 </div>
               ) : askedQuestions && askedQuestions.length > 0 ? (
                 <Questions
-                  questions={askedQuestions}
+                  questions={askedQuestions.slice(0, numQuestionsToShow1)}
                   answers={answersOfUser}
                   likes={likesOfUser}
                   isFollowing={userIsFollowing}
@@ -338,6 +347,16 @@ export default function OthersProfile() {
                 <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
                   Nothing found 👀
                 </h2>
+              )}
+              {askedQuestions.length > numQuestionsToShow1 && (
+                <div className="flex justify-center mt-4">
+                  <button
+                    onClick={handleLoadMoreAsked}
+                    className="mb-2 ml-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br animate-pulse duration- shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-4 py-2"
+                  >
+                    show more
+                  </button>
+                </div>
               )}
             </div>
           )}
@@ -349,7 +368,7 @@ export default function OthersProfile() {
                 </div>
               ) : likedQuestions && likedQuestions.length > 0 ? (
                 <Questions
-                  questions={likedQuestions}
+                  questions={likedQuestions.slice(0, numQuestionsToShow2)}
                   answers={answersOfUser}
                   likes={likesOfUser}
                   isFollowing={userIsFollowing}
@@ -360,6 +379,16 @@ export default function OthersProfile() {
                   <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
                     Nothing found 👀
                   </h2>
+                </div>
+              )}
+              {likedQuestions.length > numQuestionsToShow2 && (
+                <div className="flex justify-center mt-4">
+                  <button
+                    onClick={handleLoadMoreLiked}
+                    className="mb-2 ml-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br animate-pulse duration- shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-4 py-2"
+                  >
+                    show more
+                  </button>
                 </div>
               )}
             </div>

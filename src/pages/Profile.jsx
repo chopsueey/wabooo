@@ -50,7 +50,16 @@ export default function Profile() {
       );
     }
   });
-
+  const handleLoadMoreAsked = () => {
+    if (askedQuestions.length > numQuestionsToShow1) {
+      setNumQuestionsToShow1((num) => num + 5);
+    }
+  };
+  const handleLoadMoreLiked = () => {
+    if (likedQuestions.length > numQuestionsToShow2) {
+      setNumQuestionsToShow2((num) => num + 5);
+    }
+  };
   // variables for question data
   const [askedQuestions, setAskedQuestions] = useState(null);
   const [likedQuestions, setLikedQuestions] = useState(null);
@@ -58,7 +67,8 @@ export default function Profile() {
   const [likesOfUser, setLikesOfUser] = useState(null);
   const [userIsFollowing, setUserIsFollowing] = useState(null);
   const [userFollowers, setUserFollowers] = useState(null);
-
+  const [numQuestionsToShow1, setNumQuestionsToShow1] = useState(5);
+  const [numQuestionsToShow2, setNumQuestionsToShow2] = useState(5);
   // variables for profile
 
   const [userData, setUserData] = useState(null);
@@ -281,9 +291,13 @@ export default function Profile() {
               {isLoading ? (
                 <div className="flex justify-center mt-4">
                   <img
-            src={randomGif[Math.floor(Math.random() * (randomGif.length + 1))]}
-            alt=""
-          />
+                    src={
+                      randomGif[
+                        Math.floor(Math.random() * (randomGif.length + 1))
+                      ]
+                    }
+                    alt=""
+                  />
                 </div>
               ) : (
                 <>
@@ -560,7 +574,7 @@ export default function Profile() {
                 </div>
               ) : askedQuestions && askedQuestions.length > 0 ? (
                 <Questions
-                  questions={askedQuestions}
+                  questions={askedQuestions.slice(0, numQuestionsToShow1)}
                   answers={answersOfUser}
                   likes={likesOfUser}
                   isFollowing={userIsFollowing}
@@ -572,8 +586,19 @@ export default function Profile() {
                   Nothing found 👀
                 </h2>
               )}
+              {askedQuestions.length > numQuestionsToShow1 && (
+                <div className="flex justify-center mt-4">
+                  <button
+                    onClick={handleLoadMoreAsked}
+                    className="mb-2 ml-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br animate-pulse duration- shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-4 py-2"
+                  >
+                    show more
+                  </button>
+                </div>
+              )}
             </div>
           )}
+
           {activeTab === "Favorites" && (
             <div data-aos="zoom-in-down" data-aos-delay="100">
               {isLoading ? (
@@ -582,7 +607,7 @@ export default function Profile() {
                 </div>
               ) : likedQuestions && likedQuestions.length > 0 ? (
                 <Questions
-                  questions={likedQuestions}
+                  questions={likedQuestions.slice(0, numQuestionsToShow2)}
                   answers={answersOfUser}
                   likes={likesOfUser}
                   isFollowing={userIsFollowing}
@@ -592,6 +617,16 @@ export default function Profile() {
                 <h2 className="text-center font-bold items-center text-cyan-300 blubb1 shadow-lg shadow-gray-950 rounded-full max-w-md p-4">
                   Nothing found 👀
                 </h2>
+              )}
+              {likedQuestions.length > numQuestionsToShow2 && (
+                <div className="flex justify-center mt-4">
+                  <button
+                    onClick={handleLoadMoreLiked}
+                    className="mb-2 ml-2 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br animate-pulse duration- shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-4 py-2"
+                  >
+                    show more
+                  </button>
+                </div>
               )}
             </div>
           )}
