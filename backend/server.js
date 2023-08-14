@@ -14,7 +14,6 @@ import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authMiddleware } from "./middleware/authMiddleware.js";
 import statisticsRouter from "./routes/statisticsRouter.js";
 const app = express();
-
 const port = process.env.PORT || 5050;
 const connectionString = process.env.MONGO_URL;
 
