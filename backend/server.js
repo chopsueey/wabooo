@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import userRouter from "./routes/userRouter.js";
 import dashboardRouter from "./routes/dashboardRouter.js";
+import * as statisticController from "./controllers/statisticController.js";
 import cookieParser from "cookie-parser";
 
 import connectDB from "./database/connectDB.js";
@@ -11,6 +12,7 @@ import connectDB from "./database/connectDB.js";
 import notFoundMiddleware from "./middleware/notFoundMiddleware.js";
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authMiddleware } from "./middleware/authMiddleware.js";
+import statisticsRouter from "./routes/statisticsRouter.js";
 const app = express();
 
 const port = process.env.PORT || 5050;
@@ -24,6 +26,8 @@ app.use(
   express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 })
 );
 app.use("/", userRouter);
+
+app.use("/statistics", statisticsRouter)
 app.use("/dashboard", authMiddleware, dashboardRouter);
 
 // Operational error handling

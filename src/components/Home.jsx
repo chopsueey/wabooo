@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { userRegister, userLogin } from "../fetchRequests/UserRequests.jsx";
 import origin from "../assets/origin.png";
 import age from "../assets/age.png";
-import bg2 from "../assets/karte.jpg";
+import bg2 from "../assets/end.jpg";
 import gifIcon from "../assets/gifs/6os.gif";
 import ask from "../assets/ask.mp4";
 import GeneralStore from "../store/GeneralContext";
@@ -19,6 +19,7 @@ import "aos/dist/aos.css";
 import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
 import MyQuestions from "../pages/MyQuestions.jsx";
 import FakeMyQuestions from "../pages/FakeMyQuestion.jsx";
+import { QuestionChart } from "../chartjs/QuestionChart.jsx";
 
 //"Your account is created. You are logged in!";
 // Account not yet created")
@@ -157,23 +158,52 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col " style={{ minHeight: "100vh" }}>
+    <div
+      className="flex flex-col overflow-hidden "
+      style={{ minHeight: "100vh" }}
+    >
       {/* <h1 className="text-4xl textc">Welcome to Wabooo!</h1> */}
-
-      {/* text effekt */}
-      <div className="flex flex-col items-center justify-center h-2/4">
-        <h1 className="text-center pb-10 text-white text-5xl lg:text-7xl">
-          <Typewriter
-            options={{
-              strings: [
-                "How many other people think like you?",
-                "Sign up and find out!",
-              ],
-              autoStart: true,
-              loop: true,
-            }}
-          />
-        </h1>
+      <div className="h-screen">
+        {/* text effekt */}
+        <div className="flex flex-col items-center justify-center h-2/4">
+          <h1 className="text-center pb-10 text-white text-5xl lg:text-7xl">
+            <Typewriter
+              options={{
+                strings: [
+                  "How many other people think like you?",
+                  "Sign up and find out!",
+                ],
+                autoStart: true,
+                loop: true,
+              }}
+            />
+          </h1>
+        </div>
+        {/* karten */}
+        <div
+          className="flex flex-wrap justify-center gap-4 sm:mb-8"
+          style={{ marginBottom: "5rem" }}
+        >
+          {/* Card eins */}
+          <div className="mx-4 blubb rounded-xl shadow-lg shadow-black overflow-hidden w-[500px]">
+            {/* <div
+              className="w-full h-1/2"
+              style={{
+                backgroundImage: `url(${bg2})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "100%",
+              }}
+              // src="https://dummyimage.com/150%20x%20150/1f2937/06b5d4.jpg&text=+Wabooo"
+            /> */}
+            <img src={bg2} alt="" />
+            {/* <div className="py-4 px-6 flex flex-col justify-center">
+              <h2 className="text-cyan-300 mt-8 text-xl text-center font-semibold">
+                You have a question?
+              </h2>
+              <p className="mt-2 text-cyan-500 text-center">Ask Wabooo!</p>
+            </div> */}
+          </div>
+        </div>
       </div>
 
       {modal && (
@@ -357,85 +387,79 @@ export default function Home() {
           </form>
         </div>
       )}
-
-      {/* karten */}
-      <div
-        className="flex flex-wrap justify-center gap-4 sm:mb-8"
-        style={{ marginBottom: "5rem" }}
-      >
-        {/* Card eins */}
-        <div className="mx-4 blubb shadow-md rounded-lg overflow-hidden h-[300px]  w-[300px]">
-          <div
-            className="w-full h-2/4 object-cover"
-            style={{
-              backgroundImage: `url(${bg2})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
-            }}
-            // src="https://dummyimage.com/150%20x%20150/1f2937/06b5d4.jpg&text=+Wabooo"
-          />
-          <div className="py-4 px-6">
-            <h2 className="text-cyan-300 mt-8 text-xl text-center font-semibold">
-              You have a question?
-            </h2>
-            <p className="mt-2 text-cyan-500 text-center">Ask Wabooo!</p>
-          </div>
-        </div>
-      </div>
-
-      <div>
+<div style={{minHeight: "50vh"}} className="mb-20">
+<section  className="flex flex-col justify-center items-center p-2 mt-16">
         <h2 className="text-white  text-center text-5xl lg:text-7xl mb-10 font-bold ">
-          Wabooo asking us?
+          <span className="text-cyan-400">Wabooo</span> asking us?
         </h2>
-      </div>
-
-      <div className="flex flex-col space-y-4">
-        <section className="container mx-auto flex flex-col sm:flex-row justify-center blubb1 rounded-lg pt-3 pb-3 w-full">
-          <div className=" blubb shadow-md rounded-lg overflow-hidden sm:w-1/2">
-            <p className=" text-center pt-3">
+        <h2 className="blubb rounded-xl shadow-lg shadow-black text-white text-center text-xl mb-10 font-bold py-10 mt-20 px-10 sm:px-20 w-fit mx-2 sm:mx-10 max-w-[800px]">
+          Wabooo is a social media app, on which you can create questions for
+          other users, that can only be answered with yes or no.
+          <br/>
+          So <span className="italic text-cyan-400">what about</span> asking us?
+        </h2>
+      </section>
+      <section className="container mx-auto flex flex-col lg:flex-row justify-center items-center pt-3 pb-3 w-full mt-10">
+          <div className="overflow-hidden sm:w-1/2 flex justify-center items-center p-10">
+            <p className="text-center sm:text-3xl">
               {" "}
-              This chart provides an overview of the average age of the
-              participants in relation to the aforementioned question.
+              You can ask questions to other users and add certain topics to
+              them, so that they are easier to find.
+              {/* Pose your inquiries, articulate your viewpoints, comment
+              thoughtfully, and embrace openness. By embracing diverse
+              perspectives, we can collaboratively uncover more effective
+              solutions for individuals and the collective. Join in now! */}
             </p>
           </div>
 
-          <div className="sm:w-1/2 blubb shadow-md rounded-lg overflow-hidden p-4">
+          <div className="sm:w-1/2 overflow-hidden p-4">
             <FakeMyQuestions />
           </div>
         </section>
-        <div className="border border-b border-cyan-300 mr-10 ml-10"></div>
-        <section className="container mx-auto flex flex-col sm:flex-row justify-center blubb1 rounded-lg pt-3 pb-3 w-full">
-          <div className="blubb shadow-md rounded-lg overflow-hidden sm:w-1/2">
-            <img src={age} alt="chart" className="" />
+</div>
+      
+      <div className="flex flex-col space-y-4">
+        
+        <div className="border border-b border-cyan-300 mx-10"></div>
+        <section className="container mx-auto flex flex-col lg:flex-row justify-center items-center pt-3 pb-3 w-full px-2">
+          <div className="w-full flex justify-center my-10 sm:w-1/2">
+            {/* <img src={age} alt="chart" className="" /> */}
+            <QuestionChart
+              type="line"
+              questionId={"64b6797445d37eb3c6530e0a"}
+            />
           </div>
-          <div className="w-1/4 blubb shadow-md rounded-lg overflow-hidden p-2">
-            <p className="text-center">
+          <div className="overflow-hidden sm:w-1/2 flex justify-center items-center p-10">
+            <p className="text-center sm:text-3xl">
               {" "}
-              Do you possess strong convictions regarding matters of importance,
+              {/* Do you possess strong convictions regarding matters of importance,
               both to yourself and to society at large? Are you eager to
               cultivate awareness about specific issues? Do you aspire to
               enhance your sociability by comprehending the viewpoints of both
               the majority and minority populations in your country, region, and
               across the globe? This is the platform that empowers you to
               achieve all these aspirations and more! Engage in questioning,
-              sharing, agreeing, and dissenting. Pose your inquiries, articulate
-              your viewpoints, comment thoughtfully, and embrace openness. By
-              embracing diverse perspectives, we can collaboratively uncover
-              more effective solutions for individuals and the collective. Join
-              in now!
+              sharing, agreeing, and dissenting. */}
+              {/* This chart provides an overview of the average age of the
+              participants in relation to the aforementioned question. */}
+              You will also get an overview of the average age of all users
+              who answered your question.
             </p>
           </div>
         </section>
-        <div className="border border-b border-cyan-300 mr-10 ml-10"></div>
-        <section className="container mx-auto flex flex-col sm:flex-row justify-center blubb1 rounded-lg pt-3 pb-3 w-full">
-          <div className="blubb shadow-md rounded-lg overflow-hidden sm:w-1/2">
-            <p className="text-center">
+        {/* <div className="border border-b border-cyan-300 mr-10 ml-10"></div> */}
+        <section className="container mx-auto flex flex-col lg:flex-row justify-center items-center pt-3 pb-3 w-full px-2">
+          <div className="overflow-hidden sm:w-1/2 flex justify-center items-center p-10">
+            <p className="text-center sm:text-3xl">
               This pie chart visually represents the distribution of
               participants based on their respective countries.
             </p>
           </div>
-          <div className="w-1/4 blubb shadow-md rounded-lg overflow-hidden p-4">
-            <img src={origin} alt="chart" className="" />
+          <div className="w-full flex justify-center my-10 sm:w-1/2">
+            <QuestionChart
+              type="doughnut"
+              questionId={"64b6797445d37eb3c6530e0a"}
+            />
           </div>
         </section>
       </div>
