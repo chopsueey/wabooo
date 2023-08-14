@@ -152,7 +152,7 @@ export function QuestionPage() {
           </div>
           {activeTab === "Statistics" ? (
             <div className="flex flex-wrap justify-around">
-              <QuestionChart type="bar" questionId={state.question._id} />
+              <QuestionChart type="line" questionId={state.question._id} />
               <QuestionChart type="doughnut" questionId={state.question._id} />
               {/* <QuestionChart type="line" /> */}
             </div>
