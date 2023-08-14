@@ -105,7 +105,7 @@ export function UserComment({ comment }) {
                   `/dashboard/${comment.profileId.userName}/profile/${comment.profileId._id}`
                 );
               }}
-              className="text-white hover:underline italic font-bold mt-2"
+              className="text-white text-center hover:underline italic font-bold mt-2"
             >
               {comment.profileId.userName}
             </div>
