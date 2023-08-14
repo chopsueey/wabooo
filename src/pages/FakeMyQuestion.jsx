@@ -82,12 +82,12 @@ export default function FakeMyQuestions() {
           <>
             <div className="w-full max-w-sm p-8 blubb rounded-md">
               <p>
-                Du kannst einfach eine Frage stellen,die man mit ja oder nein
-                beanworten kann und die dann im Dashboard auftaucht!
+                Ask a question that can be answered with a simple yes or no.
+                Your question will be added on the dashboard.
               </p>
               <p>
-                Andere User sehen sie und können via yes/no Button dir
-                antworten.
+                Other users can view it, and they can respond to you using the
+                yes/no button.
               </p>
             </div>
           </>
@@ -121,18 +121,16 @@ export default function FakeMyQuestions() {
         {isContentVisible.question3 && (
           <div className="w-full max-w-sm p-8 blubb rounded-md">
             <p className="leading-relaxed space-y-2">
-              Du kannst aus verschiedenen Topics auswählen oder aber du wählst
-              dein eigenes!
+              You can choose from various topics, or you can select your own!
             </p>
             <p>
-              Dazu musst du einfach nur im "Choose or add topic" Fenster, dein
-              eigenes Topic reinschreiben und auf den "add" Button klicken und
-              schon hast du dein eigenes Topic erstellt!
+              To do this, you simply need to enter your own topic in the "Choose
+              or add a topic" window, then click the "add" button, and you've
+              successfully created your own topic!
             </p>
             <p>
               {" "}
-              Mit klicken auf dein eigenes Topic, kannst du es auch wieder
-              entfernen.
+              By clicking on your own topic, you have an option for deleting it.
             </p>
           </div>
         )}
