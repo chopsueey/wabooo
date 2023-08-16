@@ -7,7 +7,7 @@ import Smiley from "../assets/smiley.png";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import GeneralStore from "../store/GeneralContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
