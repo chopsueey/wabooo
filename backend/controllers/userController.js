@@ -50,8 +50,8 @@ export async function loginController(req, res, next) {
         const token = await createToken({ userId: user._id });
         return res
           .status(200)
-          .cookie("jwt", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true }) // expires after 24 hours
-          .cookie("isLoggedIn", true, { maxAge: 24 * 60 * 60 * 1000 })
+          .cookie("jwt", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true }) // expires after 24 hours
+          .cookie("isLoggedIn", true, { maxAge: 24 * 60 * 60 * 1000, sameSite: "none", secure: true })
           .json({
             message: "Login successful.",
             userId: user._id,
@@ -74,8 +74,8 @@ export async function logoutController(req, res, next) {
   try {
     res
       .status(201)
-      .clearCookie("jwt", { httpOnly: true })
-      .clearCookie("isLoggedIn")
+      .clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: true })
+      .clearCookie("isLoggedIn", {sameSite: "none", secure: true})
       .json({ message: "Logout successful!" });
   } catch (err) {
     next(err);
