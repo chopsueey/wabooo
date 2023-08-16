@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userRegister, userLogin } from "../fetchRequests/UserRequests.jsx";
-import origin from "../assets/origin.png";
-import age from "../assets/age.png";
 import bg2 from "../assets/end.jpg";
-import gifIcon from "../assets/gifs/6os.gif";
-import ask from "../assets/ask.mp4";
-import GeneralStore from "../store/GeneralContext";
 import Typewriter from "typewriter-effect";
 import Smiley from "../assets/smiley.png";
 import { XMarkIcon } from "@heroicons/react/24/solid";
