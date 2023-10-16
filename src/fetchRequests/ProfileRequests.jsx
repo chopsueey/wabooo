@@ -1,6 +1,6 @@
 export async function getProfile() {
   try {
-    const response = await fetch(`https://wabooo-server.up.railway.app/dashboard/profile`, {
+    const response = await fetch(`https://wabooo-server.onrender.com/dashboard/profile`, {
       credentials: "include",
     });
     const data = await response.json();
@@ -15,7 +15,7 @@ export async function getProfile() {
 export async function getOthersProfile(profileId) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/profile/${profileId}`,
+      `https://wabooo-server.onrender.com/dashboard/profile/${profileId}`,
       {
         credentials: "include",
       }
@@ -32,7 +32,7 @@ export async function getOthersProfile(profileId) {
 
 export async function patchProfile(data) {
   try {
-    const response = await fetch(`https://wabooo-server.up.railway.app/dashboard/profile`, {
+    const response = await fetch(`https://wabooo-server.onrender.com/dashboard/profile`, {
       method: "PATCH",
       body: JSON.stringify(data),
       headers: {
@@ -50,7 +50,7 @@ export async function patchProfile(data) {
 
 export async function patchProfileImage(data) {
   try {
-    const response = await fetch(`https://wabooo-server.up.railway.app/dashboard/profile/upload/image`, {
+    const response = await fetch(`https://wabooo-server.onrender.com/dashboard/profile/upload/image`, {
       method: "PATCH",
       body: JSON.stringify(data),
       headers: {
@@ -69,7 +69,7 @@ export async function patchProfileImage(data) {
 export async function deleteProfileImage() {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/profile/cloudinary`,
+      `https://wabooo-server.onrender.com/dashboard/profile/cloudinary`,
       {
         method: "DELETE",
         credentials: "include",
