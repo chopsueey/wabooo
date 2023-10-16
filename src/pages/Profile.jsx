@@ -181,7 +181,7 @@ export default function Profile() {
       once: true,
       mirror: false,
     });
-  }, [activeTab, imageUploaded]);
+  }, [imageUploaded]);
 
   return (
     <div className="mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8">
