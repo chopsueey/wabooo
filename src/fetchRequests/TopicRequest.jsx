@@ -1,6 +1,6 @@
 export async function getMostPopularTopics() {
   try {
-    const response = await fetch(`https://wabooo-server.up.railway.app/dashboard/topics`, {
+    const response = await fetch(`https://wabooo-server.onrender.com/dashboard/topics`, {
       credentials: "include",
     });
     if (response.status === 200) {

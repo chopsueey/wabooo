@@ -1,5 +1,5 @@
 export async function getQuestions() {
-  const response = await fetch("https://wabooo-server.up.railway.app/dashboard/myquestions", {
+  const response = await fetch("https://wabooo-server.onrender.com/dashboard/myquestions", {
     credentials: "include",
   });
   const data = await response.json();
@@ -10,7 +10,7 @@ export async function getQuestions() {
 
 export async function getQuestion(questionId) {
   const response = await fetch(
-    `https://wabooo-server.up.railway.app/dashboard/myquestions/${questionId}`,
+    `https://wabooo-server.onrender.com/dashboard/myquestions/${questionId}`,
     {
       credentials: "include",
     }
@@ -23,7 +23,7 @@ export async function getQuestion(questionId) {
 
 export async function updateQuestion(questionId) {
   const response = await fetch(
-    `https://wabooo-server.up.railway.app/dashboard/question/${questionId}`,
+    `https://wabooo-server.onrender.com/dashboard/question/${questionId}`,
     {
       credentials: "include",
     }
@@ -37,7 +37,7 @@ export async function updateQuestion(questionId) {
 export async function postQuestion(data) {
   try {
     const response = await fetch(
-      "https://wabooo-server.up.railway.app/dashboard/myquestions",
+      "https://wabooo-server.onrender.com/dashboard/myquestions",
       {
         method: "POST",
         body: JSON.stringify(data),
@@ -61,7 +61,7 @@ export async function postQuestion(data) {
 export async function deleteQuestion(data) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/profile/questions/delete`,
+      `https://wabooo-server.onrender.com/dashboard/profile/questions/delete`,
       {
         method: "DELETE",
         body: JSON.stringify(data),
@@ -82,7 +82,7 @@ export async function deleteQuestion(data) {
 export async function postAnswer(data) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/question/answer`,
+      `https://wabooo-server.onrender.com/dashboard/question/answer`,
       {
         method: "POST",
         body: JSON.stringify(data),
@@ -103,7 +103,7 @@ export async function postAnswer(data) {
 export async function postLike(data) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/question/likes`,
+      `https://wabooo-server.onrender.com/dashboard/question/likes`,
       {
         method: "POST",
         body: JSON.stringify(data),
@@ -125,7 +125,7 @@ export async function postLike(data) {
 export async function deleteLike(data) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/question/likes`,
+      `https://wabooo-server.onrender.com/dashboard/question/likes`,
       {
         method: "DELETE",
         body: JSON.stringify(data),
@@ -146,7 +146,7 @@ export async function deleteLike(data) {
 export async function deleteAnswer(data) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/question/answer`,
+      `https://wabooo-server.onrender.com/dashboard/question/answer`,
       {
         method: "DELETE",
         body: JSON.stringify(data),
@@ -167,7 +167,7 @@ export async function deleteAnswer(data) {
 export async function getFeed(sortBy) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/feed/sort/?sortBy=${sortBy}`,
+      `https://wabooo-server.onrender.com/dashboard/feed/sort/?sortBy=${sortBy}`,
       {
         credentials: "include",
       }
@@ -186,7 +186,7 @@ export async function getFeed(sortBy) {
 export async function getTrend(sortBy) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/trend/sort/?sortBy=${sortBy}`,
+      `https://wabooo-server.onrender.com/dashboard/trend/sort/?sortBy=${sortBy}`,
       {
         credentials: "include",
       }
@@ -205,7 +205,7 @@ export async function getTrend(sortBy) {
 export async function getComment(questionId) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/question/${questionId}/allcomments`,
+      `https://wabooo-server.onrender.com/dashboard/question/${questionId}/allcomments`,
       {
         credentials: "include",
       }
@@ -221,7 +221,7 @@ export async function getComment(questionId) {
 export async function postComment(data) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/question/${data.questionId}/comment`,
+      `https://wabooo-server.onrender.com/dashboard/question/${data.questionId}/comment`,
       {
         method: "POST",
         body: JSON.stringify(data),
@@ -242,7 +242,7 @@ export async function postComment(data) {
 export async function patchComment(data) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/question/${data.questionId}/${data.commentId}`,
+      `https://wabooo-server.onrender.com/dashboard/question/${data.questionId}/${data.commentId}`,
       {
         method: "PATCH",
         body: JSON.stringify(data),
@@ -263,7 +263,7 @@ export async function patchComment(data) {
 export async function deleteComment(data) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/question/${data.questionId}/${data.commentId}`,
+      `https://wabooo-server.onrender.com/dashboard/question/${data.questionId}/${data.commentId}`,
       {
         method: "DELETE",
         body: JSON.stringify(data),
@@ -284,7 +284,7 @@ export async function deleteComment(data) {
 export async function getQuestionData(questionId) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/statistics/${questionId}`,
+      `https://wabooo-server.onrender.com/statistics/${questionId}`,
       { credentials: "include" }
     );
     if (response.status === 200) {

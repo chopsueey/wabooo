@@ -1,6 +1,6 @@
 export async function postFollow(data) {
   try {
-    const response = await fetch(`https://wabooo-server.up.railway.app/dashboard/follow`, {
+    const response = await fetch(`https://wabooo-server.onrender.com/dashboard/follow`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -19,7 +19,7 @@ export async function postFollow(data) {
 
 export async function deleteFollow(data) {
   try {
-    const response = await fetch(`https://wabooo-server.up.railway.app/dashboard/unfollow`, {
+    const response = await fetch(`https://wabooo-server.onrender.com/dashboard/unfollow`, {
       method: "DELETE",
       body: JSON.stringify(data),
       headers: {
@@ -39,7 +39,7 @@ export async function deleteFollow(data) {
 export async function getFollower(data) {
   try {
     const response = await fetch(
-      `https://wabooo-server.up.railway.app/dashboard/profile/${data}/follower`,
+      `https://wabooo-server.onrender.com/dashboard/profile/${data}/follower`,
       {
         credentials: "include",
       }
