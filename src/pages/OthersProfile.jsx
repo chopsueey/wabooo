@@ -129,7 +129,7 @@ export default function OthersProfile() {
       once: true,
       mirror: false,
     });
-  }, [activeTab, state]);
+  }, [state]);
 
   useEffect(() => {
     setActiveTab("Profile");

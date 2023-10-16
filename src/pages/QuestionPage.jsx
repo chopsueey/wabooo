@@ -78,7 +78,7 @@ export function QuestionPage() {
       once: true,
       mirror: false,
     });
-  }, [activeTab, isEdited]);
+  }, [isEdited]);
 
   return (
     <div className="max-w-2xl sm:mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8 overflow-hidden">
