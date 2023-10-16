@@ -20,7 +20,8 @@ function App() {
     const { hasCookie, setHasCookie } = GeneralStore();
     // const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        console.log("Logged in?", hasCookie);
+        console.log(document.cookie.includes("isLoggedIn"));
+        console.log(document.cookie);
 
         if (document.cookie.includes("isLoggedIn")) {
             setHasCookie(true);
