@@ -17,19 +17,19 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   const navigate = useNavigate();
   // cookie check for sensitive websitedata?
-  // const { hasCookie, setHasCookie } = GeneralStore();
-  // const [isLoading, setIsLoading] = useState(true);
-  // useEffect(() => {
-  //   document.cookie.includes("isLoggedIn")
-  //     ? (() => {
-  //         setHasCookie(true);
-  //         setIsLoading(false);
-  //       })()
-  //     : (() => {
-  //         setIsLoading(false);
-  //       })();
-  //   console.log("Logged in?", hasCookie);
-  // }, [hasCookie]);
+  const { hasCookie, setHasCookie } = GeneralStore();
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    document.cookie.includes("isLoggedIn")
+      ? (() => {
+          setHasCookie(true);
+          setIsLoading(false);
+        })()
+      : (() => {
+          setIsLoading(false);
+        })();
+    console.log("Logged in?", hasCookie);
+  }, [hasCookie]);
 
   return (
     <div>
