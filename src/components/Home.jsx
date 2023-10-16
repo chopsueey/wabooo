@@ -100,6 +100,7 @@ export default function Home() {
       setLoading(true);
       const response = await userLogin(data);
       if (response.status === 200) {
+        sessionStorage.setItem("isLoggedIn", "true");
         setHasCookie(true);
         setModal(false);
         navigate("/dashboard");
