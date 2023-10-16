@@ -16,6 +16,10 @@ export default function Navigation() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMobileMode, setIsMobileMode] = useState(false);
 
+    if (document.cookie.includes("isLoggedIn")) {
+        setHasCookie(true);
+    }
+    
     const handleLogout = async () => {
         setLogoutLoading(true);
         await userLogout();
@@ -32,9 +36,6 @@ export default function Navigation() {
     };
 
     useEffect(() => {
-        if (document.cookie.includes("isLoggedIn")) {
-            setHasCookie(true);
-        }
         const handleResize = () => {
             setIsMobileMode(window.innerWidth <= 640);
         };
