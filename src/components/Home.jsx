@@ -66,6 +66,7 @@ export default function Home() {
       const testAccResponse = await userLogin(data);
 
       if (testAccResponse.status === 200) {
+        sessionStorage.setItem("isLoggedIn", "true");
         setHasCookie(true);
         setModal(false);
         navigate("/dashboard");
