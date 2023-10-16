@@ -18,7 +18,7 @@ const port = process.env.PORT || 5050;
 const connectionString = process.env.MONGO_URL;
 
 // Start MIDDLEWARES
-app.use(cors({ credentials: true, origin: "https://wabooo-server.onrender.com" }));
+app.use(cors({ credentials: true, origin: "https://wabooo.vercel.app" }));
 app.use(cookieParser());
 app.use(express.json({ limit: "50mb" }));
 app.use(
