@@ -2,6 +2,9 @@ import { validateToken } from "../lib/auth.js";
 
 export const authMiddleware = async (req, res, next) => {
   // const authorization = req.headers.cookie;
+  console.log(req.headers);
+  console.log(req.cookies);
+  
   if (!req.headers.cookie) {
     return res.status(403).json({ msg: "Authentication failed." });
   }

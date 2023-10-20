@@ -21,6 +21,7 @@ export default function Navigation() {
         await userLogout();
         setLogoutLoading(false);
         setHasCookie(false);
+        sessionStorage.removeItem("isLoggedIn");
         navigate("/logout");
         toast.success("Logout successful!", {
             className: "custom-toast",
