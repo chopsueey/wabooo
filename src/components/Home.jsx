@@ -230,6 +230,7 @@ export default function Home() {
             <h3 className="text-white">
               {register ? "Sign up" : "Log into your account!"}
             </h3>
+            <strong className="text-red-600">It may take up to 30 seconds for a response if the servers are in sleepmode.</strong>
             {/* test acc */}
             <button
               className={` mt-4 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br shadow-lg shadow-gray-900 font-medium rounded-lg text-sm px-5 py-1 text-center mx-auto block max-w-[10rem] mb-2 ${
