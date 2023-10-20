@@ -71,6 +71,7 @@ export default function Home() {
       const testAccResponse = await userLogin(data);
 
       if (testAccResponse.status === 200) {
+        sessionStorage.setItem("isLoggedIn", "true");
         setHasCookie(true);
         setModal(false);
         navigate("/dashboard");
@@ -231,7 +232,7 @@ export default function Home() {
               <img src={Smiley} alt="" className="w-2/3 h-2/3 " />
             </div>
             <h3 className="text-white">
-              {register ? "Sign up" : "Log into your account!"}
+              {register ? "Sign up" : "Log into your account"}
             </h3>
             {/* test acc */}
             <button

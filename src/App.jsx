@@ -15,28 +15,27 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const navigate = useNavigate();
-  // cookie check for sensitive websitedata?
-  const { hasCookie, setHasCookie } = GeneralStore();
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    // using IIFE here
-    document.cookie.includes("isLoggedIn")
-      ? (() => {
-          setHasCookie(true);
-          setIsLoading(false);
-        })()
-      : (() => {
-          setIsLoading(false);
-        })();
-    console.log("Logged in?", hasCookie);
-  }, [hasCookie]);
+    const navigate = useNavigate();
+    // cookie check for sensitive websitedata?
+    const { hasCookie, setHasCookie } = GeneralStore();
+    // const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+        console.log(isLoggedIn);
+
+        if (isLoggedIn === "true") {
+            setHasCookie(true);
+        }
+
+        console.log("Logged in?", hasCookie);
+    }, []);
+
 
   return (
     <div>
-      {isLoading ? (
+      {/* {isLoading ? (
         <h2 style={{ color: "white" }}>Loading...</h2>
-      ) : (
+      ) : ( */}
         <Routes>
           <Route path="/" element={<Navigation />}>
             <Route index element={<Home />} />
@@ -59,7 +58,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-      )}
+      {/* )} */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
