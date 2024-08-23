@@ -5,6 +5,13 @@ import "./index.scss";
 import { GeneralContext } from "./store/GeneralContext.jsx";
 import { BrowserRouter } from "react-router-dom";
 
+const ENVIRONMENT = "development"; // "production"
+
+export const DOMAIN =
+  ENVIRONMENT === "development"
+    ? "http://localhost:5000"
+    : "https://wabooo-server.onrender.com";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>

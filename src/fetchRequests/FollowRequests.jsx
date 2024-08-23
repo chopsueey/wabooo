@@ -1,6 +1,8 @@
+import { DOMAIN } from "../main";
+
 export async function postFollow(data) {
   try {
-    const response = await fetch(`http://localhost:5000/dashboard/follow`, {
+    const response = await fetch(`${DOMAIN}/dashboard/follow`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -19,7 +21,7 @@ export async function postFollow(data) {
 
 export async function deleteFollow(data) {
   try {
-    const response = await fetch(`http://localhost:5000/dashboard/unfollow`, {
+    const response = await fetch(`${DOMAIN}/dashboard/unfollow`, {
       method: "DELETE",
       body: JSON.stringify(data),
       headers: {
@@ -39,7 +41,7 @@ export async function deleteFollow(data) {
 export async function getFollower(data) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/profile/${data}/follower`,
+      `${DOMAIN}/dashboard/profile/${data}/follower`,
       {
         credentials: "include",
       }

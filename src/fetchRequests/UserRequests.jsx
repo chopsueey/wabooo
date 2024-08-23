@@ -1,6 +1,8 @@
+import { DOMAIN } from "../main"
+
 export const userRegister = async (data) => {
   try {
-    const response = await fetch("http://localhost:5000/register", {
+    const response = await fetch(`${DOMAIN}/register`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -23,7 +25,7 @@ export const userRegister = async (data) => {
 
 export const userLogin = async (data) => {
   try {
-    const response = await fetch("http://localhost:5000/login", {
+    const response = await fetch(`${DOMAIN}/login`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -46,7 +48,7 @@ export const userLogin = async (data) => {
 
 export async function userLogout() {
   try {
-    const response = await fetch("http://localhost:5000/logout", {
+    const response = await fetch(`${DOMAIN}/logout`, {
       credentials: "include",
     });
     if (response.status === 201) {

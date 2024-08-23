@@ -1,6 +1,8 @@
+import { DOMAIN } from "../main";
+
 export async function getMostPopularTopics() {
   try {
-    const response = await fetch(`http://localhost:5000/dashboard/topics`, {
+    const response = await fetch(`${DOMAIN}/dashboard/topics`, {
       credentials: "include",
     });
     if (response.status === 200) {
