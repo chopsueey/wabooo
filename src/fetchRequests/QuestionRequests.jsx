@@ -1,5 +1,7 @@
+import { DOMAIN } from "../main";
+
 export async function getQuestions() {
-  const response = await fetch("http://localhost:5000/dashboard/myquestions", {
+  const response = await fetch(`${DOMAIN}/dashboard/myquestions`, {
     credentials: "include",
   });
   const data = await response.json();
@@ -10,7 +12,7 @@ export async function getQuestions() {
 
 export async function getQuestion(questionId) {
   const response = await fetch(
-    `http://localhost:5000/dashboard/myquestions/${questionId}`,
+    `${DOMAIN}/dashboard/myquestions/${questionId}`,
     {
       credentials: "include",
     }
@@ -23,7 +25,7 @@ export async function getQuestion(questionId) {
 
 export async function updateQuestion(questionId) {
   const response = await fetch(
-    `http://localhost:5000/dashboard/question/${questionId}`,
+    `${DOMAIN}/dashboard/question/${questionId}`,
     {
       credentials: "include",
     }
@@ -37,7 +39,7 @@ export async function updateQuestion(questionId) {
 export async function postQuestion(data) {
   try {
     const response = await fetch(
-      "http://localhost:5000/dashboard/myquestions",
+      `${DOMAIN}/dashboard/myquestions`,
       {
         method: "POST",
         body: JSON.stringify(data),
@@ -61,7 +63,7 @@ export async function postQuestion(data) {
 export async function deleteQuestion(data) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/profile/questions/delete`,
+      `${DOMAIN}/dashboard/profile/questions/delete`,
       {
         method: "DELETE",
         body: JSON.stringify(data),
@@ -82,7 +84,7 @@ export async function deleteQuestion(data) {
 export async function postAnswer(data) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/question/answer`,
+      `${DOMAIN}/dashboard/question/answer`,
       {
         method: "POST",
         body: JSON.stringify(data),
@@ -103,7 +105,7 @@ export async function postAnswer(data) {
 export async function postLike(data) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/question/likes`,
+      `${DOMAIN}/dashboard/question/likes`,
       {
         method: "POST",
         body: JSON.stringify(data),
@@ -125,7 +127,7 @@ export async function postLike(data) {
 export async function deleteLike(data) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/question/likes`,
+      `${DOMAIN}/dashboard/question/likes`,
       {
         method: "DELETE",
         body: JSON.stringify(data),
@@ -146,7 +148,7 @@ export async function deleteLike(data) {
 export async function deleteAnswer(data) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/question/answer`,
+      `${DOMAIN}/dashboard/question/answer`,
       {
         method: "DELETE",
         body: JSON.stringify(data),
@@ -167,7 +169,7 @@ export async function deleteAnswer(data) {
 export async function getFeed(sortBy) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/feed/sort/?sortBy=${sortBy}`,
+      `${DOMAIN}/dashboard/feed/sort/?sortBy=${sortBy}`,
       {
         credentials: "include",
       }
@@ -186,7 +188,7 @@ export async function getFeed(sortBy) {
 export async function getTrend(sortBy) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/trend/sort/?sortBy=${sortBy}`,
+      `${DOMAIN}/dashboard/trend/sort/?sortBy=${sortBy}`,
       {
         credentials: "include",
       }
@@ -205,7 +207,7 @@ export async function getTrend(sortBy) {
 export async function getComment(questionId) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/question/${questionId}/allcomments`,
+      `${DOMAIN}/dashboard/question/${questionId}/allcomments`,
       {
         credentials: "include",
       }
@@ -221,7 +223,7 @@ export async function getComment(questionId) {
 export async function postComment(data) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/question/${data.questionId}/comment`,
+      `${DOMAIN}/dashboard/question/${data.questionId}/comment`,
       {
         method: "POST",
         body: JSON.stringify(data),
@@ -242,7 +244,7 @@ export async function postComment(data) {
 export async function patchComment(data) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/question/${data.questionId}/${data.commentId}`,
+      `${DOMAIN}/dashboard/question/${data.questionId}/${data.commentId}`,
       {
         method: "PATCH",
         body: JSON.stringify(data),
@@ -263,7 +265,7 @@ export async function patchComment(data) {
 export async function deleteComment(data) {
   try {
     const response = await fetch(
-      `http://localhost:5000/dashboard/question/${data.questionId}/${data.commentId}`,
+      `${DOMAIN}/dashboard/question/${data.questionId}/${data.commentId}`,
       {
         method: "DELETE",
         body: JSON.stringify(data),
@@ -284,7 +286,7 @@ export async function deleteComment(data) {
 export async function getQuestionData(questionId) {
   try {
     const response = await fetch(
-      `http://localhost:5000/statistics/${questionId}`,
+      `${DOMAIN}/statistics/${questionId}`,
       { credentials: "include" }
     );
     if (response.status === 200) {

@@ -50,7 +50,7 @@ export async function loginController(req, res, next) {
         const token = await createToken({ userId: user._id });
         return res
           .status(200)
-          .cookie("jwt", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true }) // expires after 24 hours
+          .cookie("jwt", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: true, secure: true }) // expires after 24 hours
           .cookie("isLoggedIn", true, { maxAge: 24 * 60 * 60 * 1000 })
           .json({
             message: "Login successful.",
