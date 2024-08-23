@@ -5,7 +5,7 @@ import "./index.scss";
 import { GeneralContext } from "./store/GeneralContext.jsx";
 import { BrowserRouter } from "react-router-dom";
 
-const ENVIRONMENT = "development"; // "production"
+const ENVIRONMENT = "production"; // or "development"
 
 export const DOMAIN =
   ENVIRONMENT === "development"
