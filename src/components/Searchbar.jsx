@@ -31,9 +31,9 @@ export function Searchbar() {
       />
       <button
         onClick={handleSearchClick}
-        className="mt-6 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:outline-none shadow-lg shadow-gray-800 font-medium rounded-lg text-sm px-5 py-1"
+        className="mt-6 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:outline-none shadow-lg shadow-gray-800 font-medium rounded-lg text-sm px-4 py-2"
       >
-        🔎
+        🔎 Search
       </button>
     </div>
   );

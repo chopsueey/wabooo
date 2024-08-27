@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { userRegister, userLogin } from "../fetchRequests/UserRequests.jsx";
 import origin from "../assets/origin.png";
 import age from "../assets/age.png";
-import bg2 from "../assets/end.jpg";
+import bg2 from "../assets/karte3.jpg";
 import gifIcon from "../assets/gifs/6os.gif";
 import ask from "../assets/ask.mp4";
 import GeneralStore from "../store/GeneralContext";
