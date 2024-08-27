@@ -47,16 +47,16 @@ export function InfoSidebar() {
     <div className={infoSidebarClassName}>
       <div className=" bg-gray-500 flex-grow flex flex-col bg-opacity-25 rounded-xl px-5 py-2 shadow-lg shadow-gray-900 mr-10">
         <div className="p-2 text-center text-white font-bold text-xl">
-          popular topics
+          Popular topics
         </div>
         <div className="border-b border-sky-500 mb-2"></div>
         <div className="flex flex-col justify-center max-w-[225px]">
           {topics
             ? topics.map((topic) => (
-                <div
+                <div key={topic[0]}
                   style={{ fontSize: `${topic[1] + 16}px` }}
                   onClick={handleTopicClick}
-                  className="bg-gray-900 text-center rounded-lg m-1 p-3 cursor-pointer font-semibold text-cyan-300  hover:bg-cyan-300 hover:text-gray-900"
+                  className="transition ease-in-out duration-300 bg-gray-900 text-center rounded-lg m-1 p-3 cursor-pointer font-semibold text-cyan-300  hover:bg-cyan-300 hover:text-gray-900"
                 >
                   {topic[0]}
                 </div>

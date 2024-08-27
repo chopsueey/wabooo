@@ -5,13 +5,6 @@ import "./index.scss";
 import { GeneralContext } from "./store/GeneralContext.jsx";
 import { BrowserRouter } from "react-router-dom";
 
-const ENVIRONMENT = "production"; // or "development"
-
-export const DOMAIN =
-  ENVIRONMENT === "development"
-    ? "http://localhost:5000"
-    : "https://wabooo-server.onrender.com";
-console.log(DOMAIN)
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>

@@ -1,4 +1,4 @@
-import { DOMAIN } from "../main";
+import { DOMAIN } from "../setDomain";
 
 export async function getQuestions() {
   const response = await fetch(`${DOMAIN}/dashboard/myquestions`, {

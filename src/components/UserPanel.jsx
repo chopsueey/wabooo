@@ -53,7 +53,7 @@ export default function UserPanel() {
           }
           onClick={() => handleTabClick("Feed")}
         >
-          feed
+          Feed
         </div>
         <div
           className={
@@ -65,7 +65,7 @@ export default function UserPanel() {
           onClick={() => handleTabClick("Trend")}
           style={{ cursor: "pointer" }}
         >
-          trend
+          Trend
         </div>
         <div
           className={
@@ -77,7 +77,7 @@ export default function UserPanel() {
           onClick={() => handleTabClick("Recommended")}
           style={{ cursor: "pointer" }}
         >
-          recommended
+          Recommended
         </div>
 
         <div
@@ -90,7 +90,7 @@ export default function UserPanel() {
           onClick={() => handleTabClick("AskQuestion")}
           style={{ cursor: "pointer" }}
         >
-          ask a question
+          Ask a question
         </div>
         <div
           className={
@@ -103,7 +103,7 @@ export default function UserPanel() {
           style={{ cursor: "pointer" }}
           onClick={() => navigate(`/dashboard/user/profile/${profileId}`)}
         >
-          profile
+          Profile
         </div>
         {results ? (
           <div
@@ -116,7 +116,7 @@ export default function UserPanel() {
             style={{ cursor: "pointer" }}
             onClick={() => handleTabClick("Results")}
           >
-            search results
+            Search results
           </div>
         ) : (
           ""

@@ -1,4 +1,4 @@
-import { DOMAIN } from "../main"
+import { DOMAIN } from "../setDomain";
 
 export const userRegister = async (data) => {
   try {
@@ -52,7 +52,7 @@ export async function userLogout() {
       credentials: "include",
     });
     if (response.status === 201) {
-      return console.log(response);
+      return;
     }
     throw new Error("Logout fehlgeschlagen!");
   } catch (error) {
