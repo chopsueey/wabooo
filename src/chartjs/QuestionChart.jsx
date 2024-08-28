@@ -269,7 +269,7 @@ export function QuestionChart({ type, questionId }) {
   }, []);
 
   return (
-    <div className="flex flex-wrap justify-center items-center relative w-full max-w-[500px] p-6 m-5 rounded-xl blubb shadow-lg shadow-black">
+    <div className="flex flex-wrap justify-center items-center relative w-full max-w-[500px] p-6 m-1 sm:m-5 rounded-xl blubb shadow-lg shadow-black">
       <h1 className="title pb-4 text-xl sm:text-2xl">{chartTitle}</h1>
       <canvas id={type}></canvas>
     </div>

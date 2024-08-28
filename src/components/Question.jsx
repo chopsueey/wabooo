@@ -211,7 +211,7 @@ export const Question = ({
           style={{ maxWidth: "600px" }}
           className="bg-gradient-to-r relative overflow-hidden from-cyan-400 via-cyan-500 to-cyan-600 text-gray-900 shadow-lg shadow-gray-900 mb-6 rounded-xl mx-auto m-2"
         >
-          <div className="flex justify-between p-6 flex-wrap">
+          <div className="flex justify-between p-2 sm:p-6 flex-wrap">
             <div
               onMouseEnter={handleMouseEnter}
               className="profile-name flex flex-wrap question-userName relative"
@@ -387,7 +387,7 @@ export const Question = ({
                   }
                 )
               }
-              className="text-center text-2xl"
+              className="text-center text-xl sm:text-2xl"
             >
               {questionData.question}
             </h1>

@@ -90,7 +90,7 @@ export function QuestionPage() {
             onClick={() => navigate(`/dashboard/`)}
           >
             <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" />{" "}
-            <span>dashboard</span>
+            <span>Dashboard</span>
           </button>
         </div>
 
@@ -148,7 +148,7 @@ export function QuestionPage() {
             </div>
           </div>
           {activeTab === "Statistics" ? (
-            <div className="flex flex-wrap justify-around">
+            <div className="flex flex-wrap justify-center lg:justify-around">
               <QuestionChart type="line" questionId={state.question._id} />
               <QuestionChart type="doughnut" questionId={state.question._id} />
               {/* <QuestionChart type="line" /> */}
