@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="mb-[40px] blubb1 shadow-up flex items-center justify-center sm:mb-0 mt-10">
-      <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <footer className="blubb1 shadow-up flex items-center justify-center sm:mb-0 mt-10 mx-auto lg:max-w-5xl xl:max-w-screen-2xl sm:px-6 lg:px-8 rounded-xl">
+      <div className="max-w-7xl mx-auto pt-6 pb-2 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap justify-around text-center">
           <div className="m-3">
             <h2 className="textc text-lg font-semibold mb-4">About</h2>
@@ -37,11 +37,11 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <p className="text-center font-extralight">
-          Made with ❤️ by:
-          <br />
+        <div className="text-center font-extralight text-white mt-4">
+          Made with ❤️ by:&nbsp;
+          <br className="sm:hidden" />
           Alex - Basti - Nargiza - Marius
-        </p>
+        </div>
       </div>
     </footer>
   );

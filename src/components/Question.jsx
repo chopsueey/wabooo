@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   deleteAnswer,
   deleteLike,
   deleteQuestion,
+  getComment,
   getQuestion,
   postAnswer,
   postLike,
@@ -34,6 +35,7 @@ export const Question = ({
   const { setActiveTab, setResults } = GeneralStore();
 
   const [questionData, setQuestionData] = useState(question);
+  const [comments, setComments] = useState();
   const [isAnswered, setIsAnswered] = useState(answer);
   const [isLiked, setIsLiked] = useState(like);
   const [isFollowed, setIsFollowed] = useState(isFollowing);
@@ -59,6 +61,13 @@ export const Question = ({
   const [allAnswers, setAllAnswers] = useState(question.yes + question.no);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      const response = await getComment(question._id);
+      setComments(await response.json());
+    })();
+  }, []);
 
   async function handleAnswerClick(userClick) {
     const userAnswer = userClick;
@@ -453,6 +462,11 @@ export const Question = ({
                     {allAnswers > 1
                       ? `${allAnswers} answers`
                       : `${allAnswers} answer`}
+                  </div>
+                  <div className="italic text-white">
+                    {comments ? comments.length != 1
+                      ? `${comments.length} comments`
+                      : `${comments.length} comment` : ""}
                   </div>
                   <span className="text-white">
                     {new Date(questionData.createdAt).toLocaleDateString(
