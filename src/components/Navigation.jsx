@@ -52,7 +52,7 @@ export default function Navigation() {
   return (
     <>
       <div
-        className="flex-grow blubb1 shadow-lg shadow-black mb-10"
+        className="flex-grow blubb1 shadow-lg shadow-black mb-10 mx-auto lg:max-w-full xl:max-w-screen-2xl sm:px-6 lg:px-8 rounded-xl"
         style={{ color: "grey" }}
       >
         <nav
@@ -228,6 +228,7 @@ export default function Navigation() {
                     className="py-1 px-3 text-center text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br hover:from-gray-400 hover:via-gray-500 hover:to-gray-600  shadow-lg shadow-gray-900 font-medium rounded-lg text-sm ml-2 block max-w-[5rem] mb-1"
                     onClick={() => {
                       setIsMobileMenuOpen(false);
+                      navigate("/");
                       setModal(true);
                     }}
                   >

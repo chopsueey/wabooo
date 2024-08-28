@@ -373,12 +373,12 @@ export default function Home() {
       )}
       <div style={{ minHeight: "50vh" }} className="mb-20">
         <section className="flex flex-col justify-center items-center p-2 mt-16">
-          <h2 className="text-white  text-center text-5xl lg:text-7xl mb-10 font-bold ">
+          <h2 className="text-white text-center text-5xl lg:text-7xl mb-10 font-bold ">
             <span className="text-cyan-400">Wabooo</span> asking us?
           </h2>
           <h2 className="blubb rounded-xl shadow-lg shadow-black text-white text-center text-xl mb-10 font-bold py-10 mt-20 px-10 sm:px-20 w-fit mx-2 sm:mx-10 max-w-[800px]">
-            Wabooo is a social media app, on which you can create questions for
-            other users, that can only be answered with yes or no.
+            Wabooo is a social media app where you can post questions to other
+            users that can only be answered with yes or no.
             <br />
             So <span className="italic text-cyan-400">what about</span> asking
             us?
@@ -388,12 +388,8 @@ export default function Home() {
           <div className="overflow-hidden sm:w-1/2 flex justify-center items-center p-10">
             <p className="text-center sm:text-3xl">
               {" "}
-              You can ask questions to other users and add certain topics to
-              them, so that they are easier to find.
-              {/* Pose your inquiries, articulate your viewpoints, comment
-              thoughtfully, and embrace openness. By embracing diverse
-              perspectives, we can collaboratively uncover more effective
-              solutions for individuals and the collective. Join in now! */}
+              You can add certain topics to your questions so that they are
+              easier to find (like a hashtag).
             </p>
           </div>
 
@@ -406,37 +402,25 @@ export default function Home() {
       <div className="flex flex-col space-y-4">
         <div className="border border-b border-cyan-300 mx-10"></div>
         <section className="container mx-auto flex flex-col lg:flex-row justify-center items-center pt-3 pb-3 w-full px-2">
+          <div className="overflow-hidden sm:w-1/2 flex justify-center items-center p-10">
+            <p className="text-center sm:text-3xl">
+              This chart provides an overview of the average age of the users
+              who answered with 'yes' or 'no'.
+            </p>
+          </div>
           <div className="w-full flex justify-center my-10 sm:w-1/2">
-            {/* <img src={age} alt="chart" className="" /> */}
             <QuestionChart
               type="line"
               questionId={"64b6797445d37eb3c6530e0a"}
             />
-          </div>
-          <div className="overflow-hidden sm:w-1/2 flex justify-center items-center p-10">
-            <p className="text-center sm:text-3xl">
-              {" "}
-              {/* Do you possess strong convictions regarding matters of importance,
-              both to yourself and to society at large? Are you eager to
-              cultivate awareness about specific issues? Do you aspire to
-              enhance your sociability by comprehending the viewpoints of both
-              the majority and minority populations in your country, region, and
-              across the globe? This is the platform that empowers you to
-              achieve all these aspirations and more! Engage in questioning,
-              sharing, agreeing, and dissenting. */}
-              {/* This chart provides an overview of the average age of the
-              participants in relation to the aforementioned question. */}
-              You will also get an overview of the average age of all users who
-              answered your question.
-            </p>
           </div>
         </section>
         {/* <div className="border border-b border-cyan-300 mr-10 ml-10"></div> */}
         <section className="container mx-auto flex flex-col lg:flex-row justify-center items-center pt-3 pb-3 w-full px-2">
           <div className="overflow-hidden sm:w-1/2 flex justify-center items-center p-10">
             <p className="text-center sm:text-3xl">
-              This pie chart visually represents the distribution of
-              participants based on their respective countries.
+              The distribution of participants based on their respective
+              countries is represented by this pie chart.
             </p>
           </div>
           <div className="w-full flex justify-center my-10 sm:w-1/2">
