@@ -194,9 +194,7 @@ export async function getTrend(sortBy) {
       }
     );
     const data = await response.json();
-    console.log(data);
     if (response.status === 200) {
-      // console.log(data);
       return data;
     }
   } catch (err) {

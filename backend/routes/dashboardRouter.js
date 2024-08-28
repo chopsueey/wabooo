@@ -2,30 +2,11 @@ import express from "express";
 import * as profileController from "../controllers/profileController.js";
 import * as questionController from "../controllers/questionController.js";
 import * as feedbackController from "../controllers/feedbackController.js";
-
-
 import * as answerController from "../controllers/answerController.js";
 import * as likeController from "../controllers/likeController.js";
 import * as followController from "../controllers/followController.js";
 import * as searchController from "../controllers/searchController.js";
-import * as statisticController from "../controllers/statisticController.js";
-//import { getStatistics } from "../controllers/statisticsController.js";
-
-// import {
-//   getAllProfiles,
-//   createProfile,
-//   deleteProfile,
-// } from "../controllers/profileControllers.js";
 import * as topicController from "../controllers/topicController.js";
-
-import * as cloudyController from "../Upload/cloudyController.js"
-
-import { profilePostSchema } from "../schema/profileSchema.js";
-// import { feedbackPostSchema } from "../schema/feedbackSchema.js";
-// //import { likePostSchema } from "../schema/likeSchema.js";
-// import { questionPostSchema } from "../schema/questionSchema.js";
-// //import { answerPostSchema } from "../schema/answerSchema.js";
-import validate from "../middleware/validateAjv.js";
 
 const dashboardRouter = express.Router();
 

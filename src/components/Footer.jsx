@@ -7,10 +7,10 @@ export default function Footer() {
             <h2 className="textc text-lg font-semibold mb-4">About</h2>
             <ul>
               <li className="text-gray-400 hover:text-white transition-colors duration-300">
-                The Team
+                <a href="">The Team</a>
               </li>
               <li className="text-gray-400 hover:text-white transition-colors duration-300">
-                How to
+                <a href="">Connect</a>
               </li>
             </ul>
           </div>
@@ -18,10 +18,10 @@ export default function Footer() {
             <h2 className="textc text-lg font-semibold mb-4">Community</h2>
             <ul>
               <li className="text-gray-400 hover:text-white transition-colors duration-300">
-                Facebook
+                <a href="">Facebook</a>
               </li>
               <li className="text-gray-400 hover:text-white transition-colors duration-300">
-                Twitter
+                <a href="">Twitter</a>
               </li>
             </ul>
           </div>
@@ -29,16 +29,18 @@ export default function Footer() {
             <h2 className="textc text-lg font-semibold mb-4">More</h2>
             <ul>
               <li className="text-gray-400 hover:text-white transition-colors duration-300">
-                Terms
+                <a href="">Terms</a>
               </li>
               <li className="text-gray-400 hover:text-white transition-colors duration-300">
-                Privacy
+                <a href="">Privacy</a>
               </li>
             </ul>
           </div>
         </div>
         <p className="text-center font-extralight">
-          &copy; Marius - Alex - Basti - Nargiza
+          Made with ❤️ by:
+          <br />
+          Alex - Basti - Nargiza - Marius
         </p>
       </div>
     </footer>

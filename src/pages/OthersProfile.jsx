@@ -146,7 +146,7 @@ export default function OthersProfile() {
               onClick={() => navigate(`/dashboard/`)}
             >
               <ArrowLongLeftIcon className="h-5 w-5 text-cyan-300" />
-              <span>dashboard</span>
+              <span>Dashboard</span>
             </div>
             <div
               style={{ cursor: "pointer" }}

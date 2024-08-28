@@ -30,7 +30,6 @@ export default function UserPanel() {
   useEffect(() => {
     (async function request() {
       const response = await getProfile();
-      console.log(response);
       setProfileId(response.userProfile._id);
       setUserName(response.userProfile.userName);
     })();

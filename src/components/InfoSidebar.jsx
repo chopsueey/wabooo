@@ -28,7 +28,6 @@ export function InfoSidebar() {
   async function handleTopicClick(e) {
     const response = await searchRequest(e.target.innerText);
     const responseData = await response.json();
-    // console.log(responseData);
     setResults(responseData);
     navigate("/dashboard");
     setActiveTab("Results");
@@ -38,7 +37,6 @@ export function InfoSidebar() {
     (async function request() {
       const response = await getMostPopularTopics();
       const responseData = await response.json();
-      console.log(responseData);
       setTopics(responseData.mostPopularTopics);
     })();
   }, []);
@@ -53,7 +51,8 @@ export function InfoSidebar() {
         <div className="flex flex-col justify-center max-w-[225px]">
           {topics
             ? topics.map((topic) => (
-                <div key={topic[0]}
+                <div
+                  key={topic[0]}
                   style={{ fontSize: `${topic[1] + 16}px` }}
                   onClick={handleTopicClick}
                   className="transition ease-in-out duration-300 bg-gray-900 text-center rounded-lg m-1 p-3 cursor-pointer font-semibold text-cyan-300  hover:bg-cyan-300 hover:text-gray-900"
@@ -64,46 +63,6 @@ export function InfoSidebar() {
             : ""}
         </div>
       </div>
-      {/* <div className="pr-10 mt-2">
-        <div className="bg-slate-200 rounded-md flex flex-wrap max-w-[200px]">
-          <div className="p-2">popular questions</div>
-          <span className="bg-slate-600 rounded-md m-2 text-white">
-            question1
-          </span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">
-            question2
-          </span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">
-            question3
-          </span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">
-            question4
-          </span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">
-            question5
-          </span>
-        </div>
-      </div>
-      <div className="pr-10 mt-2">
-        <div className="bg-slate-200 rounded-md flex flex-wrap max-w-[200px]">
-          <div className="p-2">popular profiles</div>
-          <span className="bg-slate-600 rounded-md m-2 text-white">
-            profile 1
-          </span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">
-            profile 2
-          </span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">
-            profile 3
-          </span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">
-            profile 4
-          </span>
-          <span className="bg-slate-600 rounded-md m-2 text-white">
-            profile 5
-          </span>
-        </div>
-      </div> */}
     </div>
   );
 }

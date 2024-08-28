@@ -24,7 +24,6 @@ export async function getOthersProfile(profileId) {
     );
     const data = await response.json();
     if (response.status === 200) {
-      console.log(data);
       return data;
     }
   } catch (err) {

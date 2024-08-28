@@ -22,7 +22,6 @@ export default function MobileUserPanel() {
     (async function request() {
       // const response = await getTestProfile()
       const response = await getProfile();
-      console.log(response);
       setProfileId(response.userProfile._id);
       setUserName(response.userProfile.userName);
     })();

@@ -1,34 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userRegister, userLogin } from "../fetchRequests/UserRequests.jsx";
-import origin from "../assets/origin.png";
-import age from "../assets/age.png";
 import bg2 from "../assets/karte3.jpg";
-import gifIcon from "../assets/gifs/6os.gif";
-import ask from "../assets/ask.mp4";
 import GeneralStore from "../store/GeneralContext";
 import Typewriter from "typewriter-effect";
 import Smiley from "../assets/smiley.png";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
-import MyQuestions from "../pages/MyQuestions.jsx";
 import FakeMyQuestions from "../pages/FakeMyQuestion.jsx";
 import { QuestionChart } from "../chartjs/QuestionChart.jsx";
-
-//"Your account is created. You are logged in!";
-// Account not yet created")
-// your name shall be minimum 2 letters
-// email shall have a proper format
-// your password shall be minimum 8 letters, including numbers and symbols
-//"Your passwords do not match.");
-//"You are logged in!");
-//"Your password is incorrect."
 
 export default function Home() {
   const navigate = useNavigate();
@@ -152,11 +137,9 @@ export default function Home() {
   };
 
   useEffect(() => {
+    AOS.init();
     if (hasCookie) navigate("/dashboard");
   });
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
   return (
     <div
@@ -214,7 +197,7 @@ export default function Home() {
         >
           <form
             style={{ transform: `translate(-50%, -50%)` }}
-            className="signin blubb absolute flex flex-col p-4 text-center bg-gray-800 rounded-lg max-w-md mx-auto top-2/4 left-2/4 w-[270px] sm:w-[400px]"
+            className="signin blubb absolute flex flex-col p-4 text-center bg-gray-800 rounded-lg max-w-md mx-auto top-2/4 left-2/4 w-full"
             onSubmit={handleSubmit}
           >
             {" "}
@@ -388,19 +371,20 @@ export default function Home() {
           </form>
         </div>
       )}
-<div style={{minHeight: "50vh"}} className="mb-20">
-<section  className="flex flex-col justify-center items-center p-2 mt-16">
-        <h2 className="text-white  text-center text-5xl lg:text-7xl mb-10 font-bold ">
-          <span className="text-cyan-400">Wabooo</span> asking us?
-        </h2>
-        <h2 className="blubb rounded-xl shadow-lg shadow-black text-white text-center text-xl mb-10 font-bold py-10 mt-20 px-10 sm:px-20 w-fit mx-2 sm:mx-10 max-w-[800px]">
-          Wabooo is a social media app, on which you can create questions for
-          other users, that can only be answered with yes or no.
-          <br/>
-          So <span className="italic text-cyan-400">what about</span> asking us?
-        </h2>
-      </section>
-      <section className="container mx-auto flex flex-col lg:flex-row justify-center items-center pt-3 pb-3 w-full mt-10">
+      <div style={{ minHeight: "50vh" }} className="mb-20">
+        <section className="flex flex-col justify-center items-center p-2 mt-16">
+          <h2 className="text-white  text-center text-5xl lg:text-7xl mb-10 font-bold ">
+            <span className="text-cyan-400">Wabooo</span> asking us?
+          </h2>
+          <h2 className="blubb rounded-xl shadow-lg shadow-black text-white text-center text-xl mb-10 font-bold py-10 mt-20 px-10 sm:px-20 w-fit mx-2 sm:mx-10 max-w-[800px]">
+            Wabooo is a social media app, on which you can create questions for
+            other users, that can only be answered with yes or no.
+            <br />
+            So <span className="italic text-cyan-400">what about</span> asking
+            us?
+          </h2>
+        </section>
+        <section className="container mx-auto flex flex-col lg:flex-row justify-center items-center pt-3 pb-3 w-full mt-10">
           <div className="overflow-hidden sm:w-1/2 flex justify-center items-center p-10">
             <p className="text-center sm:text-3xl">
               {" "}
@@ -417,10 +401,9 @@ export default function Home() {
             <FakeMyQuestions />
           </div>
         </section>
-</div>
-      
+      </div>
+
       <div className="flex flex-col space-y-4">
-        
         <div className="border border-b border-cyan-300 mx-10"></div>
         <section className="container mx-auto flex flex-col lg:flex-row justify-center items-center pt-3 pb-3 w-full px-2">
           <div className="w-full flex justify-center my-10 sm:w-1/2">
@@ -443,8 +426,8 @@ export default function Home() {
               sharing, agreeing, and dissenting. */}
               {/* This chart provides an overview of the average age of the
               participants in relation to the aforementioned question. */}
-              You will also get an overview of the average age of all users
-              who answered your question.
+              You will also get an overview of the average age of all users who
+              answered your question.
             </p>
           </div>
         </section>
